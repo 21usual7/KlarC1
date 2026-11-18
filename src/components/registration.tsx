@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { CheckCircle2, Eye, EyeOff, LogOut, ArrowRight, Mail, RotateCcw } from 'lucide-react';
 import type { PublicUser } from '@/lib/auth';
 
@@ -10,6 +11,7 @@ type Delivery = 'sent' | 'not_configured' | 'failed';
 type Props = { onClose?: () => void; initialMode?: Mode; standalone?: boolean };
 
 export default function Registration({ onClose, initialMode = 'register', standalone = false }: Props) {
+  const router = useRouter();
   const [mode, setMode] = useState<Mode>(initialMode);
   const [user, setUser] = useState<PublicUser | null>(null);
   const [loading, setLoading] = useState(true);
@@ -61,6 +63,7 @@ export default function Registration({ onClose, initialMode = 'register', standa
       }
       if (!result.user) throw new Error('Не удалось подтвердить вход. Попробуйте ещё раз.');
       setUser(result.user); setSuccess('Ты вошёл в аккаунт.');
+      router.refresh();
       window.dispatchEvent(new Event('klar-auth-changed'));
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'Нет соединения с сервером. Попробуйте ещё раз.'); }
     finally { setBusy(false); }
@@ -85,6 +88,7 @@ export default function Registration({ onClose, initialMode = 'register', standa
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || 'Не удалось выйти.');
       setUser(null); setSuccess('Ты вышел из аккаунта.'); setMode(standalone ? initialMode : 'login');
+      router.refresh();
       window.dispatchEvent(new Event('klar-auth-changed'));
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'Нет соединения с сервером.'); }
     finally { setBusy(false); }
@@ -98,22 +102,22 @@ export default function Registration({ onClose, initialMode = 'register', standa
     <span className="eyebrow">ТВОЁ МЕСТО В KLAR</span>
     <Heading id="registration-title" style={{ fontSize: 32, letterSpacing: '-1px', lineHeight: 1.4, marginBottom: 15 }}>{user ? `Привет, ${user.name}.` : pendingEmail ? 'Подтверди свой email' : mode === 'register' ? 'Начнём с знакомства' : 'С возвращением'}</Heading>
     {loading ? <p role="status" style={{ margin: '25px 0' }}>Проверяем аккаунт…</p> : user ? <>
-      <div style={{ padding: '22px 0', display: 'flex', alignItems: 'flex-start', gap: 13 }}><CheckCircle2 size={25} color="#63844c" /><div><strong style={{ display: 'block', fontSize: 17 }}>Ты вошёл в Klar</strong><p style={{ color: 'var(--muted)', overflowWrap: 'anywhere', marginTop: 5 }}>{user.email}</p></div></div>
-      {success && <p role="status" style={{ margin: '0 0 20px', color: '#4d713d' }}>{success}</p>}
+      <div style={{ padding: '22px 0', display: 'flex', alignItems: 'flex-start', gap: 13 }}><CheckCircle2 size={25} color="var(--green)" /><div><strong style={{ display: 'block', fontSize: 17 }}>Ты вошёл в Klar</strong><p style={{ color: 'var(--muted)', overflowWrap: 'anywhere', marginTop: 5 }}>{user.email}</p></div></div>
+      {success && <p role="status" style={{ margin: '0 0 20px', color: 'var(--green)' }}>{success}</p>}
       <p style={{ color: 'var(--muted)', fontSize: 16, marginBottom: 26 }}>Можно возвращаться к занятиям. Твои учебные данные доступны в аккаунте.</p>
       <div style={{ display: 'flex', gap: 15, flexWrap: 'wrap' }}>{standalone || !onClose ? <Link href="/" className="button primary" style={{ textDecoration: 'none' }}>Продолжить учиться <ArrowRight size={19} /></Link> : <button type="button" className="button primary" onClick={onClose}>Продолжить учиться <ArrowRight size={19} /></button>}<button type="button" disabled={busy} className="button secondary" onClick={logout}><LogOut size={18} />{busy ? 'Выходим…' : 'Выйти'}</button></div>
     </> : pendingEmail ? <>
-      <div style={{ display: 'flex', gap: 13, margin: '25px 0', alignItems: 'flex-start' }}><Mail size={25} color="#63844c" /><div><p style={{ fontSize: 17, fontWeight: 500, overflowWrap: 'anywhere' }}>{pendingEmail}</p><p style={{ color: 'var(--muted)', marginTop: 8 }}>Для входа нужен подтверждённый адрес. Открой ссылку в письме и нажми «Подтвердить email».</p></div></div>
-      {delivery === 'sent' && !success && <p role="status" style={{ marginBottom: 23, color: '#4d713d' }}>Письмо отправлено. Если его нет во входящих, проверь папку «Спам».</p>}
+      <div style={{ display: 'flex', gap: 13, margin: '25px 0', alignItems: 'flex-start' }}><Mail size={25} color="var(--green)" /><div><p style={{ fontSize: 17, fontWeight: 500, overflowWrap: 'anywhere' }}>{pendingEmail}</p><p style={{ color: 'var(--muted)', marginTop: 8 }}>Для входа нужен подтверждённый адрес. Открой ссылку в письме и нажми «Подтвердить email».</p></div></div>
+      {delivery === 'sent' && !success && <p role="status" style={{ marginBottom: 23, color: 'var(--green)' }}>Письмо отправлено. Если его нет во входящих, проверь папку «Спам».</p>}
       {delivery === 'not_configured' && <p role="alert" className="notice">Аккаунт создан, но письмо не отправлено: отправка почты ещё не настроена. Email пока не подтверждён. Попробуй запросить письмо позже.</p>}
       {delivery === 'failed' && <p role="alert" className="notice">Не удалось отправить письмо. Email ещё не подтверждён. Попробуй ещё раз.</p>}
-      {success && <p role="status" style={{ margin: '0 0 22px', color: '#4d713d' }}>{success}</p>}
+      {success && <p role="status" style={{ margin: '0 0 22px', color: 'var(--green)' }}>{success}</p>}
       {error && <p role="alert" className="notice">{error}</p>}
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 25 }}><button type="button" className="button secondary" onClick={resend} disabled={busy}><RotateCcw size={18} />{busy ? 'Отправляем…' : 'Отправить письмо ещё раз'}</button>{standalone && mode === 'register' ? <Link className="small-link" href="/login">Перейти ко входу <ArrowRight size={18} /></Link> : <button type="button" className="small-link" disabled={busy} onClick={() => { setPendingEmail(''); setMode('login'); setError(''); setSuccess(''); }}>Перейти ко входу <ArrowRight size={18} /></button>}</div>
       <button type="button" className="text-button" style={{ fontSize: 15, marginTop: 20 }} disabled={busy} onClick={() => { setPendingEmail(''); setDelivery(undefined); setError(''); setSuccess(''); }}>Изменить email</button>
     </> : <>
       <p style={{ color: 'var(--muted)', marginBottom: 25 }}>{mode === 'register' ? 'Создай аккаунт, чтобы сохранять свой путь и возвращаться к занятиям.' : 'Введи email и пароль, с которыми регистрировался.'}</p>
-      {success && <p role="status" style={{ marginBottom: 20, color: '#4d713d' }}>{success}</p>}
+      {success && <p role="status" style={{ marginBottom: 20, color: 'var(--green)' }}>{success}</p>}
       <form onSubmit={submit} style={{ display: 'grid', gap: 21 }}>
         {mode === 'register' && <label style={labelStyle} htmlFor="registration-name">Как тебя зовут?<input id="registration-name" name="name" required autoComplete="given-name" maxLength={60} value={name} disabled={busy} onChange={event => setName(event.target.value)} placeholder="Твоё имя" style={inputStyle} /></label>}
         <label style={labelStyle} htmlFor="registration-email">Email<input id="registration-email" name="email" required type="email" autoComplete="email" maxLength={254} value={email} disabled={busy} onChange={event => setEmail(event.target.value)} placeholder="you@example.com" style={inputStyle} /></label>

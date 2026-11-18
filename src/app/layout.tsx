@@ -1,4 +1,4 @@
 import type { Metadata } from 'next';
 import './globals.css';
 export const metadata: Metadata = { title: 'Klar C1 — Dein Weg nach Wien', description: 'Глубокое изучение немецкого: от A1 до академического C1. Готовься к жизни и учёбе в Вене.' };
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="ru"><body>{children}</body></html>; }
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="ru"><head><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" /></head><body>{children}</body></html>; }
