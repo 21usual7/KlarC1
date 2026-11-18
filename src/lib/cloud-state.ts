@@ -12,4 +12,4 @@ export function normalizeLearningState(value:unknown):LearningState{
  }
  return {progress:restoreProgress(source.progress),chat:{role:typeof chat.role==='string'&&['Kommilitone','Professor','Beamter','Mitbewohner'].includes(chat.role)?chat.role:'Kommilitone',messages:Array.isArray(chat.messages)?chat.messages.flatMap(raw=>{const m=obj(raw);return typeof m.author==='string'&&typeof m.text==='string'?[{author:m.author.slice(0,40),text:m.text.slice(0,30000)}]:[]}).slice(-40):[]},homework};
 }
-export function hasLearningWork(value:LearningState){const p=value.progress;return !!(p.profile||p.writing||p.warmup||p.completed.length||p.reviews.length||p.stage||Object.values(p.drafts).some(d=>d.writing||d.warmup||d.stage||Object.keys(d.answers).length)||value.chat.messages.length||Object.keys(value.homework).length);}
+export function hasLearningWork(value:LearningState){const p=value.progress;return !!(p.profile||Object.keys(p.words).length||Object.keys(p.modules).length||p.sessions.length||value.chat.messages.length||Object.keys(value.homework).length);}

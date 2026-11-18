@@ -1,16 +1,42 @@
 'use client';
-import { ArrowRight, Target } from 'lucide-react';
-import type { Progress, Profile } from '@/lib/learning';
-import { getStudyFocus } from '@/lib/study-focus';
+import { ArrowRight, CheckCircle2, Lock } from 'lucide-react';
+import { contentLevels, lessonCount, lessonWords, modulesFor, displayWord, type ContentLevel, type Module, type Sphere } from '@/content';
+import { lessonDone, moduleLessonsDone, type Progress } from '@/lib/learning';
+import { PASS_SCORE } from '@/lib/lesson';
 import { PageTitle } from './shared';
+import SphereTabs from './sphere-tabs';
 
-type Props = { profile: Progress['profile']; studyFocus: ReturnType<typeof getStudyFocus>; onCustomize: () => void; onOpen: (level: Profile['level']) => void };
+type Props = { progress: Progress; level: ContentLevel; onSphere: (s: Sphere) => void; onLesson: (module: Module, lesson: number) => void; onTest: (module: Module) => void };
 
-export default function Roadmap({ profile, studyFocus, onCustomize, onOpen }: Props) {
-  return <><PageTitle label="ТВОЙ МАРШРУТ" title="От первого знакомства до первой лекции" text="Четыре этапа. Переходи дальше, когда умеешь применять язык." /><div className="roadmap-intro"><Target size={28} /><div><h3>{profile ? `${profile.level} → C1 · ${profile.track}` : 'Начать можно с нуля'}</h3><p>{profile ? `Твоя цель: ${profile.exam}. Дата — ориентир, а не обещание результата.` : 'Выбери свою отправную точку. Нагрузка и сроки зависят от практики.'}</p></div><button className="button secondary" onClick={onCustomize}>Настроить</button></div>{[
-      { level: 'A1 → A2', title: 'Знакомиться с миром', text: 'Представиться, спросить дорогу, понять простую реплику. Короткие тексты, перевод и опоры для ответа.', items: ['Hallo, Wien!', 'Im Café', 'Mein Tag'] },
-      { level: 'A2 → B1', title: 'Находить общий язык', text: 'Город, жильё, студенческая жизнь. Связные истории и уверенность в бытовых ситуациях.', items: ['Dein erster Tag in Wien', 'Ein Zimmer in Wien', 'Dein erstes Gruppenprojekt'] },
-      { level: 'B1 → B2', title: 'Понимать и объяснять', text: 'Объясни определение, ход доказательства или алгоритм. Термины — в понятных задачах по математике и безопасности.', items: studyFocus.intermediate },
-      { level: 'B2 → C1', title: 'Думать академически', text: 'Лекции по математике, криптографические предположения и модели угроз. Аргументируй, конспектируй и готовься к выбранному экзамену.', items: studyFocus.advanced },
-    ].map((r, i) => <section className="roadmap-section" key={r.level}><div className="roadmap-number">{i + 1}</div><div className="roadmap-content"><span className="eyebrow">{r.level}</span><h2>{r.title}</h2><p>{r.text}</p><details className="module-details"><summary>Занятия этого этапа</summary><div className="module-list">{r.items.map((item, j) => <div key={item}><span>{item}</span>{j === 0 && (i === 0 || i === 1) ? <button className="small-link" onClick={() => onOpen(i === 0 ? 'A1' : 'A2')}>Открыть <ArrowRight size={17} /></button> : <small>Скоро</small>}</div>)}</div></details></div></section>)}<p className="notice">A1 — начало обучения. Для рассмотренного пути на немецкоязычную программу с иностранным аттестатом A2 нужен к подаче, C1 — к началу основной учёбы.</p><details className="home-more"><summary>Математика и кибербезопасность: варианты поступления</summary>{profile?.studyStage !== 'master' && <><p><a href="https://www.tuwien.at/studium/studienangebot/bachelorstudien/technische-mathematik/technische-mathematik" target="_blank" rel="noreferrer">Бакалавриат Technische Mathematik</a>: математический анализ, линейная алгебра, дискретная математика. Вместо конкурсного Aufnahmeverfahren — Studien-VoR-Phase.</p><p><a href="https://www.tuwien.at/studium/studienangebot/bachelorstudien/informatik-und-wirtschaftsinformatik/informatik" target="_blank" rel="noreferrer">Бакалавриат Informatik</a>: есть специализация Cybersecurity и вступительная процедура. Криптография и безопасность — интересы и специализации, а не обещание отдельного бакалавриата.</p></>}{profile?.studyStage !== 'bachelor' && <><p><a href="https://www.tuwien.at/studium/studienangebot/masterstudien/mathematik-und-geoinformation/technische-mathematik" target="_blank" rel="noreferrer">Магистратура Technische Mathematik</a> и <a href="https://informatics.tuwien.ac.at/master/" target="_blank" rel="noreferrer">магистерские программы Informatics</a>: сопоставь предыдущий диплом, учебный план и язык программы. В англоязычных программах немецкий C1 не является общим требованием.</p></>}<p>План немецкого не заменяет предметную подготовку или решение университета о допуске. Условия и даты проверяй для выбранной программы.</p></details></>;
+export default function Roadmap({ progress, level, onSphere, onLesson, onTest }: Props) {
+  const profile = progress.profile;
+  return <><PageTitle label="МОДУЛИ" title="Лексика твоей сферы" text="Модуль — 16 слов: два урока по 10–15 минут и тест. Урок: 4 новых слова → упражнения от «узнать» до «использовать» → следующие 4 → финальный круг." />
+    <SphereTabs value={progress.sphere} onChange={onSphere} />
+    {contentLevels.map(l => <section className="roadmap-section" key={l}>
+      <div className="roadmap-number">{l}</div>
+      <div className="roadmap-content">
+        <span className="eyebrow">{l === level ? 'ТВОЙ УРОВЕНЬ' : l === 'A1.2' ? 'ПРОЩЕ' : 'СЛОЖНЕЕ'}</span>
+        {modulesFor(progress.sphere, l).map(module => {
+          const test = progress.modules[module.id]?.test; const ready = moduleLessonsDone(progress, module);
+          return <div key={module.id} className="module-block">
+            <h2>{module.title}</h2><p>{module.subtitle}</p>
+            <div className="module-list">
+              {Array.from({ length: lessonCount(module) }, (_, i) => <div key={i}>
+                {lessonDone(progress, module.id, i) ? <CheckCircle2 size={20} className="done-icon" /> : <span className="empty-circle" />}
+                <span><strong>Урок {i + 1}</strong><small lang="de">{lessonWords(module, i).map(displayWord).join(' · ')}</small></span>
+                <button className="small-link" onClick={() => onLesson(module, i)}>{lessonDone(progress, module.id, i) ? 'Ещё раз' : 'Начать'} <ArrowRight size={17} /></button>
+              </div>)}
+              <div>
+                {test?.passed ? <CheckCircle2 size={20} className="done-icon" /> : ready ? <span className="empty-circle" /> : <Lock size={18} className="muted" />}
+                <span><strong>Тест модуля</strong><small>{test ? `Лучший результат: ${Math.round(test.best * 100)} %` : `16 слов, без подсказок · зачёт от ${PASS_SCORE * 100} %`}</small></span>
+                <button className="small-link" disabled={!ready} title={ready ? '' : 'Сначала пройди оба урока'} onClick={() => onTest(module)}>{test ? 'Пересдать' : 'Начать'} <ArrowRight size={17} /></button>
+              </div>
+            </div>
+          </div>;
+        })}
+      </div>
+    </section>)}
+    <p className="notice">Сейчас готовы уровни A1.2 и A2 — по одному модулю на сферу. {profile && profile.level !== 'A1' && profile.level !== 'A2' ? 'Модули B1+ появятся позже; пока используются модули A2.' : 'Следующие модули добавляются по той же схеме.'}</p>
+    <details className="home-more"><summary>Математика и кибербезопасность: варианты поступления</summary>{profile?.studyStage !== 'master' && <><p><a href="https://www.tuwien.at/studium/studienangebot/bachelorstudien/technische-mathematik/technische-mathematik" target="_blank" rel="noreferrer">Бакалавриат Technische Mathematik</a>: математический анализ, линейная алгебра, дискретная математика. Вместо конкурсного Aufnahmeverfahren — Studien-VoR-Phase.</p><p><a href="https://www.tuwien.at/studium/studienangebot/bachelorstudien/informatik-und-wirtschaftsinformatik/informatik" target="_blank" rel="noreferrer">Бакалавриат Informatik</a>: есть специализация Cybersecurity и вступительная процедура. Криптография и безопасность — интересы и специализации, а не обещание отдельного бакалавриата.</p></>}{profile?.studyStage !== 'bachelor' && <><p><a href="https://www.tuwien.at/studium/studienangebot/masterstudien/mathematik-und-geoinformation/technische-mathematik" target="_blank" rel="noreferrer">Магистратура Technische Mathematik</a> и <a href="https://informatics.tuwien.ac.at/master/" target="_blank" rel="noreferrer">магистерские программы Informatics</a>: сопоставь предыдущий диплом, учебный план и язык программы. В англоязычных программах немецкий C1 не является общим требованием.</p></>}<p>План немецкого не заменяет предметную подготовку или решение университета о допуске. Условия и даты проверяй для выбранной программы.</p></details>
+  </>;
 }

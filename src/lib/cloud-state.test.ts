@@ -1,10 +1,11 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {normalizeLearningState,emptyLearningState,hasLearningWork} from './cloud-state.ts';
-test('legacy work is importable even when stored in a different lesson draft',()=>{
- const state=normalizeLearningState({progress:{writing:'Alter Text',stage:3}});
- assert.equal(state.progress.writing,'');
- assert.equal(state.progress.drafts['erste-woche'].writing,'Alter Text');
- assert.equal(hasLearningWork(state),true);
+test('story drafts are dropped with the stories; profile and vocabulary count as work',()=>{
+ const legacy=normalizeLearningState({progress:{writing:'Alter Text',stage:3}});
+ assert.equal('writing' in legacy.progress,false);
+ assert.equal(hasLearningWork(legacy),false);
+ assert.equal(hasLearningWork(normalizeLearningState({progress:{profile:{name:'Mila',level:'A2'}}})),true);
+ assert.equal(hasLearningWork(normalizeLearningState({progress:{modules:{'cyber-a2-angriffe':{lessons:[0]}}}})),true);
  assert.equal(hasLearningWork(emptyLearningState()),false);
 });
 test('cloud payload normalizes homework, chat and corrupt fields',()=>{
