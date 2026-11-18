@@ -1,0 +1,3 @@
+import { Fragment } from 'react';
+function inline(text:string){return text.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((part,i)=>part.startsWith('**')?<strong key={i}>{part.slice(2,-2)}</strong>:part.startsWith('`')?<code key={i}>{part.slice(1,-1)}</code>:<Fragment key={i}>{part}</Fragment>);}
+export default function FeedbackText({text}:{text:string}){return <div style={{lineHeight:1.85,overflowWrap:'anywhere'}}>{text.split(/\n\s*\n/).filter(Boolean).map((block,i)=>/^#{1,4}\s/.test(block)?<h3 key={i} style={{margin:'20px 0 10px'}}>{inline(block.replace(/^#{1,4}\s+/,''))}</h3>:<p key={i} style={{whiteSpace:'pre-wrap',margin:'12px 0'}}>{inline(block)}</p>)}</div>;}
