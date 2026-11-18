@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server';
 import { readHistory, tutorPrompt } from '@/lib/tutor';
 import { assignments } from '@/lib/homework';
+import { cookies } from 'next/headers';
+import { SESSION_COOKIE } from '@/lib/auth';
+import { allowTutorRequest } from '@/lib/ai-request-limit';
+export const runtime = 'nodejs';
+const unavailable = () => NextResponse.json({ error: 'Тьютор временно недоступен. Попробуйте позже; текст остаётся у вас.' }, { status: 503, headers: { 'Cache-Control': 'no-store' } });
 export async function POST(request: Request) {
  let input;
  try { input=await request.json(); } catch { return NextResponse.json({error:'Некорректный запрос.'},{status:400}); }
@@ -8,6 +13,9 @@ export async function POST(request: Request) {
  if(input.mode==='homework' && !assignments.some(a=>a.id===input.assignmentId)) return NextResponse.json({error:'Задание не найдено.'},{status:400});
  const gemini=process.env.GEMINI_API_KEY; const key=gemini || process.env.OPENAI_API_KEY;
  if(!key)return NextResponse.json({error:'Тьютор ещё не подключён. Нужен GEMINI_API_KEY или OPENAI_API_KEY на сервере.'},{status:503});
+ try {
+  if (!await allowTutorRequest((await cookies()).get(SESSION_COOKIE)?.value, request.headers)) return unavailable();
+ } catch { return unavailable(); }
  const models=(gemini ? process.env.GEMINI_MODEL || 'gemini-flash-lite-latest,gemini-flash-latest' : process.env.OPENAI_MODEL || 'gpt-4.1-mini').split(',').map(m=>m.trim()).filter(Boolean).slice(0,3);
  const messages=[{role:'system',content:tutorPrompt(input)},...readHistory(input.history),{role:'user',content:input.message.trim()}];
  let lastStatus=502;
