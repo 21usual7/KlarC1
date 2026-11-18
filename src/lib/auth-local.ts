@@ -2,7 +2,7 @@ import { createHash, randomBytes, randomUUID, scrypt, timingSafeEqual } from 'no
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-export type PublicUser = { id: string; name: string; email: string };
+export type PublicUser = { id: string; name: string; email: string; emailVerified?: boolean };
 type User = PublicUser & { passwordHash: string; salt: string; createdAt: string };
 type Session = { tokenHash: string; userId: string; expiresAt: number };
 type Database = { users: User[]; sessions: Session[] };

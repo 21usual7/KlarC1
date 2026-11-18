@@ -12,7 +12,7 @@ test('local registration, login, hashed storage and session revocation', async (
   const saved = configKeys.map(key => process.env[key]);
   configKeys.forEach(key => delete process.env[key]);
   try {
-    const { registerUser, loginUser, sessionUser, logoutUser, AuthError } = await import('./auth.ts');
+    const { registerUser, loginUser, sessionUser, logoutUser, AuthError } = await import('./auth-local.ts');
     const input = { name: 'Mila', email: 'MILA@example.com', password: 'Meine lange Testpassphrase' };
     const registered = await registerUser(input);
     assert.equal(registered.user.email, 'mila@example.com');
@@ -37,70 +37,47 @@ test('local registration, login, hashed storage and session revocation', async (
 });
 
 
-test('D1 uses atomic account/session creation, supports imported hashes and never silently falls back', async () => {
-  const { DatabaseSync } = await import('node:sqlite');
-  const database = new DatabaseSync(':memory:');
-  database.exec('PRAGMA foreign_keys = ON; CREATE TABLE users (id TEXT PRIMARY KEY, name TEXT NOT NULL, email TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL, salt TEXT NOT NULL, created_at TEXT NOT NULL); CREATE TABLE sessions (token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id), expires_at INTEGER NOT NULL)');
-  const originalFetch = globalThis.fetch;
-  const configKeys = ['CLOUDFLARE_API_TOKEN', 'CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_D1_DATABASE_ID'] as const;
-  const saved = configKeys.map(key => process.env[key]);
-  process.env.CLOUDFLARE_API_TOKEN = 'test-token';
-  process.env.CLOUDFLARE_ACCOUNT_ID = 'test-account';
-  process.env.CLOUDFLARE_D1_DATABASE_ID = 'test-database';
-  let fail = false;
-  let failSessionInsert = false;
-  const calls: { sql: string; params?: unknown[] }[][] = [];
-  globalThis.fetch = async (_url, init) => {
-    if (fail) throw new Error('mock outage');
-    const body = JSON.parse(String(init?.body));
-    const statements: { sql: string; params?: import('node:sqlite').SQLInputValue[] }[] = body.batch || [body];
-    calls.push(statements);
-    try {
-      if (body.batch) database.exec('BEGIN');
-      const result = statements.map(statement => {
-        if (failSessionInsert && statement.sql.startsWith('INSERT INTO sessions')) throw new Error('mock session insert failure');
-        return { success: true, results: database.prepare(statement.sql).all(...(statement.params || [])) };
-      });
-      if (body.batch) database.exec('COMMIT');
-      return Response.json({ success: true, result });
-    } catch (error) {
-      if (body.batch) database.exec('ROLLBACK');
-      return Response.json({ success: false, errors: [{ message: error instanceof Error ? error.message : 'SQL error' }] });
-    }
-  };
-  try {
-    const { registerUser, loginUser, sessionUser, logoutUser, AuthError } = await import('./auth.ts');
-    const input = { name: 'Jonas', email: 'd1@example.com', password: 'Eine andere lange Passphrase' };
-    const registered = await registerUser(input);
-    assert.equal(calls[0].length, 2, 'user and initial session must be in one transaction');
-    assert.equal((await sessionUser(registered.token))?.id, registered.user.id);
-    await assert.rejects(registerUser(input), error => error instanceof AuthError && error.status === 409);
-    assert.equal(database.prepare('SELECT COUNT(*) AS n FROM users').get()?.n, 1);
-    await assert.rejects(loginUser({ ...input, password: 'incorrect' }), error => error instanceof AuthError && error.status === 401);
-    const login = await loginUser(input);
-    assert.equal(login.user.id, registered.user.id);
-    await logoutUser(login.token);
-    assert.equal(await sessionUser(login.token), null);
-    database.prepare('UPDATE sessions SET expires_at = 1').run();
-    assert.equal(await sessionUser(registered.token), null);
-    // Imported accounts retain the existing scrypt format, without password reset.
-    const { hashPassword } = await import('./auth-local.ts');
-    const importedSalt = '9'.repeat(32);
-    database.prepare('INSERT INTO users VALUES (?, ?, ?, ?, ?, ?)').run('original-local-id', 'Imported', 'imported@example.com', (await hashPassword(input.password, importedSalt)).toString('hex'), importedSalt, new Date().toISOString());
-    assert.equal((await loginUser({ email: 'imported@example.com', password: input.password })).user.id, 'original-local-id');
-    failSessionInsert = true;
-    await assert.rejects(registerUser({ ...input, email: 'rollback@example.com' }));
-    assert.equal(database.prepare('SELECT id FROM users WHERE email = ?').get('rollback@example.com'), undefined, 'failed initial session insert must roll back user creation');
-    failSessionInsert = false;
-    fail = true;
-    await assert.rejects(registerUser({ ...input, email: 'outage@example.com' }));
-    await assert.rejects(sessionUser(registered.token));
-    fail = false;
-    delete process.env.CLOUDFLARE_D1_DATABASE_ID;
-    await assert.rejects(registerUser({ ...input, email: 'partial@example.com' }), error => error instanceof AuthError && error.status === 503);
-  } finally {
-    globalThis.fetch = originalFetch;
-    configKeys.forEach((key, index) => { if (saved[index] === undefined) delete process.env[key]; else process.env[key] = saved[index]; });
-    database.close();
+test('D1 requires one-time email verification and preserves secure sessions', async()=>{
+ const {DatabaseSync}=await import('node:sqlite');const db=new DatabaseSync(':memory:');
+ db.exec(await readFile('migrations/0001_accounts_and_learning.sql','utf8'));db.exec(await readFile('migrations/0002_email_verification.sql','utf8'));
+ const original=globalThis.fetch;const keys=['CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID','CLOUDFLARE_D1_DATABASE_ID','RESEND_API_KEY','EMAIL_FROM','APP_ORIGIN'];const saved=keys.map(k=>process.env[k]);
+ process.env.CLOUDFLARE_API_TOKEN='test';process.env.CLOUDFLARE_ACCOUNT_ID='test';process.env.CLOUDFLARE_D1_DATABASE_ID='test';delete process.env.RESEND_API_KEY;delete process.env.EMAIL_FROM;process.env.APP_ORIGIN='https://klar.example';
+ let deliveredToken='';let fail=false;let deliveryFailure=false;
+ globalThis.fetch=async(url,init)=>{
+  if(fail)throw new Error('outage');
+  const body=JSON.parse(String(init?.body));
+  if(String(url).startsWith('https://api.resend.com/')){
+   deliveredToken=body.text.match(/#token=([a-f0-9]{64})/)[1];
+   return deliveryFailure?Response.json({error:'failed'},{status:503}):Response.json({id:'test-email'});
   }
+  const statements=body.batch||[body];
+  try{if(body.batch)db.exec('BEGIN');const result=statements.map((s:{sql:string;params?:import('node:sqlite').SQLInputValue[]})=>({success:true,results:db.prepare(s.sql).all(...(s.params||[]))}));if(body.batch)db.exec('COMMIT');return Response.json({success:true,result});}
+  catch(e){if(body.batch)db.exec('ROLLBACK');return Response.json({success:false,errors:[{message:e instanceof Error?e.message:'SQL error'}]});}
+ };
+ try{
+  const {registerUser,loginUser,sessionUser,logoutUser,EmailNotVerifiedError,AuthError}=await import('./auth.ts');
+  const {sendVerification,confirmEmail,resendVerification}=await import('./email-verification.ts');
+  const input={name:'Mila',email:'verify@example.com',password:'Meine sichere lange Passphrase'};
+  const registered=await registerUser(input);
+  assert.equal('token' in registered,false,'registration must not issue a session');
+  assert.equal(db.prepare('SELECT COUNT(*) AS n FROM sessions').get()?.n,0);
+  await assert.rejects(loginUser(input),e=>e instanceof EmailNotVerifiedError);
+  await assert.rejects(loginUser({...input,password:'wrong'}),e=>e instanceof AuthError&&e.status===401);
+  assert.equal(await sendVerification(registered.user.id,input.email),'not_configured');
+  assert.equal(db.prepare('SELECT COUNT(*) AS n FROM email_verifications').get()?.n,0);
+  process.env.RESEND_API_KEY='test-resend';process.env.EMAIL_FROM='Klar <verify@klar.example>';
+  assert.equal(await sendVerification(registered.user.id,input.email),'sent');
+  const token=deliveredToken;const row=db.prepare('SELECT token_hash FROM email_verifications').get();assert.ok(row?.token_hash);assert.notEqual(row?.token_hash,token);
+  await assert.rejects(sendVerification(registered.user.id,input.email),e=>e instanceof AuthError&&e.status===429);
+  await assert.rejects(confirmEmail('1'.repeat(64)));
+  db.prepare('UPDATE email_verifications SET expires_at=1').run();await assert.rejects(confirmEmail(token));
+  db.prepare('UPDATE email_send_limits SET next_send_at=0').run();await sendVerification(registered.user.id,input.email);
+  const outcomes=await Promise.allSettled([confirmEmail(deliveredToken),confirmEmail(deliveredToken)]);assert.equal(outcomes.filter(o=>o.status==='fulfilled').length,1);
+  assert.equal(db.prepare('SELECT COUNT(*) AS n FROM email_verifications').get()?.n,0);
+  const login=await loginUser(input);assert.equal(login.user.emailVerified,true);assert.equal((await sessionUser(login.token))?.id,registered.user.id);await logoutUser(login.token);assert.equal(await sessionUser(login.token),null);
+  const failed=await registerUser({...input,email:'delivery-failed@example.com'});deliveryFailure=true;assert.equal(await sendVerification(failed.user.id,failed.user.email),'failed');await assert.rejects(loginUser({...input,email:failed.user.email}),e=>e instanceof EmailNotVerifiedError);
+  await assert.rejects(registerUser(input),e=>e instanceof AuthError&&e.status===409);
+  assert.deepEqual(await resendVerification('unknown@example.com'),{message:'Если аккаунт существует и ожидает подтверждения, письмо будет отправлено.'});
+  fail=true;await assert.rejects(registerUser({...input,email:'outage@example.com'}));fail=false;delete process.env.CLOUDFLARE_D1_DATABASE_ID;await assert.rejects(registerUser(input),e=>e instanceof AuthError&&e.status===503);
+ }finally{globalThis.fetch=original;keys.forEach((k,i)=>{if(saved[i]===undefined)delete process.env[k];else process.env[k]=saved[i];});db.close();}
 });

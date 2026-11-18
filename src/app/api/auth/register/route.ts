@@ -1,9 +1,10 @@
-import { registerUser } from '@/lib/auth';
-import { authFailure, authInput, authResponse, setSessionCookie } from '@/lib/auth-http';
-export const runtime = 'nodejs';
-export async function POST(request: Request) {
-  try {
-    const { user, token } = await registerUser(await authInput(request));
-    return setSessionCookie(authResponse({ user }, 201), token, new URL(request.url).protocol === 'https:');
-  } catch (error) { return authFailure(error); }
-}
+import {registerUser} from '@/lib/auth';
+import {sendVerification} from '@/lib/email-verification';
+import {authFailure,authInput,authResponse} from '@/lib/auth-http';
+export const runtime='nodejs';
+export async function POST(request:Request){try{
+ const {user}=await registerUser(await authInput(request));
+ let emailDelivery:'sent'|'not_configured'|'failed';
+ try{emailDelivery=await sendVerification(user.id,user.email);}catch{emailDelivery='failed';}
+ return authResponse({user,verificationRequired:true,emailDelivery},201);
+}catch(error){return authFailure(error);}}
