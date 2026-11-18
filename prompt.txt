@@ -1,0 +1,77 @@
+Ты — senior full-stack разработчик + продуктовый дизайнер + специалист по language learning UX. Создай полноценный веб-сайт для изучения немецкого языка с уровня A2 до C1, специально заточенный под поступление в TU Wien.Главная цель продуктаПользователь должен за 8–14 месяцев интенсивной учёбы уверенно сдать один из принимаемых TU Wien сертификатов C1 (ÖSD C1, Goethe-Zertifikat C1, telc Deutsch C1 Hochschule, TestDaF TDN 4, DSH-2) и чувствовать себя готовым к лекциям по техническим специальностям (Informatik, Maschinenbau, Architektur, Elektrotechnik и т.д.).Ключевая философия обучения (не делай типичный Duolingo)Откажись от бесконечных 10–15-минутных микро-уроков. Вместо этого сделай глубокие, интересные модули длительностью 45–90 минут (Deep Sessions). Каждый модуль должен ощущаться как мини-проект или история, а не как набор карточек.Принципы методики:
+Comprehensible Input + Output (Krashen + Swain)
+Spaced Repetition внутри длинных сессий + smart review
+Контекст > изолированная грамматика
+Academic + technical German с самого B1
+Real-life scenarios TU Wien / Wien / студенческая жизнь
+Focus Mode (полноэкранный, без отвлечений, с таймером глубокой работы)
+Прогресс измеряется не «уроками пройдено», а реальными навыками (speaking, writing, academic listening)
+Структура контентаУровни:
+A2 → B1 (Foundation)
+B1 → B2 (Solid Intermediate)
+B2 → C1 (Academic & Exam Ready)
+Типы Deep Sessions (основные модули 45–90 мин):
+Story Immersion — длинная история/диалог (студенческая жизнь в Вене, первые недели в TU Wien, проектная работа, экзамен, жизнь в общежитии). Пользователь читает/слушает → отвечает на вопросы → пересказывает → пишет свою версию → говорит с AI.
+Project Module — практический проект:
+Написать Bewerbung / Motivationsschreiben
+Подготовить Präsentation по технической теме
+Разобрать настоящую лекцию / скрипт лекции
+Сделать Zusammenfassung научной статьи
+Симуляция Sprechstunde у профессора
+
+Exam Simulation Deep Dive — полноценная симуляция части экзамена (Lesen, Hören, Schreiben, Sprechen) с детальным фидбеком и стратегиями.
+Grammar in Context — грамматика объясняется только внутри истории/проекта, потом отрабатывается в продуктивных заданиях.
+Technical German Tracks (с B1+):
+Informatik
+Maschinenbau / Elektrotechnik
+Architektur / Bauwesen
+Mathematik & Physik
+
+Каждый Deep Session содержит:
+Чёткую цель навыка
+Warm-up (5–7 мин)
+Основной блок (input + guided practice)
+Output (speaking + writing)
+Smart Review + spaced repetition карточки, которые автоматически попадают в систему повторений
+Reflection / self-assessment
+Обязательные фичи продукта1. Focus Mode
+Полноэкранный режим
+Таймер глубокой работы (45/60/90 мин)
+Блокировка уведомлений браузера (насколько возможно)
+Ambient sounds (cafe Wien, library, rain)
+После сессии — короткий отчёт «что ты сделал»
+2. Диагностика и персонализация
+Входной placement test (A2–C1)
+Регулярные checkpoint tests
+Персональный roadmap с датой целевого экзамена
+Адаптация сложности и фокуса (если speaking слабый — больше speaking-модулей)
+3. AI-тьютор (ключевой)
+Разговорный партнёр с разными ролями (Kommilitone, Professor, Beamter, Mitbewohner)
+Мгновенный фидбек по speaking и writing с объяснением ошибок
+Генерация персонализированных упражнений на слабые места
+4. Прогресс и мотивация
+Skill radar (Lesen, Hören, Schreiben, Sprechen, Grammatik, Academic Vocab)
+Streak + Deep Session streak (важнее обычного daily streak)
+Milestone-ы, привязанные к реальной готовности к экзамену
+Календарь подготовки с рекомендуемой нагрузкой
+5. Контент, специфичный для TU Wien
+Реальные/приближенные к реальности тексты и аудио про TU Wien
+Лексика и конструкции, которые реально встречаются на лекциях
+Подготовка к Aufnahmeverfahren (где нужно)
+Практические сценарии: Anmeldung, Wohnen, Mensen, Bibliothek, Prüfungstermine
+Технические требования
+Современный стек (рекомендую Next.js 15 + TypeScript + Tailwind + shadcn/ui + Prisma + PostgreSQL или Supabase)
+Аутентификация (email + Google)
+Красивый, чистый, спокойный дизайн (не детский, не «игровой»)
+Отличная типографика для чтения длинных текстов
+Мобильная версия обязательна, но основной фокус — desktop для Deep Sessions
+Оффлайн-режим для карточек и уже загруженных сессий (PWA)
+Голосовой ввод и TTS высокого качества
+Что нужно сделать в первую очередь
+Спроектируй информационную архитектуру и user flow
+Сделай landing page + onboarding + placement test
+Создай каркас одного Deep Session (Story Immersion) со всеми этапами
+Реализуй Focus Mode
+Добавь систему прогресса и skill radar
+Интегрируй базового AI-тьютора (можно начать с OpenAI/Anthropic API)
+Сделай сайт не «ещё одним языковым приложением», а инструментом, который реально готовит человека к жизни и учёбе в TU Wien. Контент должен быть интересным, взрослым и целевым.Начни с архитектуры и первого работающего прототипа Deep Session + Focus Mode.
