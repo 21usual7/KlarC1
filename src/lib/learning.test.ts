@@ -69,3 +69,12 @@ test('restoration tolerates corrupt fields and normalizes VWU goal', () => {
   assert.deepEqual(restored.skills, [100, 0, 0, 0, 0, 0]);
   assert.equal(restored.profile?.exam, 'VWU Ergänzungsprüfung');
 });
+
+test('degree preference survives reload and remains independent of language level', () => {
+  const both = updateProfile(initialProgress, { ...profile, studyStage: 'both' });
+  assert.equal(restoreProgress(JSON.parse(JSON.stringify(both))).profile?.studyStage, 'both');
+  const master = updateProfile(both, { ...profile, studyStage: 'master' });
+  assert.equal(master.profile?.level, 'A1');
+  assert.equal(restoreProgress(master).profile?.studyStage, 'master');
+  assert.equal(restoreProgress({ profile }).profile?.studyStage, 'both');
+});

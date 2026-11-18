@@ -1,7 +1,8 @@
+import { defaultStudyTrack, normalizeStudyStage, type StudyStage } from './study-focus.ts';
 export type Level = 'A1' | 'A2' | 'B1' | 'B2' | 'C1';
 export const levels: Level[] = ['A1', 'A2', 'B1', 'B2', 'C1'];
 export type ReviewCard = { word: string; translation: string; example: string; due: number; interval: number };
-export type Profile = { name: string; level: Level; track: string; exam: string; date: string; vwuEnrolled?: boolean };
+export type Profile = { name: string; level: Level; track: string; exam: string; date: string; vwuEnrolled?: boolean; studyStage?: StudyStage };
 export type SessionDraft = { warmup: string; writing: string; stage: number; answers: Record<string, string> };
 export type SessionResult = { date: string; minutes: number; confidence: number; sessionId?: string; title?: string };
 export type Progress = SessionDraft & { profile: Profile | null; sessionId: string; drafts: Record<string, SessionDraft>; completed: string[]; reviews: ReviewCard[]; sessions: SessionResult[]; skills: number[] };
@@ -18,7 +19,7 @@ export const stages = ['Настроиться', 'Погрузиться', 'Ра
 export const story = [
   'Es ist Montag, kurz vor neun. Mila steht vor dem Hauptgebäude der TU Wien am Karlsplatz. In ihrer Tasche liegen ein Notizbuch und ein ausgedruckter Stundenplan. Sie hat sich auf diesen Tag gefreut. Trotzdem ist sie nervös: Wird sie die Vorlesungen verstehen?',
   '„Suchst du auch den Hörsaal?“, fragt ein Student neben ihr. Er heißt Jonas und studiert Informatik im dritten Semester. Mila nickt. „Ich bin neu hier. Ich weiß noch nicht, wie die Anmeldung zu den Lehrveranstaltungen funktioniert.“ Jonas lächelt: „Am Anfang ist das für alle kompliziert. Die Termine und Voraussetzungen stehen im TISS. Wir schauen nach der Vorlesung gemeinsam nach.“',
-  'Im Hörsaal spricht die Professorin über Algorithmen. Nicht jedes Wort ist Mila bekannt, aber sie versteht die zentrale Idee: Ein großes Problem lässt sich in kleinere Schritte zerlegen. Statt jedes unbekannte Wort zu übersetzen, notiert sie die wichtigsten Begriffe und ein Beispiel.',
+  'Im Hörsaal spricht die Professorin über Mathematik und Algorithmen. Nicht jedes Wort ist Mila bekannt, aber sie versteht die zentrale Idee: Ein großes Problem lässt sich in kleinere Schritte zerlegen. Statt jedes unbekannte Wort zu übersetzen, notiert sie die wichtigsten Begriffe und ein Beispiel.',
   'Nach der Vorlesung gehen Mila und Jonas in die Bibliothek. Dort ist es ruhig. „Ich habe nicht alles verstanden“, sagt Mila. „Das musst du auch nicht sofort“, antwortet Jonas. „Schreib eine kurze Zusammenfassung. Wenn du den Gedanken erklären kannst, hast du schon viel verstanden. Und für offene Fragen gibt es die Sprechstunde.“',
   'Am Abend schreibt Mila drei Sätze in ihr Notizbuch. Heute hat sie einen Hörsaal gefunden, einen neuen Menschen kennengelernt und eine Idee verstanden. Wien fühlt sich noch fremd an. Aber der erste Schritt ist gemacht.',
 ];
@@ -59,13 +60,13 @@ const beginnerSession: LearningSession = {
     'Hallo! Ich heiße Mila. Ich komme aus der Ukraine. Jetzt wohne ich in Wien. Ich lerne Deutsch.',
     'Heute bin ich am Karlsplatz. Hier ist die Universität. Ich suche Raum 10.',
     '„Hallo! Ich bin Mila. Wie heißt du?“ — „Ich heiße Jonas. Bist du neu hier?“ — „Ja. Wo ist Raum 10?“ — „Dort, links.“ — „Danke!“ — „Gerne!“',
-    'Jonas fragt: „Was möchtest du studieren?“ — „Ich möchte Informatik studieren.“ — „Willkommen in Wien!“',
+    'Jonas fragt: „Was möchtest du studieren?“ — „Ich möchte Informatik studieren. Und du?“ — „Mathematik. Willkommen in Wien!“',
     'Am Abend schreibe ich: Ich lerne Deutsch. Morgen lerne ich weiter. Schritt für Schritt.',
   ],
   vocabulary: [
     { word: 'Ich heiße …', translation: 'Меня зовут …', example: 'Ich heiße Mila. Wie heißt du?' },
     { word: 'Ich wohne in …', translation: 'Я живу в …', example: 'Ich wohne in Wien.' },
-    { word: 'Ich möchte … studieren.', translation: 'Я хочу изучать … в университете.', example: 'Ich möchte Informatik studieren.' },
+    { word: 'Ich möchte … studieren.', translation: 'Я хочу изучать … в университете.', example: 'Ich möchte Mathematik studieren.' },
     { word: 'Wo ist …?', translation: 'Где находится …?', example: 'Wo ist Raum 10?' },
     { word: 'Danke! — Gerne!', translation: 'Спасибо! — Пожалуйста!', example: 'Danke, Jonas! — Gerne, Mila!' },
   ],
@@ -75,7 +76,7 @@ const beginnerSession: LearningSession = {
     { id: 'a1-q3', question: 'Was möchte Mila studieren? / Что Мила хочет изучать?', options: ['Architektur', 'Medizin', 'Informatik'], correct: 2, explanation: '„Ich möchte Informatik studieren.“ Обрати внимание: Мила пока учит язык, а не учится на программе.' },
   ],
   writingMin: 25, writingMax: 50,
-  writingPrompt: 'Представься новому знакомому: 3–5 коротких предложений о себе, своём городе и цели. Опоры: Hallo! Ich heiße … Ich komme aus … Jetzt wohne ich in … Ich lerne Deutsch. Ich möchte … studieren. Можно выбрать вымышленное имя и город.',
+  writingPrompt: 'Представься новому знакомому: 3–5 коротких предложений о себе, своём городе и цели — Mathematik или Informatik. Опоры: Hallo! Ich heiße … Ich komme aus … Jetzt wohne ich in … Ich lerne Deutsch. Ich möchte … studieren. Можно выбрать вымышленное имя и город.',
   warmupPrompt: 'Скажи своё имя и выбери одну цель на сегодня. Попробуй: „Ich heiße …“ и „Ich möchte Deutsch lernen.“ Можно сначала записать мысли по-русски.',
   speakingPrompt: 'Представься вслух: „Hallo! Ich heiße … Ich wohne in … Ich möchte … studieren.“ Сначала с опорой на текст, затем ещё раз без подсказки. Достаточно 30–60 секунд; идеальное произношение сейчас не цель.',
 };
@@ -106,7 +107,7 @@ export function updateProfile(progress: Progress, profile: Profile): Progress {
   const nextId = getSession(profile.level).id;
   const drafts = { ...progress.drafts, [progress.sessionId]: draftOf(progress) };
   const nextDraft = nextId === progress.sessionId ? draftOf(progress) : drafts[nextId] || emptyDraft();
-  return { ...progress, ...nextDraft, profile: { ...profile, exam: profile.vwuEnrolled ? 'VWU Ergänzungsprüfung' : profile.exam }, sessionId: nextId, drafts };
+  return { ...progress, ...nextDraft, profile: { ...profile, studyStage: normalizeStudyStage(profile.studyStage), exam: profile.vwuEnrolled ? 'VWU Ergänzungsprüfung' : profile.exam }, sessionId: nextId, drafts };
 }
 
 function record(value: unknown): Record<string, unknown> { return value !== null && typeof value === 'object' && !Array.isArray(value) ? value as Record<string, unknown> : {}; }
@@ -121,7 +122,7 @@ function readDraft(value: unknown): SessionDraft {
 export function restoreProgress(value: unknown): Progress {
   const source = record(value); const rawProfile = record(source.profile);
   const profile: Profile | null = typeof rawProfile.name === 'string' && levels.includes(rawProfile.level as Level) ? {
-    name: rawProfile.name, level: rawProfile.level as Level, track: text(rawProfile.track, 'Informatik'), exam: rawProfile.vwuEnrolled === true ? 'VWU Ergänzungsprüfung' : text(rawProfile.exam, 'ÖSD C1'), date: /^\d{4}-\d{2}-\d{2}$/.test(text(rawProfile.date)) ? text(rawProfile.date) : '', vwuEnrolled: rawProfile.vwuEnrolled === true,
+    name: rawProfile.name, level: rawProfile.level as Level, track: text(rawProfile.track, defaultStudyTrack), exam: rawProfile.vwuEnrolled === true ? 'VWU Ergänzungsprüfung' : text(rawProfile.exam, 'ÖSD C1'), date: /^\d{4}-\d{2}-\d{2}$/.test(text(rawProfile.date)) ? text(rawProfile.date) : '', vwuEnrolled: rawProfile.vwuEnrolled === true, studyStage: normalizeStudyStage(rawProfile.studyStage),
   } : null;
   const completed = Array.isArray(source.completed) ? source.completed.filter((v): v is string => typeof v === 'string') : [];
   const oldDraft = readDraft(source);
