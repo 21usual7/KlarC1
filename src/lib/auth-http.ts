@@ -1,15 +1,14 @@
+import {isSameOriginRequest} from './request-origin';
 import { NextResponse } from 'next/server';
 import { AuthError, SESSION_COOKIE, SESSION_SECONDS } from './auth';
 export function authResponse(body: unknown, status = 200) {
   return NextResponse.json(body, { status, headers: { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' } });
 }
 export function authFailure(error: unknown) {
-  return authResponse({ error: error instanceof AuthError ? error.message : 'Не удалось открыть локальное хранилище аккаунтов. Попробуйте ещё раз.' }, error instanceof AuthError ? error.status : 500);
+  return authResponse({ error: error instanceof AuthError ? error.message : 'Хранилище аккаунтов временно недоступно. Попробуйте ещё раз.' }, error instanceof AuthError ? error.status : 500);
 }
 export function assertSameOrigin(request: Request) {
-  const origin = request.headers.get('origin');
-  if (origin && origin !== new URL(request.url).origin) throw new AuthError(403, 'Откройте форму на этом сайте и повторите попытку.');
-  if (request.headers.get('sec-fetch-site') === 'cross-site') throw new AuthError(403, 'Запрос с другого сайта отклонён.');
+  if(!isSameOriginRequest(request,process.env.APP_ORIGIN))throw new AuthError(403, 'Откройте форму на этом сайте и повторите попытку.');
 }
 export async function authInput(request: Request): Promise<Record<string, unknown>> {
   assertSameOrigin(request);

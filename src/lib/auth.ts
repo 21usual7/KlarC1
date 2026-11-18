@@ -1,111 +1,78 @@
-import { createHash, randomBytes, randomUUID, scrypt, timingSafeEqual } from 'node:crypto';
-import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
-import path from 'node:path';
+import { createHash, randomBytes, randomUUID, timingSafeEqual } from 'node:crypto';
+import { d1Batch, d1Configured, d1PartiallyConfigured, d1Query } from './d1.ts';
+import * as local from './auth-local.ts';
 
-export type PublicUser = { id: string; name: string; email: string };
-type User = PublicUser & { passwordHash: string; salt: string; createdAt: string };
-type Session = { tokenHash: string; userId: string; expiresAt: number };
-type Database = { users: User[]; sessions: Session[] };
-export const SESSION_COOKIE = 'klar_session';
-export const SESSION_SECONDS = 60 * 60 * 24 * 30;
-const directory = path.join(process.cwd(), '.data');
-const databaseFile = path.join(directory, 'auth.json');
-const lockPath = path.join(directory, 'auth.lock');
+export { AuthError, SESSION_COOKIE, SESSION_SECONDS } from './auth-local.ts';
+export type { PublicUser } from './auth-local.ts';
 
-export class AuthError extends Error {
-  readonly status: number;
-  constructor(status: number, message: string) { super(message); this.status = status; }
+function useD1() {
+  if (d1Configured()) return true;
+  if (d1PartiallyConfigured()) throw new local.AuthError(503, 'Настройка облачного хранилища не завершена. Локальная запись отключена.');
+  return false;
 }
-const visible = ({ id, name, email }: User): PublicUser => ({ id, name, email });
+
+type D1User = local.PublicUser & { password_hash: string; salt: string; created_at: string };
+const visible = ({ id, name, email }: local.PublicUser): local.PublicUser => ({ id, name, email });
 const digest = (token: string) => createHash('sha256').update(token).digest('hex');
-const hashPassword = (password: string, salt: string) => new Promise<Buffer>((resolve, reject) => {
-  scrypt(password, salt, 64, { N: 32768, r: 8, p: 1, maxmem: 64 * 1024 * 1024 }, (error, result) => error ? reject(error) : resolve(result));
-});
-async function withDatabase<T>(operation: (database: Database) => T | Promise<T>, save = false): Promise<T> {
-  await mkdir(directory, { recursive: true, mode: 0o700 });
-  let locked = false;
-  for (let attempt = 0; attempt < 100; attempt++) {
-    try { await mkdir(lockPath, { mode: 0o700 }); locked = true; break; }
-    catch (error) { if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error; await new Promise(resolve => setTimeout(resolve, 25)); }
-  }
-  if (!locked) throw new AuthError(503, 'Хранилище занято. Попробуйте ещё раз через несколько секунд.');
-  try {
-    let database: Database;
-    try {
-      database = JSON.parse(await readFile(databaseFile, 'utf8'));
-      if (!Array.isArray(database.users) || !Array.isArray(database.sessions)) throw new Error('Invalid auth storage');
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-      database = { users: [], sessions: [] };
-    }
-    const result = await operation(database);
-    if (save) {
-      database.sessions = database.sessions.filter(session => session.expiresAt > Date.now());
-      const temporary = path.join(directory, `auth-${randomUUID()}.tmp`);
-      try { await writeFile(temporary, JSON.stringify(database), { mode: 0o600, flag: 'wx' }); await rename(temporary, databaseFile); }
-      finally { await rm(temporary, { force: true }); }
-    }
-    return result;
-  } finally { await rm(lockPath, { recursive: true, force: true }); }
-}
-function emailValue(value: unknown): string {
-  if (typeof value !== 'string') throw new AuthError(400, 'Укажите email.');
-  const email = value.trim().toLowerCase();
-  if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new AuthError(400, 'Проверьте адрес email.');
-  return email;
-}
-function passwordValue(value: unknown, registration: boolean): string {
-  if (typeof value !== 'string' || !value || value.length > 128 || (registration && value.length < 12)) throw new AuthError(400, registration ? 'Пароль должен содержать от 12 до 128 символов.' : 'Укажите email и пароль.');
-  return value;
-}
-// A small process-local limiter for the local prototype. Restarting the server resets it.
-const authGlobal = globalThis as typeof globalThis & { klarAuthAttempts?: Map<string, { count: number; reset: number }> };
-const attempts = authGlobal.klarAuthAttempts ||= new Map();
-function limit(email: string) {
-  const key = digest(email); const now = Date.now();
-  if (attempts.size > 1000) for (const [id, entry] of attempts) if (entry.reset < now) attempts.delete(id);
-  const entry = attempts.get(key);
-  if (entry && entry.reset > now) {
-    if (entry.count >= 10) throw new AuthError(429, 'Слишком много попыток. Попробуйте через 15 минут.');
-    entry.count++;
-  } else attempts.set(key, { count: 1, reset: now + 15 * 60 * 1000 });
-}
-function addSession(database: Database, userId: string) {
+const validToken = (token: string | undefined): token is string => !!token && /^[a-f0-9]{64}$/.test(token);
+function newSession(userId: string) {
   const token = randomBytes(32).toString('hex');
-  const userSessions = database.sessions.filter(session => session.userId === userId && session.expiresAt > Date.now());
-  if (userSessions.length >= 10) database.sessions = database.sessions.filter(session => session !== userSessions[0]);
-  database.sessions.push({ userId, tokenHash: digest(token), expiresAt: Date.now() + SESSION_SECONDS * 1000 });
-  return token;
+  return { token, statement: { sql: 'INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?, ?, ?)', params: [digest(token), userId, Date.now() + local.SESSION_SECONDS * 1000] } };
 }
+
 export async function registerUser(input: Record<string, unknown>) {
-  const email = emailValue(input.email); const password = passwordValue(input.password, true);
-  if (typeof input.name !== 'string' || !input.name.trim() || input.name.trim().length > 60) throw new AuthError(400, 'Укажите имя длиной до 60 символов.');
-  const name = input.name.trim(); limit(email);
-  const salt = randomBytes(16).toString('hex'); const passwordHash = (await hashPassword(password, salt)).toString('hex');
-  return withDatabase(database => {
-    if (database.users.some(user => user.email === email)) throw new AuthError(409, 'Этот email уже зарегистрирован. Переключитесь на вход.');
-    const user: User = { id: randomUUID(), name, email, salt, passwordHash, createdAt: new Date().toISOString() };
-    database.users.push(user);
-    return { user: visible(user), token: addSession(database, user.id) };
-  }, true);
+  if (!useD1()) return local.registerUser(input);
+  const email = local.emailValue(input.email);
+  const password = local.passwordValue(input.password, true);
+  if (typeof input.name !== 'string' || !input.name.trim() || input.name.trim().length > 60) throw new local.AuthError(400, 'Укажите имя длиной до 60 символов.');
+  local.limit(email);
+  const salt = randomBytes(16).toString('hex');
+  const passwordHash = (await local.hashPassword(password, salt)).toString('hex');
+  const user = { id: randomUUID(), name: input.name.trim(), email };
+  const session = newSession(user.id);
+  try {
+    await d1Batch([
+      { sql: 'INSERT INTO users (id, name, email, password_hash, salt, created_at) VALUES (?, ?, ?, ?, ?, ?)', params: [user.id, user.name, user.email, passwordHash, salt, new Date().toISOString()] },
+      session.statement,
+    ]);
+  } catch (error) {
+    // Check the database instead of depending on upstream error text or leaking it.
+    // A configured D1 failure must never write an account to the local fallback.
+    const existing = await d1Query<{ id: string }>('SELECT id FROM users WHERE email = ? LIMIT 1', [email]);
+    if (existing.length) throw new local.AuthError(409, 'Этот email уже зарегистрирован. Переключитесь на вход.');
+    throw error;
+  }
+  return { user, token: session.token };
 }
+
 export async function loginUser(input: Record<string, unknown>) {
-  const email = emailValue(input.email); const password = passwordValue(input.password, false); limit(email);
-  const user = await withDatabase(database => database.users.find(item => item.email === email));
-  const calculated = await hashPassword(password, user?.salt || 'klar-local-nonexistent-account');
-  const stored = user ? Buffer.from(user.passwordHash, 'hex') : Buffer.alloc(64);
-  if (!user || stored.length !== calculated.length || !timingSafeEqual(stored, calculated)) throw new AuthError(401, 'Неверный email или пароль.');
-  return withDatabase(database => ({ user: visible(user), token: addSession(database, user.id) }), true);
+  if (!useD1()) return local.loginUser(input);
+  const email = local.emailValue(input.email);
+  const password = local.passwordValue(input.password, false);
+  local.limit(email);
+  const [user] = await d1Query<D1User>('SELECT id, name, email, password_hash, salt, created_at FROM users WHERE email = ? LIMIT 1', [email]);
+  const calculated = await local.hashPassword(password, user?.salt || 'klar-local-nonexistent-account');
+  const stored = user ? Buffer.from(user.password_hash, 'hex') : Buffer.alloc(64);
+  if (!user || stored.length !== calculated.length || !timingSafeEqual(stored, calculated)) throw new local.AuthError(401, 'Неверный email или пароль.');
+  const session = newSession(user.id);
+  const now = Date.now();
+  await d1Batch([
+    { sql: 'DELETE FROM sessions WHERE expires_at <= ?', params: [now] },
+    { sql: 'DELETE FROM sessions WHERE user_id = ? AND token_hash NOT IN (SELECT token_hash FROM sessions WHERE user_id = ? ORDER BY expires_at DESC LIMIT 9)', params: [user.id, user.id] },
+    session.statement,
+  ]);
+  return { user: visible(user), token: session.token };
 }
-export async function sessionUser(token: string | undefined): Promise<PublicUser | null> {
-  if (!token || !/^[a-f0-9]{64}$/.test(token)) return null;
-  return withDatabase(database => {
-    const session = database.sessions.find(item => item.tokenHash === digest(token) && item.expiresAt > Date.now());
-    const user = session && database.users.find(item => item.id === session.userId);
-    return user ? visible(user) : null;
-  });
+
+export async function sessionUser(token: string | undefined): Promise<local.PublicUser | null> {
+  if (!useD1()) return local.sessionUser(token);
+  if (!validToken(token)) return null;
+  const [user] = await d1Query<local.PublicUser>('SELECT users.id, users.name, users.email FROM sessions JOIN users ON users.id = sessions.user_id WHERE sessions.token_hash = ? AND sessions.expires_at > ? LIMIT 1', [digest(token), Date.now()]);
+  return user ? visible(user) : null;
 }
+
 export async function logoutUser(token: string | undefined) {
-  if (!token || !/^[a-f0-9]{64}$/.test(token)) return;
-  await withDatabase(database => { database.sessions = database.sessions.filter(item => item.tokenHash !== digest(token)); }, true);
+  if (!useD1()) return local.logoutUser(token);
+  if (!validToken(token)) return;
+  await d1Query('DELETE FROM sessions WHERE token_hash = ?', [digest(token)]);
 }

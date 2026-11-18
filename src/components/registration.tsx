@@ -70,7 +70,7 @@ export default function Registration({ onClose }: Props) {
     {loading ? <p role="status" style={{ margin: '25px 0' }}>Проверяем аккаунт…</p> : user ? <>
       <div style={{ padding: '22px 0', display: 'flex', alignItems: 'flex-start', gap: 13 }}><CheckCircle2 size={25} color="#63844c" /><div><strong style={{ display: 'block', fontSize: 17 }}>Ты вошёл в Klar</strong><p style={{ color: 'var(--muted)', overflowWrap: 'anywhere', marginTop: 5 }}>{user.email}</p></div></div>
       {success && <p role="status" style={{ margin: '0 0 20px', color: '#4d713d' }}>{success}</p>}
-      <p style={{ color: 'var(--muted)', fontSize: 15, marginBottom: 26 }}>Это локальный аккаунт на этом компьютере. Учебный прогресс пока хранится отдельно в твоём браузере.</p>
+      <p style={{ color: 'var(--muted)', fontSize: 15, marginBottom: 26 }}>Аккаунт хранится в Cloudflare D1. Прогресс, чат и домашние задания загружаются после входа на другом устройстве.</p>
       <div style={{ display: 'flex', gap: 15, flexWrap: 'wrap' }}>{onClose && <button type="button" className="button primary" onClick={onClose}>Продолжить учиться <ArrowRight size={19} /></button>}<button type="button" disabled={busy} className="button secondary" onClick={logout}><LogOut size={18} />{busy ? 'Выходим…' : 'Выйти'}</button></div>
     </> : <>
       <p style={{ color: 'var(--muted)', marginBottom: 25 }}>{mode === 'register' ? 'Создай аккаунт с email и паролем.' : 'Введи email и пароль, с которыми регистрировался.'}</p>
@@ -83,7 +83,7 @@ export default function Registration({ onClose }: Props) {
         <button type="submit" disabled={busy} className="button primary" style={{ minHeight: 52, fontSize: 17 }}>{busy ? 'Подождём немного…' : mode === 'register' ? 'Создать аккаунт' : 'Войти'}{!busy && <ArrowRight size={20} />}</button>
       </form>
       <p style={{ marginTop: 24, fontSize: 15 }}>{mode === 'register' ? 'Уже есть аккаунт? ' : 'Первый раз здесь? '}<button type="button" disabled={busy} className="small-link" style={{ fontSize: 16 }} onClick={() => { setMode(mode === 'register' ? 'login' : 'register'); setError(''); setSuccess(''); setPassword(''); }}>{mode === 'register' ? 'Войти' : 'Зарегистрироваться'}</button></p>
-      <p style={{ marginTop: 24, fontSize: 14, color: 'var(--muted)' }}>Локальная версия: аккаунт хранится на этом компьютере. Прогресс в браузере пока не синхронизируется между устройствами.</p>
+      <p style={{ marginTop: 24, fontSize: 14, color: 'var(--muted)' }}>Аккаунт и учебные данные хранятся в Cloudflare D1. Для переноса старой гостевой работы после входа появится отдельная кнопка.</p>
     </>}
     {user && error && <p role="alert" className="notice">{error}</p>}
   </div>;
