@@ -238,3 +238,9 @@ body{padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(saf
   .run-top{gap:10px}
   .exercise-actions .button,.exercise-feedback .button,.type-answer .button,.tiles-answer .button{width:100%}
 }
+/* Word photos (public/words): replace the icon tile; the credit line is required by CC BY. */
+.word-photo{width:min(100%,320px);height:auto;aspect-ratio:4/3;padding:0;overflow:hidden;margin-bottom:0}
+.word-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.word-card.compact .word-photo{width:52px;height:52px;aspect-ratio:1}
+.photo-credit{font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:6px;overflow-wrap:anywhere}
+.photo-credit a{color:inherit}
