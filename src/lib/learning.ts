@@ -21,8 +21,8 @@ export type { WordProgress };
 export const initialProgress: Progress = { profile: null, sphere: 'cyber', words: {}, modules: {}, sessions: [], skills: [0, 0, 0, 0, 0, 0] };
 export const skillNames = ['Lesen', 'Hören', 'Schreiben', 'Sprechen', 'Grammatik', 'Wortschatz'];
 
-/** Content exists for A1.2 and A2 so far; higher levels keep practising A2 until new modules arrive. */
-export const contentLevelFor = (level: Level | undefined): ContentLevel => !level || level === 'A1' ? 'A1.2' : 'A2';
+/** Content exists up to A2.2 so far: A1 → A1.2, A2 → A2.1, B1 and above start with A2.2 until new modules arrive. */
+export const contentLevelFor = (level: Level | undefined): ContentLevel => !level || level === 'A1' ? 'A1.2' : level === 'A2' ? 'A2.1' : 'A2.2';
 
 // ---------- placement (unchanged short screening) ----------
 export const placement = [
@@ -50,9 +50,10 @@ export type NextStep = { kind: 'lesson'; module: Module; lesson: number } | { ki
 export const lessonDone = (progress: Progress, moduleId: string, lesson: number) => !!progress.modules[moduleId]?.lessons.includes(lesson);
 export const moduleLessonsDone = (progress: Progress, module: Module) => Array.from({ length: lessonCount(module) }, (_, i) => i).every(i => lessonDone(progress, module.id, i));
 
-/** First unfinished lesson in the sphere at the given level, then its test; then the other level. */
+/** First unfinished lesson in the sphere from the given level upwards, then its test; then the easier levels. */
 export function nextStep(progress: Progress, sphere: Sphere, level: ContentLevel): NextStep {
-  const ordered = [level, ...contentLevels.filter(l => l !== level)].flatMap(l => modulesFor(sphere, l));
+  const from = contentLevels.indexOf(level);
+  const ordered = [...contentLevels.slice(from), ...contentLevels.slice(0, from)].flatMap(l => modulesFor(sphere, l));
   for (const module of ordered) {
     for (let i = 0; i < lessonCount(module); i++) if (!lessonDone(progress, module.id, i)) return { kind: 'lesson', module, lesson: i };
     if (!progress.modules[module.id]?.test?.passed) return { kind: 'test', module };

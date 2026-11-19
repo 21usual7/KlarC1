@@ -128,7 +128,7 @@ export default function KlarApp({ initialView = 'home' }: { initialView?: View }
           </section>
           <h2 className="section-title">Сфера</h2>
           <SphereTabs value={data.sphere} onChange={chooseSphere} />
-          <div className="home-next"><div><h2>Твой уровень: {level}</h2><p>{data.profile ? `${data.profile.level} → C1 · цель: ${data.profile.exam}` : 'Укажи уровень — от него зависит, с каких модулей начать (A1 → A1.2, A2 и выше → A2).'}</p></div><button className="text-button" onClick={() => setOnboard(true)}>{data.profile ? 'Изменить цель' : 'Настроить профиль'}<ArrowUpRight size={18} /></button></div>
+          <div className="home-next"><div><h2>Твой уровень: {level}</h2><p>{data.profile ? `${data.profile.level} → C1 · цель: ${data.profile.exam}` : 'Укажи уровень — от него зависит, с каких модулей начать (A1 → A1.2, A2 → A2.1, B1 и выше → A2.2).'}</p></div><button className="text-button" onClick={() => setOnboard(true)}>{data.profile ? 'Изменить цель' : 'Настроить профиль'}<ArrowUpRight size={18} /></button></div>
           {!data.profile && <details className="home-more"><summary>Не знаешь свой уровень?</summary><p>Короткая диагностика поможет выбрать начальную точку A1–B2. Она не заменяет полноценную оценку языка.</p><button className="button secondary" onClick={() => { setQuiz(true); setQuizResult(false); setQuizIndex(0); setQuizAnswers([]); }}>Попробовать диагностику <ArrowRight size={18} /></button></details>}
         </>}
         {view === 'roadmap' && <Roadmap progress={data} level={level} onSphere={chooseSphere} onLesson={startLesson} onTest={startTest} />}

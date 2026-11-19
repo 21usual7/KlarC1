@@ -1,29 +1,60 @@
-import { displayWord, type Word } from '../content/index.ts';
+import { displayWord, type Reading, type Word } from '../content/index.ts';
 
 /** recognize → recall → use: from seeing the word to producing it. */
 export type Tier = 'recognize' | 'recall' | 'use';
 export type ExerciseType =
-  | 'listen' | 'meaning'
+  | 'listen' | 'listen-sentence' | 'meaning'
   | 'reverse' | 'article' | 'compound' | 'cloze-bank' | 'plural'
-  | 'cloze-typed' | 'collocation' | 'dictation' | 'build-sentence';
+  | 'cloze-typed' | 'collocation' | 'dictation' | 'build-sentence'
+  | TextExerciseType;
+/** Exercises about a lesson text, not about one word: they do not change word progress. */
+export type TextExerciseType = 'comprehension' | 'listen-text' | 'translate-to-de' | 'translate-to-ru';
+export type WordExerciseType = Exclude<ExerciseType, TextExerciseType>;
 
-type Base = { id: string; wordId: string; tier: Tier; type: ExerciseType; prompt: string; audio?: string; sentence?: string; hint?: string };
+type Base = {
+  id: string;
+  /** Absent for text exercises. */
+  wordId?: string;
+  tier: Tier | 'text';
+  type: ExerciseType;
+  prompt: string;
+  audio?: string;
+  sentence?: string;
+  hint?: string;
+  /** German text of the task (question, sentence) rendered with hover translations. */
+  de?: string;
+  /** Translation of `de`, available on demand. */
+  deRu?: string;
+  /** Hover translations of the reading this exercise belongs to. */
+  gloss?: Record<string, string>;
+  /** Hover translations would give the answer away until the exercise is answered. */
+  glossAfterAnswer?: boolean;
+  /** Language of choice options / tiles. */
+  optionsLang?: 'de' | 'ru';
+  /** Options stay locked until `audio` was played at least once (listening exercises). */
+  listenFirst?: boolean;
+};
 export type ChoiceExercise = Base & { kind: 'choice'; options: string[]; answer: string };
 export type TypeExercise = Base & { kind: 'type'; answer: string; accept: string[]; loose?: boolean };
 export type TilesExercise = Base & { kind: 'tiles'; tiles: string[]; answer: string[]; joiner: '' | ' ' };
 export type IntroStep = { id: string; kind: 'intro'; wordId: string };
+/** Read the lesson text before answering questions about it. */
+export type ReadingStep = { id: string; kind: 'reading'; moduleId: string; lesson: number; wordId?: undefined };
 export type Exercise = ChoiceExercise | TypeExercise | TilesExercise;
-export type Step = IntroStep | Exercise;
+export type Step = IntroStep | ReadingStep | Exercise;
+export type WordExercise = Exercise & { wordId: string; tier: Tier };
+export const isWordExercise = (step: Step): step is WordExercise => step.kind !== 'intro' && step.kind !== 'reading' && !!step.wordId;
 
-export const tierTypes: Record<Tier, ExerciseType[]> = {
-  recognize: ['listen', 'meaning'],
+export const tierTypes: Record<Tier, WordExerciseType[]> = {
+  recognize: ['listen', 'listen-sentence', 'meaning'],
   recall: ['reverse', 'article', 'compound', 'cloze-bank', 'plural'],
   use: ['cloze-typed', 'collocation', 'dictation', 'build-sentence'],
 };
 export const typeLabels: Record<ExerciseType, string> = {
-  listen: 'Аудирование', meaning: 'Значение', reverse: 'Найди слово', article: 'Артикль', compound: 'Собери слово',
+  listen: 'Аудирование', 'listen-sentence': 'Аудирование: предложение', meaning: 'Значение', reverse: 'Найди слово', article: 'Артикль', compound: 'Собери слово',
   'cloze-bank': 'Вставь слово', plural: 'Множественное число', 'cloze-typed': 'Впиши слово', collocation: 'Переведи',
   dictation: 'Диктант', 'build-sentence': 'Собери предложение',
+  comprehension: 'Понимание текста', 'listen-text': 'Аудирование: текст', 'translate-to-de': 'Переведи на немецкий', 'translate-to-ru': 'Переведи на русский',
 };
 
 export type Rng = () => number;
@@ -52,6 +83,7 @@ export function available(word: Word, type: ExerciseType): boolean {
     case 'plural': return !!word.plural && !word.pluralOnly;
     case 'collocation': return !!word.collocation;
     case 'dictation': return plainSentence(word) && sentenceTokens(word).length <= 9;
+    case 'listen-sentence': return plainSentence(word);
     case 'build-sentence': return plainSentence(word) && sentenceTokens(word).length >= 3 && sentenceTokens(word).length <= 9;
     default: return true;
   }
@@ -67,19 +99,64 @@ function distractors(pool: Word[], word: Word, value: (w: Word) => string, count
   }
   return out;
 }
-const choice = (base: Omit<ChoiceExercise, 'kind' | 'options'>, wrong: string[], random: Rng): ChoiceExercise =>
+const choice = <B extends Omit<ChoiceExercise, 'kind' | 'options'>>(base: B, wrong: string[], random: Rng): B & ChoiceExercise =>
   ({ ...base, kind: 'choice', options: shuffle([base.answer, ...wrong], random) });
+
+// ---------- listening: sentences that sound almost the same ----------
+/** `sentence` with its first `from` replaced by `to`, capitalised at the sentence start. */
+const swap = (sentence: string, from: string, to: string) => {
+  const at = sentence.indexOf(from); if (at < 0) return sentence;
+  return sentence.slice(0, at) + (at === 0 ? to[0].toUpperCase() + to.slice(1) : to) + sentence.slice(at + from.length);
+};
+/** Closer is better: same ending (verb person, adjective ending), similar length. */
+const likeness = (a: string, b: string) => (a.slice(-2) === b.slice(-2) ? 0 : 4) + Math.abs(a.length - b.length) / 3;
+/** Takes values in order, skipping blanks and anything already seen (case-insensitive). */
+function collect(seen: Set<string>, count: number, ...groups: string[][]) {
+  const out: string[] = [];
+  for (const value of groups.flat()) {
+    if (out.length === count) break;
+    const key = value.trim().toLowerCase(); if (!key || seen.has(key)) continue;
+    seen.add(key); out.push(value);
+  }
+  return out;
+}
+
+/**
+ * Three sentences that sound like the example: the gap filled with another word, closest first
+ * (same part of speech and gender, same ending, similar length); other examples only as a last resort.
+ * Every option is a real sentence of the course or differs only in the gap word: no invented grammar mistakes.
+ */
+export function sentenceLookalikes(word: Word, pool: Word[], random: Rng): string[] {
+  const { de, cloze } = word.example;
+  const others = shuffle(pool.filter(w => w.id !== word.id && w.example.cloze && w.example.cloze !== cloze), random);
+  const byLikeness = (list: Word[]) => [...list].sort((a, b) => likeness(cloze, a.example.cloze) - likeness(cloze, b.example.cloze));
+  // A noun is swapped only for a noun of the same gender in the same (dictionary) form, so `eine Schwachstelle`
+  // never turns into `eine Administrator`; verbs and adjectives keep their ending (`ich melde` → `ich ändere`, not `ich greift`).
+  const lemma = (w: Word) => w.example.cloze === w.de;
+  const sameEnding = (w: Word) => w.example.cloze.slice(-2).toLowerCase() === cloze.slice(-2).toLowerCase();
+  // `nutzt … aus` must not become `schützt … aus`: separable verbs are never swapped.
+  const separable = (w: Word) => !!w.forms && w.forms.split('·')[0].trim().split(/\s+/).filter(t => t !== 'er' && t !== 'sich').length > 1;
+  const fits = (w: Word) => w.pos === word.pos && !separable(w) && !separable(word) && (word.pos === 'noun'
+    ? lemma(word) && lemma(w) && w.article === word.article && !w.pluralOnly && !word.pluralOnly
+    : sameEnding(w) && !/\s/.test(w.example.cloze) === !/\s/.test(cloze));
+  const swaps = byLikeness(others.filter(fits)).map(w => swap(de, cloze, w.example.cloze));
+  const examples = others.filter(plainSentence).map(w => w.example.de);
+  return collect(new Set([de.trim().toLowerCase()]), 3, swaps, examples);
+}
 
 let counter = 0;
 const nextId = (word: Word, type: ExerciseType) => `${word.id}:${type}:${++counter}`;
 
-export function makeExercise(word: Word, type: ExerciseType, pool: Word[], random: Rng): Exercise {
+export function makeExercise(word: Word, type: WordExerciseType, pool: Word[], random: Rng): WordExercise {
   const id = nextId(word, type);
-  const tier = (Object.keys(tierTypes) as Tier[]).find(t => tierTypes[t].includes(type))!;
+  const tier = (Object.keys(tierTypes) as Tier[]).find(t => tierTypes[t].includes(type));
+  if (!tier) throw new Error(`${type} is not a word exercise`);
   const base = { id, wordId: word.id, tier, type };
   switch (type) {
     case 'listen':
       return choice({ ...base, prompt: 'Послушай и выбери перевод', audio: word.de, answer: word.ru }, distractors(pool, word, w => w.ru, 3, random), random);
+    case 'listen-sentence':
+      return choice({ ...base, prompt: 'Послушай и выбери предложение, которое прозвучало', audio: word.example.de, answer: word.example.de, optionsLang: 'de', listenFirst: true }, sentenceLookalikes(word, pool, random), random);
     case 'meaning':
       return choice({ ...base, prompt: displayWord(word), audio: word.de, hint: 'Что это значит?', answer: word.ru }, distractors(pool, word, w => w.ru, 3, random), random);
     case 'reverse':
@@ -111,6 +188,59 @@ export function exerciseForTier(word: Word, tier: Tier, pool: Word[], random: Rn
   const types = tierTypes[tier].filter(t => available(word, t));
   const fresh = types.filter(t => !avoid.includes(t));
   return makeExercise(word, pick(fresh.length ? fresh : types, random), pool, random);
+}
+
+// ---------- text exercises ----------
+/** Sentence split for tiles: words keep their punctuation (`Passwort.`). */
+/** Sentences of a text (paragraphs joined), split after . ! ? before a capital or a quote. */
+export const splitSentences = (text: string) =>
+  text.replace(/\s+/g, ' ').trim().split(/(?<=[.!?…][“"»]?)\s+(?=[„"»«A-ZÄÖÜ0-9])/).filter(Boolean);
+export const sentenceTiles = (sentence: string) => sentence.split(/\s+/).filter(Boolean);
+const bare = (tile: string) => tile.replace(/[.,!?;:„“"»«]/g, '').toLowerCase();
+
+/**
+ * Questions and translations for one reading. `others` are the module's other readings:
+ * their sentences give extra tiles and options.
+ */
+export function readingExercises(reading: Reading, others: Reading[], random: Rng, key: string): Exercise[] {
+  const id = (type: TextExerciseType, i: number) => `${key}:${type}:${i}`;
+  const base = { tier: 'text' as const, gloss: reading.gloss };
+  const questions: Exercise[] = reading.questions.map((q, i) => choice({
+    ...base, id: id('comprehension', i), type: 'comprehension', prompt: 'Ответь на вопрос по тексту', de: q.q, deRu: q.ru, answer: q.answer, optionsLang: 'de',
+  }, q.options.filter(o => o !== q.answer), random));
+  const items = [...reading.translate, ...others.flatMap(r => r.translate)];
+  const translations: Exercise[] = reading.translate.map((t, i) => {
+    if (i % 2 === 0) {
+      const answer = sentenceTiles(t.de); const own = new Set(answer.map(bare));
+      const extra = shuffle(items.filter(o => o !== t).flatMap(o => sentenceTiles(o.de)), random)
+        .filter(tile => { const b = bare(tile); if (!b || own.has(b)) return false; own.add(b); return true; }).slice(0, 2);
+      return { ...base, id: id('translate-to-de', i), type: 'translate-to-de', kind: 'tiles', prompt: t.ru, hint: 'Собери предложение по-немецки; лишние слова не нужны', audio: t.de, tiles: shuffle([...answer, ...extra], random), answer, joiner: ' ', optionsLang: 'de' } satisfies TilesExercise;
+    }
+    const near = t.wrongRu.filter(w => w !== t.ru);
+    const filler = shuffle(items.filter(o => o !== t && !near.includes(o.ru) && o.ru !== t.ru).map(o => o.ru), random);
+    return choice({ ...base, id: id('translate-to-ru', i), type: 'translate-to-ru', prompt: 'Выбери точный перевод', de: t.de, audio: t.de, answer: t.ru, glossAfterAnswer: true, optionsLang: 'ru' }, [...near, ...filler].slice(0, 3), random);
+  });
+  return [...questions, ...textListening(reading, others, random, key), ...translations];
+}
+
+/** Sentences of the reading worth listening to: no digits or formulas, not too short or long. */
+const listenable = (reading: Reading) => [...new Set(splitSentences(reading.de))].filter(s => !/[0-9=²+()]/.test(s) && s.split(' ').length >= 4 && s.split(' ').length <= 16);
+
+/**
+ * Up to `count` listening tasks: one sentence of the text is spoken, the options are
+ * that sentence, a near copy with one determiner changed and other sentences of similar length.
+ */
+export function textListening(reading: Reading, others: Reading[], random: Rng, key: string, count = 2): ChoiceExercise[] {
+  const own = listenable(reading); const extra = others.flatMap(listenable);
+  return shuffle(own, random).slice(0, count).map((sentence, i) => {
+    const near = (list: string[]) => shuffle(list, random).sort((a, b) => Math.abs(a.length - sentence.length) - Math.abs(b.length - sentence.length));
+    const seen = new Set([sentence.toLowerCase()]);
+    const wrong = collect(seen, 3, near(own), near(extra));
+    return choice({
+      id: `${key}:listen-text:${i}`, tier: 'text' as const, type: 'listen-text' as const, prompt: 'Послушай предложение из текста и выбери, какое прозвучало',
+      audio: sentence, answer: sentence, optionsLang: 'de' as const, listenFirst: true,
+    }, wrong, random);
+  });
 }
 
 // ---------- answer checking ----------

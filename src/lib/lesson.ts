@@ -1,5 +1,5 @@
-import { BLOCK_SIZE, getWord, lessonWords, modules, type Module, type Word } from '../content/index.ts';
-import { exerciseForTier, rng, shuffle, type ExerciseType, type Step, type Tier } from './exercises.ts';
+import { BLOCK_SIZE, getWord, lessonWords, modules, readingFor, type Module, type Word } from '../content/index.ts';
+import { exerciseForTier, isWordExercise, readingExercises, rng, shuffle, type ExerciseType, type Step, type Tier } from './exercises.ts';
 import type { Stage } from './srs.ts';
 
 export type RunMode = 'lesson' | 'review' | 'test';
@@ -14,6 +14,8 @@ export type Run = {
   round: number;
   index: number;
   results: Record<string, WordResult>;
+  /** Answers about the lesson text (questions, translations). They do not touch word progress. */
+  text?: { right: number; wrong: number };
   /** `${round}:${wordId}` → how many times the word was re-queued in that round. */
   requeued: Record<string, number>;
   /** How often a step was answered; the counter feeds the PRNG of re-queued exercises. */
@@ -37,7 +39,8 @@ const emptyRun = (mode: RunMode, title: string, seed: number, now: number, round
 
 /**
  * Lesson: blocks of 4 words. Per block: meet the words → recognize → recall → use.
- * Then one mixed final round over all lesson words without the intro cards.
+ * Then one mixed final round over all lesson words without the intro cards,
+ * and, when the module has a text for the lesson: reading → questions + listening → translations.
  */
 export function buildLessonRun(module: Module, lesson: number, seed = Date.now(), now = Date.now()): Run {
   const words = lessonWords(module, lesson); const pool = poolFor(words); const random = rng(seed);
@@ -47,8 +50,16 @@ export function buildLessonRun(module: Module, lesson: number, seed = Date.now()
     for (const tier of ['recognize', 'recall', 'use'] as Tier[]) rounds.push(shuffle(block, random).map(w => exerciseForTier(w, tier, pool, random)));
   }
   const used = new Map<string, ExerciseType[]>();
-  for (const step of rounds.flat()) if (step.kind !== 'intro') used.set(step.wordId, [...(used.get(step.wordId) || []), step.type]);
+  for (const step of rounds.flat()) if (isWordExercise(step)) used.set(step.wordId, [...(used.get(step.wordId) || []), step.type]);
   rounds.push(shuffle(words, random).map(w => exerciseForTier(w, random() < .5 ? 'recall' : 'use', pool, random, used.get(w.id))));
+  const reading = readingFor(module, lesson);
+  if (reading) {
+    const exercises = readingExercises(reading, (module.readings || []).filter(r => r !== reading), random, `${module.id}:${lesson}`);
+    rounds.push([{ id: `${module.id}:${lesson}:reading`, kind: 'reading', moduleId: module.id, lesson }]);
+    // Questions about the text, then 1–2 sentences of it by ear, then translations.
+    rounds.push(exercises.filter(e => e.type === 'comprehension' || e.type === 'listen-text'));
+    rounds.push(exercises.filter(e => e.type.startsWith('translate-')));
+  }
   return emptyRun('lesson', `${module.title} · урок ${lesson + 1}`, seed, now, rounds, { moduleId: module.id, lesson });
 }
 
@@ -73,7 +84,11 @@ export const currentStep = (run: Run): Step | undefined => run.finished ? undefi
 /** Records an answer. In lessons and reviews a mistake adds a fresh exercise of the same tier to the end of the round. */
 export function answerStep(run: Run, correct: boolean): Run {
   const step = currentStep(run);
-  if (!step || step.kind === 'intro') return run;
+  if (!step || step.kind === 'intro' || step.kind === 'reading') return run;
+  if (!isWordExercise(step)) {
+    const text = run.text || { right: 0, wrong: 0 };
+    return { ...run, answered: run.answered + 1, text: { right: text.right + (correct ? 1 : 0), wrong: text.wrong + (correct ? 0 : 1) } };
+  }
   const prev = run.results[step.wordId] || { right: 0, wrong: 0 };
   const results = { ...run.results, [step.wordId]: { right: prev.right + (correct ? 1 : 0), wrong: prev.wrong + (correct ? 0 : 1), firstCorrect: prev.firstCorrect ?? correct } };
   const next: Run = { ...run, results, answered: run.answered + 1 };

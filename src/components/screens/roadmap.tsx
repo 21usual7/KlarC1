@@ -10,12 +10,12 @@ type Props = { progress: Progress; level: ContentLevel; onSphere: (s: Sphere) =>
 
 export default function Roadmap({ progress, level, onSphere, onLesson, onTest }: Props) {
   const profile = progress.profile;
-  return <><PageTitle label="МОДУЛИ" title="Лексика твоей сферы" text="Модуль — 16 слов: два урока по 10–15 минут и тест. Урок: 4 новых слова → упражнения от «узнать» до «использовать» → следующие 4 → финальный круг." />
+  return <><PageTitle label="МОДУЛИ" title="Лексика твоей сферы" text="Модуль — 16 слов: два урока по 15–20 минут и тест. Урок: 4 новых слова → упражнения от «узнать» до «использовать» → следующие 4 → финальный круг → текст с вопросами и переводом." />
     <SphereTabs value={progress.sphere} onChange={onSphere} />
     {contentLevels.map(l => <section className="roadmap-section" key={l}>
       <div className="roadmap-number">{l}</div>
       <div className="roadmap-content">
-        <span className="eyebrow">{l === level ? 'ТВОЙ УРОВЕНЬ' : l === 'A1.2' ? 'ПРОЩЕ' : 'СЛОЖНЕЕ'}</span>
+        <span className="eyebrow">{l === level ? 'ТВОЙ УРОВЕНЬ' : contentLevels.indexOf(l) < contentLevels.indexOf(level) ? 'ПРОЩЕ' : 'СЛОЖНЕЕ'}</span>
         {modulesFor(progress.sphere, l).map(module => {
           const test = progress.modules[module.id]?.test; const ready = moduleLessonsDone(progress, module);
           return <div key={module.id} className="module-block">
@@ -36,7 +36,7 @@ export default function Roadmap({ progress, level, onSphere, onLesson, onTest }:
         })}
       </div>
     </section>)}
-    <p className="notice">Сейчас готовы уровни A1.2 и A2 — по одному модулю на сферу. {profile && profile.level !== 'A1' && profile.level !== 'A2' ? 'Модули B1+ появятся позже; пока используются модули A2.' : 'Следующие модули добавляются по той же схеме.'}</p>
+    <p className="notice">Сейчас готовы уровни A1.2, A2.1 и A2.2 — по одному модулю на сферу. {profile && profile.level !== 'A1' && profile.level !== 'A2' ? 'Модули B1+ появятся позже; пока используются модули A2.2.' : 'Следующие модули добавляются по той же схеме.'}</p>
     <details className="home-more"><summary>Математика и кибербезопасность: варианты поступления</summary>{profile?.studyStage !== 'master' && <><p><a href="https://www.tuwien.at/studium/studienangebot/bachelorstudien/technische-mathematik/technische-mathematik" target="_blank" rel="noreferrer">Бакалавриат Technische Mathematik</a>: математический анализ, линейная алгебра, дискретная математика. Вместо конкурсного Aufnahmeverfahren — Studien-VoR-Phase.</p><p><a href="https://www.tuwien.at/studium/studienangebot/bachelorstudien/informatik-und-wirtschaftsinformatik/informatik" target="_blank" rel="noreferrer">Бакалавриат Informatik</a>: есть специализация Cybersecurity и вступительная процедура. Криптография и безопасность — интересы и специализации, а не обещание отдельного бакалавриата.</p></>}{profile?.studyStage !== 'bachelor' && <><p><a href="https://www.tuwien.at/studium/studienangebot/masterstudien/mathematik-und-geoinformation/technische-mathematik" target="_blank" rel="noreferrer">Магистратура Technische Mathematik</a> и <a href="https://informatics.tuwien.ac.at/master/" target="_blank" rel="noreferrer">магистерские программы Informatics</a>: сопоставь предыдущий диплом, учебный план и язык программы. В англоязычных программах немецкий C1 не является общим требованием.</p></>}<p>План немецкого не заменяет предметную подготовку или решение университета о допуске. Условия и даты проверяй для выбранной программы.</p></details>
   </>;
 }

@@ -1,13 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getModule } from '../content/index.ts';
+import { getModule, modules } from '../content/index.ts';
 import { advance, answerStep, buildLessonRun, buildReviewRun, buildTestRun, currentStep, type Run } from './lesson.ts';
 import { applyLesson, applyReview, applyTest, contentLevelFor, dueWords, initialProgress, nextStep, placement, placementLevel, restoreProgress, stageCounts, updateProfile, type Profile } from './learning.ts';
 
 const profile: Profile = { name: 'Мила', level: 'A2', track: 'Informatik', exam: 'ÖSD C1', date: '2027-09-01', vwuEnrolled: false };
 const module = getModule('cyber-a2-angriffe')!;
 const DAY = 86400000;
-const solve = (run: Run, wrong = new Set<string>()) => { while (!run.finished) { const s = currentStep(run)!; if (s.kind !== 'intro') run = answerStep(run, !wrong.has(s.wordId)); run = advance(run); } return run; };
+const solve = (run: Run, wrong = new Set<string>()) => { while (!run.finished) { const s = currentStep(run)!; if (s.kind !== 'intro' && s.kind !== 'reading') run = answerStep(run, !wrong.has(s.wordId ?? ''));  run = advance(run); } return run; };
 
 test('screening distinguishes a beginner and never certifies C1', () => {
   assert.equal(placementLevel([]), 'A1');
@@ -15,23 +15,24 @@ test('screening distinguishes a beginner and never certifies C1', () => {
   assert.equal(placementLevel(placement.map((q, i) => i < 4 ? q.correct : -1)), 'A2');
 });
 
-test('A1 learners get A1.2 modules, everyone else A2', () => {
+test('A1 learners start with A1.2, A2 with A2.1, B1 and above with A2.2', () => {
   assert.equal(contentLevelFor('A1'), 'A1.2');
   assert.equal(contentLevelFor(undefined), 'A1.2');
-  assert.equal(contentLevelFor('A2'), 'A2');
-  assert.equal(contentLevelFor('C1'), 'A2');
+  assert.equal(contentLevelFor('A2'), 'A2.1');
+  assert.equal(contentLevelFor('B1'), 'A2.2');
+  assert.equal(contentLevelFor('C1'), 'A2.2');
 });
 
-test('next step walks lessons, then the module test, then the other level', () => {
+test('next step walks lessons, then the module test, then the next level', () => {
   let p = initialProgress;
-  assert.deepEqual(nextStep(p, 'cyber', 'A2'), { kind: 'lesson', module, lesson: 0 });
+  assert.deepEqual(nextStep(p, 'cyber', 'A2.1'), { kind: 'lesson', module, lesson: 0 });
   p = applyLesson(p, solve(buildLessonRun(module, 0, 1, 0)), 60000);
-  assert.deepEqual(nextStep(p, 'cyber', 'A2'), { kind: 'lesson', module, lesson: 1 });
+  assert.deepEqual(nextStep(p, 'cyber', 'A2.1'), { kind: 'lesson', module, lesson: 1 });
   p = applyLesson(p, solve(buildLessonRun(module, 1, 2, 0)), 60000);
-  assert.deepEqual(nextStep(p, 'cyber', 'A2'), { kind: 'test', module });
+  assert.deepEqual(nextStep(p, 'cyber', 'A2.1'), { kind: 'test', module });
   p = applyTest(p, solve(buildTestRun(module, 3, 0)), 60000);
   assert.equal(p.modules[module.id].test?.passed, true);
-  assert.equal(nextStep(p, 'cyber', 'A2')?.module.id, 'cyber-a12-sicher');
+  assert.equal(nextStep(p, 'cyber', 'A2.1')?.module.level, 'A2.2');
 });
 
 test('lesson result: flawless words reach stage 2 and come back in two days; mistakes tomorrow', () => {
@@ -77,7 +78,7 @@ test('stage counts cover all words', () => {
   const p = applyLesson(initialProgress, solve(buildLessonRun(module, 0, 4, 0)), 0);
   const counts = stageCounts(p);
   assert.equal(counts[2], 8);
-  assert.equal(counts.reduce((a, b) => a + b, 0), 96);
+  assert.equal(counts.reduce((a, b) => a + b, 0), modules.reduce((n, m) => n + m.words.length, 0));
 });
 
 test('progress survives a JSON round trip', () => {

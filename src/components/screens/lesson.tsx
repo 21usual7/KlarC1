@@ -36,7 +36,7 @@ function Summary({ run, onHome, onTutor, onRestart }: { run: Run; onHome: () => 
   return <div className="completion run-summary">
     <CheckCircle2 size={52} />
     {run.mode === 'test' ? <><span className="eyebrow">РЕЗУЛЬТАТ ТЕСТА</span><h2>{Math.round(score * 100)} %</h2><p>{score >= PASS_SCORE ? 'Модуль пройден. Слова с ошибками вернутся в повторение.' : `Для зачёта нужно ${PASS_SCORE * 100} %. Слова с ошибками уже ждут в повторении — повтори их и попробуй ещё раз.`}</p></>
-      : <><span className="eyebrow">{run.mode === 'lesson' ? 'УРОК ЗАВЕРШЁН' : 'ПОВТОРЕНИЕ ЗАВЕРШЕНО'}</span><h2>{entries.length - hard.length} из {entries.length} слов без ошибок</h2><p>Слова попали в интервальное повторение. Когда их пора повторить — увидишь на главной.</p></>}
+      : <><span className="eyebrow">{run.mode === 'lesson' ? 'УРОК ЗАВЕРШЁН' : 'ПОВТОРЕНИЕ ЗАВЕРШЕНО'}</span><h2>{entries.length - hard.length} из {entries.length} слов без ошибок</h2><p>Слова попали в интервальное повторение. Когда их пора повторить — увидишь на главной.</p>{run.text && <p><strong>Текст:</strong> {run.text.right} из {run.text.right + run.text.wrong} заданий на понимание и перевод верно.</p>}</>}
     {hard.length > 0 && <div className="hard-words"><h3>Обрати внимание</h3><ul>{hard.map(w => <li key={w!.id}><strong lang="de">{displayWord(w!)}</strong> — {w!.ru}</li>)}</ul></div>}
     {run.mode === 'lesson' && <div className="prompt-box production">
       <strong>Своё предложение · 2–3 минуты</strong>
