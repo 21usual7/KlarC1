@@ -2,6 +2,23 @@
 import { useEffect, useRef, useState } from 'react';
 import { glossFor, segments } from '@/lib/gloss';
 
+const EDGE = 8;
+/**
+ * Keeps the tooltip of `button` inside the viewport: shifts it sideways (`--gloss-shift`, the arrow stays
+ * over the word) and flips it below the word when there is no room above.
+ */
+function placeTip(button: HTMLElement) {
+  const tip = button.nextElementSibling as HTMLElement | null;
+  if (!tip) return;
+  const word = button.getBoundingClientRect();
+  const width = tip.offsetWidth, height = tip.offsetHeight;
+  const viewport = document.documentElement.clientWidth;
+  const left = word.left + word.width / 2 - width / 2;
+  const clamped = Math.min(Math.max(left, EDGE), Math.max(EDGE, viewport - EDGE - width));
+  tip.style.setProperty('--gloss-shift', `${Math.round(clamped - left)}px`);
+  tip.toggleAttribute('data-below', word.top - height - 12 < EDGE);
+}
+
 type Props = {
   text: string;
   /** Translations of the current text; module and common words are found automatically. */
@@ -33,7 +50,7 @@ export default function GlossText({ text, gloss, disabled = false, className }: 
       if (!g) return <span key={i}>{seg.text}</span>;
       const showLemma = g.lemma && g.lemma.toLowerCase() !== seg.text.toLowerCase();
       return <span key={i} className={`gloss-word ${pinned === i ? 'pinned' : ''}`}>
-        <button type="button" aria-expanded={pinned === i} onClick={() => setPinned(pinned === i ? null : i)}>{seg.text}</button>
+        <button type="button" aria-expanded={pinned === i} onPointerEnter={e => placeTip(e.currentTarget)} onFocus={e => placeTip(e.currentTarget)} onClick={e => { placeTip(e.currentTarget); setPinned(pinned === i ? null : i); }}>{seg.text}</button>
         <span className="gloss-tip" role="tooltip" lang="ru">{showLemma && <b lang="de">{g.lemma}</b>}{g.ru}</span>
       </span>;
     })}

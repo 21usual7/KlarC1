@@ -201,3 +201,40 @@
 @media(max-width:1000px){.tutor-page .tutor-layout{grid-template-columns:200px minmax(0,1fr)}.tutor-page .tutor-info{grid-column:1/-1}}
 @media(max-width:730px){.tutor-page .tutor-layout{grid-template-columns:1fr}.chat-list{max-height:220px}.tutor-header .sync-text{display:none}}
 .chat-item{display:flex;gap:6px;align-items:stretch}.chat-item .role-card{flex:1;min-width:0}.chat-item .icon-button{flex:none;align-self:center}
+
+/* ---------- PWA / mobile: safe areas, tap targets, gloss tooltip that stays on screen ---------- */
+/* viewport-fit=cover (layout.tsx): content must avoid the notch / home indicator itself. env() is 0 elsewhere. */
+body{padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+.sidebar{top:env(safe-area-inset-top,0px);left:env(safe-area-inset-left,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tutor-page{min-height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}
+/* Tooltip: gloss-text.tsx sets --gloss-shift so the tip stays inside the viewport; the arrow stays over the word. */
+.gloss-tip{max-width:min(260px,calc(100vw - 16px));transform:translate(calc(-50% + var(--gloss-shift,0px)),4px)}
+.gloss-word>button:hover+.gloss-tip,.gloss-word>button:focus-visible+.gloss-tip,.gloss-word.pinned>.gloss-tip{transform:translate(calc(-50% + var(--gloss-shift,0px)),0)}
+.gloss-tip:after{left:clamp(12px,calc(50% - var(--gloss-shift,0px)),calc(100% - 12px))}
+.gloss-tip[data-below]{bottom:auto;top:calc(100% + 8px)}
+.gloss-tip[data-below]:after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--ink)}
+/* Long German compounds must wrap instead of widening the page. */
+.gloss-word>button{max-width:100%;overflow-wrap:anywhere;text-align:inherit}
+.reading-text,.exercise-sentence,.right-answer,.word-card h2,.word-example,.run-top h1,.reading>h2,.quiz-options>button,.tile{overflow-wrap:break-word;hyphens:auto}
+.run-top>div{min-width:0}
+@media(max-width:730px){
+  /* Safety net: nothing (e.g. a hidden tooltip near the right edge) may create a horizontal scroll. */
+  html{overflow-x:hidden;overflow-x:clip}
+  .gloss-tip{max-width:min(240px,calc(100vw - 16px))}
+  /* Tap targets >= 44px */
+  .icon-button{min-width:44px;min-height:44px}
+  .umlauts button{min-width:44px;min-height:44px}
+  .tile{min-height:44px}
+  .reading-audio .button,.review-reminder .button{min-height:44px}
+  .exercise .text-button,.reading .text-button{min-height:44px}
+  .de-ru summary{padding:11px 0}
+  .listen-player .button{flex:1 1 auto}
+}
+@media(max-width:420px){
+  .reading-text{font-size:18px;line-height:1.85}
+  .exercise-sentence{font-size:19px}
+  .exercise-de{font-size:19px}
+  .gap{min-width:64px}
+  .run-top{gap:10px}
+  .exercise-actions .button,.exercise-feedback .button,.type-answer .button,.tiles-answer .button{width:100%}
+}
