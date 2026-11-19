@@ -1,0 +1,176 @@
+{
+  "_comment": "Replacements for speech synthesis only (scripts/gen-audio.mjs); the file key is computed from the original text. 'words': case-sensitive whole tokens (not inside a longer word; hyphens are boundaries, so 'IT' matches in 'IT-Abteilung'). 'patterns': JavaScript regular expressions (flag u), applied first. Spell-outs follow German letter names: A Ah, B Beh, C Zeh, D Deh, E Eh, F Eff, G Geh, H Hah, I Ih, J Jott, K Kah, L Ell, M Emm, N Enn, O Oh, P Peh, Q Kuh, R Ehr, S Ess, T Teh, U Uh, V Fau, W Weh, X Iks, Y Üpsilon, Z Zett.",
+  "patterns": [
+    [
+      "\\b([a-z])\\(([a-z])\\)",
+      "$1 von $2"
+    ],
+    [
+      "([a-zA-Z0-9])²",
+      "$1 Quadrat"
+    ],
+    [
+      "([a-zA-Z0-9])³",
+      "$1 hoch drei"
+    ],
+    [
+      "√",
+      "Wurzel aus "
+    ],
+    [
+      "π",
+      "Pi"
+    ],
+    [
+      "≠",
+      " ungleich "
+    ],
+    [
+      "≤",
+      " kleiner gleich "
+    ],
+    [
+      "≥",
+      " größer gleich "
+    ],
+    [
+      "(\\d)\\s*%",
+      "$1 Prozent"
+    ],
+    [
+      "\\b([a-z]+)(\\d)(\\d)(\\d)\\b",
+      "$1 $2 $3 $4"
+    ],
+    [
+      "\\b([a-z]+)\\.([a-z]+)\\b",
+      "$1 Punkt $2"
+    ],
+    [
+      "(\\d{1,2}):0(\\d) Uhr",
+      "$1 Uhr $2"
+    ],
+    [
+      "(\\d{1,2}):(\\d{2}) Uhr",
+      "$1 Uhr $2"
+    ],
+    [
+      "q\\. e\\. d\\.",
+      "Kuh Eh Deh"
+    ]
+  ],
+  "words": {
+    "2FA": "Zwei-Eff-Ah",
+    "MFA": "Emm-Eff-Ah",
+    "OTP": "Oh-Teh-Peh",
+    "WLAN": "Weh-Lahn",
+    "LAN": "Lahn",
+    "IP": "Ih-Peh",
+    "IT": "Ih-Teh",
+    "KI": "Kah-Ih",
+    "SQL": "Ess-Kuh-Ell",
+    "DSGVO": "Deh-Ess-Geh-Fau-Oh",
+    "PIN": "Pinn",
+    "USB": "Uh-Ess-Beh",
+    "SMS": "Ess-Emm-Ess",
+    "PC": "Peh-Zeh",
+    "PCs": "Peh-Zehs",
+    "CTF": "Zeh-Teh-Eff",
+    "HTTP": "Hah-Teh-Teh-Peh",
+    "HTTPS": "Hah-Teh-Teh-Peh-Ess",
+    "URL": "Uh-Ehr-Ell",
+    "DNS": "Deh-Enn-Ess",
+    "VPN": "Fau-Peh-Enn",
+    "API": "Ah-Peh-Ih",
+    "CPU": "Zeh-Peh-Uh",
+    "GPU": "Geh-Peh-Uh",
+    "RAM": "Ramm",
+    "SSD": "Ess-Ess-Deh",
+    "HTML": "Hah-Teh-Emm-Ell",
+    "CSS": "Zeh-Ess-Ess",
+    "PDF": "Peh-Deh-Eff",
+    "ID": "Ih-Deh",
+    "QR": "Kuh-Ehr",
+    "GPS": "Geh-Peh-Ess",
+    "TCP": "Teh-Zeh-Peh",
+    "UDP": "Uh-Deh-Peh",
+    "SSH": "Ess-Ess-Hah",
+    "SSL": "Ess-Ess-Ell",
+    "TLS": "Teh-Ell-Ess",
+    "AES": "Ah-Eh-Ess",
+    "RSA": "Ehr-Ess-Ah",
+    "CVE": "Zeh-Fau-Eh",
+    "XSS": "Iks-Ess-Ess",
+    "CSRF": "Zeh-Ess-Ehr-Eff",
+    "DDoS": "Deh-Doss",
+    "DoS": "Doss",
+    "IDE": "Ih-Deh-Eh",
+    "GUI": "Geh-Uh-Ih",
+    "CLI": "Zeh-Ell-Ih",
+    "OS": "Oh-Ess",
+    "IoT": "Ih-Oh-Teh",
+    "BSI": "Beh-Ess-Ih",
+    "ISO": "Iso",
+    "JSON": "Dschäisen",
+    "TU": "Teh-Uh",
+    "WG": "Weh-Geh",
+    "ggT": "Geh-Geh-Teh",
+    "kgV": "Kah-Geh-Fau",
+    "z.B.": "zum Beispiel",
+    "d.h.": "das heißt",
+    "usw.": "und so weiter",
+    "bzw.": "beziehungsweise",
+    "ca.": "zirka",
+    "Nr.": "Nummer",
+    "Cloud": "Klaud",
+    "Clouds": "Klauds",
+    "Phishing": "Fisching",
+    "Phishing-Mail": "Fisching-Mähl",
+    "Backup": "Bäckapp",
+    "Backups": "Bäckapps",
+    "Bug": "Back",
+    "Bugs": "Backs",
+    "Cookie": "Kucki",
+    "Cookies": "Kuckis",
+    "Exploit": "Expleut",
+    "Debugger": "Dibagger",
+    "debuggen": "dibaggen",
+    "Python": "Paiton",
+    "Java": "Dschawa",
+    "JavaScript": "Dschawaskript",
+    "GitHub": "Gitt-Häbb",
+    "Hacker": "Häcker",
+    "Hackerin": "Häckerin",
+    "Laptop": "Läptopp",
+    "Team": "Tiehm",
+    "Teams": "Tiehms",
+    "Chat": "Tschätt",
+    "Tool": "Tuhl",
+    "Tools": "Tuhls",
+    "Account": "Äkkaunt",
+    "Admin": "Ädmin",
+    "Feedback": "Fiedbäck",
+    "Meeting": "Mieting",
+    "Startup": "Startapp",
+    "Social": "Soschel",
+    "Engineering": "Endschiniering",
+    "Patch": "Pätsch",
+    "Patches": "Pätsches",
+    "Logout": "Logaut",
+    "Browser": "Brauser",
+    "Exploits": "Expleuts",
+    "Hash": "Häsch",
+    "Hashwert": "Häschwert",
+    "Hashwerte": "Häschwerte",
+    "hashen": "häschen",
+    "SIM": "Simm",
+    "EU": "Eh-Uh",
+    "SOC": "Sock",
+    "ECTS": "Eh-Zeh-Teh-Ess",
+    "HTL": "Hah-Teh-Ell",
+    "iOS": "Ei-Oh-Ess",
+    "TISS": "Tiss",
+    "WHERE": "Wär",
+    "JOIN": "Dscheun",
+    "Writeup": "Reitapp"
+  }
+}
