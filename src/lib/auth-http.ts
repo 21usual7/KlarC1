@@ -33,3 +33,10 @@ export function setSessionCookie(response: NextResponse, token: string, secure: 
   response.cookies.set(SESSION_COOKIE, token, { httpOnly: true, secure, sameSite: 'lax', path: '/', maxAge: SESSION_SECONDS });
   return response;
 }
+
+export function clearSessionCookie(response: NextResponse, request: Request) {
+  response.cookies.set(SESSION_COOKIE, '', {
+    httpOnly: true, sameSite: 'lax', path: '/', maxAge: 0, secure: new URL(request.url).protocol === 'https:',
+  });
+  return response;
+}

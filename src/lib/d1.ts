@@ -16,4 +16,7 @@ async function request(body:Statement|{batch:Statement[]}) {
  return data.result as {results?:unknown[];success:boolean}[];
 }
 export async function d1Query<T=Record<string,unknown>>(sql:string,params:unknown[]=[]):Promise<T[]>{const result=await request({sql,params});return (result[0]?.results||[]) as T[];}
-export async function d1Batch(statements:Statement[]):Promise<void>{if(statements.length)await request({batch:statements});}
+export async function d1Batch<T = Record<string, unknown>>(statements: Statement[]): Promise<T[][]> {
+  if (!statements.length) return [];
+  return (await request({ batch: statements })).map(result => (result.results || []) as T[]);
+}

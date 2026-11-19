@@ -37,9 +37,10 @@ test('local registration, login, hashed storage and session revocation', async (
 });
 
 
-test('D1 requires one-time email verification and preserves secure sessions', async()=>{
+test('D1 email verification, password recovery and session revocation', async()=>{
  const {DatabaseSync}=await import('node:sqlite');const db=new DatabaseSync(':memory:');
  db.exec(await readFile('migrations/0001_accounts_and_learning.sql','utf8'));db.exec(await readFile('migrations/0002_email_verification.sql','utf8'));
+ db.exec(await readFile('migrations/0004_profiles_and_recovery.sql','utf8'));
  const original=globalThis.fetch;const keys=['CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID','CLOUDFLARE_D1_DATABASE_ID','RESEND_API_KEY','EMAIL_FROM','APP_ORIGIN'];const saved=keys.map(k=>process.env[k]);
  process.env.CLOUDFLARE_API_TOKEN='test';process.env.CLOUDFLARE_ACCOUNT_ID='test';process.env.CLOUDFLARE_D1_DATABASE_ID='test';delete process.env.RESEND_API_KEY;delete process.env.EMAIL_FROM;process.env.APP_ORIGIN='https://klar.example';
  let deliveredToken='';let fail=false;let deliveryFailure=false;
@@ -78,6 +79,26 @@ test('D1 requires one-time email verification and preserves secure sessions', as
   const failed=await registerUser({...input,email:'delivery-failed@example.com'});deliveryFailure=true;assert.equal(await sendVerification(failed.user.id,failed.user.email),'failed');await assert.rejects(loginUser({...input,email:failed.user.email}),e=>e instanceof EmailNotVerifiedError);
   await assert.rejects(registerUser(input),e=>e instanceof AuthError&&e.status===409);
   assert.deepEqual(await resendVerification('unknown@example.com'),{message:'Если аккаунт существует и ожидает подтверждения, письмо будет отправлено.'});
+  const { sendPasswordReset, resetPassword } = await import('./password-reset.ts');
+  deliveryFailure = false;
+  const firstSession = await loginUser(input);
+  const otherSession = await loginUser(input);
+  await sendPasswordReset(input.email);
+  const oldResetToken = deliveredToken;
+  assert.notEqual(db.prepare('SELECT token_hash FROM password_resets').get()?.token_hash, oldResetToken);
+  await sendPasswordReset(input.email);
+  assert.equal(deliveredToken, oldResetToken);
+  db.prepare('UPDATE password_resets SET expires_at = 1, next_send_at = 0').run();
+  const password = 'Eine neue lange Passphrase';
+  await assert.rejects(resetPassword({ token: oldResetToken, password }));
+  await sendPasswordReset(input.email);
+  const change = { token: deliveredToken, password };
+  const resets = await Promise.allSettled([resetPassword(change), resetPassword(change)]);
+  assert.equal(resets.filter(result => result.status === 'fulfilled').length, 1);
+  assert.equal(await sessionUser(firstSession.token), null);
+  assert.equal(await sessionUser(otherSession.token), null);
+  await assert.rejects(loginUser(input), error => error instanceof AuthError && error.status === 401);
+  assert.equal((await loginUser({ ...input, password })).user.id, registered.user.id);
   fail=true;await assert.rejects(registerUser({...input,email:'outage@example.com'}));fail=false;delete process.env.CLOUDFLARE_D1_DATABASE_ID;await assert.rejects(registerUser(input),e=>e instanceof AuthError&&e.status===503);
  }finally{globalThis.fetch=original;keys.forEach((k,i)=>{if(saved[i]===undefined)delete process.env[k];else process.env[k]=saved[i];});db.close();}
 });

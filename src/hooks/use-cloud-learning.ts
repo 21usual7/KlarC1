@@ -22,7 +22,17 @@ export function useCloudLearning(){
   commit({...live.current,ready:false,error:'',conflict:false,status:'Загрузка…'});
   try{
    const guest=guestCache();const response=await fetch('/api/data',{cache:'no-store'});const result=await response.json();if(!response.ok)throw new Error(result.error||'Не удалось загрузить данные.');if(generation!==epoch.current)return;
-   const owner=result.user?.id||'guest';const cached=owner==='guest'?guest:readCache(owner);
+   useEffect(()=>{
+  const cacheRemoved=(event:StorageEvent)=>{
+   const user=live.current.user;
+   if(!user||event.key!==cacheKey(user.id)||event.newValue!==null)return;
+   epoch.current++;dirty.current=false;saving.current=false;
+   window.location.replace('/');
+  };
+  window.addEventListener('storage',cacheRemoved);
+  return()=>window.removeEventListener('storage',cacheRemoved);
+ },[]);
+ const owner=result.user?.id||'guest';const cached=owner==='guest'?guest:readCache(owner);
    const remote=result.state?normalizeLearningState(result.state):emptyLearningState();
    const conflict=!!(result.user&&cached?.dirty&&cached.revision!==result.revision);
    const pending=!!(result.user&&cached?.dirty);
@@ -52,5 +62,17 @@ export function useCloudLearning(){
  const update=useCallback((change:SetStateAction<LearningState>)=>{if(live.current.owner!==owner||!live.current.ready)return;const snapshot=typeof change==='function'?change(live.current.snapshot):change;seq.current++;dirty.current=!!live.current.user;const next={...live.current,snapshot,canImport:false,status:live.current.user?'Есть изменения':'Гостевой режим · на этом устройстве'};commit(next);persist(next,dirty.current);},[owner,commit,persist]);
  const useCloud=async()=>{const cached=readCache(live.current.owner);if(cached){const backup=`klar-cloud-conflict-backup:${live.current.owner}:${Date.now()}`;localStorage.setItem(backup,JSON.stringify(cached));writeCache(live.current.owner,cached.snapshot,cached.revision,false);}await reload();};
  const exportLocal=()=>{const blob=new Blob([JSON.stringify(live.current.snapshot,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='klar-learning-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
- return {...state,update,reload,flush,useCloud,exportLocal,importGuest:()=>{if(live.current.canImport){update(guestCache().snapshot);commit({...live.current,canImport:false});}}};
+ const updateUser=(user:PublicUser)=>{if(live.current.user?.id===user.id)commit({...live.current,user});};
+ const clearDeletedAccount=()=>{
+  const user=live.current.user;
+  if(!user)return;
+  epoch.current++;dirty.current=false;saving.current=false;
+  try{
+   localStorage.removeItem(cacheKey(user.id));
+   const prefix=`klar-cloud-conflict-backup:${user.id}:`;
+   for(const key of Object.keys(localStorage))if(key.startsWith(prefix))localStorage.removeItem(key);
+  }catch{}
+  window.location.replace('/');
+ };
+ return {...state,update,updateUser,clearDeletedAccount,reload,flush,useCloud,exportLocal,importGuest:()=>{if(live.current.canImport){update(guestCache().snapshot);commit({...live.current,canImport:false});}}};
 }

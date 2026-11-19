@@ -107,3 +107,51 @@
 .stage-bar>div>span.s0{background:var(--c-d7dfcd)}.stage-bar>div>span.s4{background:var(--green)}
 @media(prefers-color-scheme:dark){.exercise-options>button.wrong,.exercise-feedback.bad{background:#3a2622;border-color:#6b3e35}.stage-badge.s1{background:#3a3220;color:#e0c98f}.stage-badge.s2{background:#22303d;color:#a9c4e0}.stage-badge.s3{background:#23331f;color:#a8d0a0}.article-der{color:#8fb4e0}.article-die{color:#e09a94}.article-das{color:#8fd0a2}}
 @media(max-width:700px){.sphere-tabs button{min-width:0;flex:1}.word-facts{grid-template-columns:1fr}.word-facts dt{margin-top:6px}.stage-bar{grid-template-columns:90px 1fr 30px}.exercise-sentence{font-size:20px}}
+
+/* Account and scoreboard */
+.sidebar nav{min-height:0;overflow-y:auto}
+.account-hero{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:clamp(20px,4vw,38px);background:var(--soft);border:1px solid var(--line);border-radius:14px}
+.account-hero>div{min-width:0;flex:1 1 12rem;overflow-wrap:anywhere}
+.account-hero p{color:var(--muted)}
+.account-avatar{width:64px;height:64px;display:grid;place-items:center;flex-shrink:0;border-radius:19px 6px 19px 6px;background:var(--green);color:var(--c-ffffff);font-size:30px;font-weight:600}
+.account-section{margin:32px 0}
+.account-section-heading,.account-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.account-section-heading{justify-content:space-between;margin-bottom:16px}
+.achievement-grid,.account-settings{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}
+.achievement-grid{margin:0;padding:0;list-style:none}
+.achievement,.account-panel{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:clamp(16px,3vw,26px)}
+.achievement{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;gap:8px 13px}
+.achievement.earned{background:var(--c-f6f9f0);border-color:var(--c-d1dcc7);animation:rise .42s ease-out both;animation-delay:var(--badge-delay)}
+.achievement-medal{grid-row:span 2;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:var(--soft);color:var(--muted);border:1px solid var(--line)}
+.achievement.earned .achievement-medal{color:var(--green);background:var(--accent);animation:medal-in .58s cubic-bezier(.2,.8,.3,1.2) both;animation-delay:var(--badge-delay)}
+@keyframes medal-in{from{transform:scale(.72) rotate(-18deg);opacity:.3}to{transform:scale(1) rotate(0);opacity:1}}
+.achievement h3{font-size:17px}
+.achievement p,.achievement-state{font-size:14px;color:var(--muted)}
+.achievement-state{display:inline-flex;gap:6px;align-items:center}
+.achievement.earned .achievement-state{color:var(--green);font-weight:600}
+.account-panel h2{font-size:23px;margin-bottom:12px}
+.account-panel>p{margin-bottom:14px}
+.account-form{margin:14px 0 0;display:grid;gap:15px;max-width:32rem}
+.account-form>label:not(.checkbox-label){display:grid;gap:6px}
+.account-form .checkbox-label{display:flex;align-items:flex-start}
+.account-form .checkbox-label input{margin-top:6px}
+.account-form>.button{justify-self:start}
+.account-form .notice{margin:0}
+.account-plan{display:grid;grid-template-columns:1fr 1.3fr;gap:8px 12px;margin:12px 0 20px}
+.account-plan dt{color:var(--muted)}
+.account-plan dd{margin:0;overflow-wrap:anywhere}
+.account-danger{margin-top:18px;--danger:#a22d30;--danger-line:#c48080}
+.account-danger .danger-outline{color:var(--danger);border:1px solid var(--danger-line)}
+.account-danger .danger-fill{background:#a22d30;color:white}
+.account-signout{margin-top:14px}
+.scoreboard-table{margin-top:22px;border:1px solid var(--line);border-radius:12px;background:var(--paper);overflow:hidden}
+.scoreboard-table table{width:100%;border-collapse:collapse}
+.scoreboard-table caption{text-align:left;padding:16px;font-weight:600}
+.scoreboard-table td,.scoreboard-table th{text-align:left;padding:12px clamp(8px,2vw,18px);border-top:1px solid var(--line)}
+.scoreboard-table th[scope=row]{font-weight:500;overflow-wrap:anywhere}
+.scoreboard-table td:last-child,.scoreboard-table th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.scoreboard-table .scoreboard-me{background:var(--soft)}
+.scoreboard-table small{color:var(--muted)}
+.recovery-screen h1{margin-bottom:16px}
+.recovery-screen .account-actions{margin-top:18px}
+@media(prefers-color-scheme:dark){.account-danger{--danger:#efa5a5;--danger-line:#855858}}
