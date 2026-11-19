@@ -6,17 +6,16 @@ import { buildLessonRun, buildReviewRun, buildTestRun, type Run } from '@/lib/le
 import { displayWord, getModule, lessonWords, spheres, type Module, type Sphere } from '@/content';
 import { defaultStudyTrack, studyStages, studyTracks } from '@/lib/study-focus';
 import { useCloudLearning } from '@/hooks/use-cloud-learning';
-import type { ChatMessage } from '@/lib/cloud-state';
 import Homework from './homework';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
-import { viewFromPath, viewPaths, type View } from '@/lib/views';
+import { TUTOR_DRAFT_KEY, viewFromPath, viewPaths, type View } from '@/lib/views';
 import SphereTabs from './screens/sphere-tabs';
 
 const Roadmap = dynamic(() => import('./screens/roadmap'));
 const Words = dynamic(() => import('./screens/words'));
 const LessonScreen = dynamic(() => import('./screens/lesson'));
-const Tutor = dynamic(() => import('./screens/tutor'));
 const ProgressScreen = dynamic(() => import('./screens/progress'));
 const ProfileScreen = dynamic(() => import('./screens/profile'));
 const ScoreboardScreen = dynamic(() => import('./screens/scoreboard'));
@@ -38,15 +37,12 @@ const REVIEW_LIMIT = 20;
 export default function KlarApp({ initialView = 'home' }: { initialView?: View }) {
   const cloud = useCloudLearning();
   const data = cloud.snapshot.progress; const loaded = cloud.ready; const storageError = cloud.error;
-  const role = cloud.snapshot.chat.role; const chat = cloud.snapshot.chat.messages;
   const setData = useCallback((value: SetStateAction<Progress>) => cloud.update(s => ({ ...s, progress: typeof value === 'function' ? value(s.progress) : value })), [cloud.update]);
-  const setRole = useCallback((value: SetStateAction<string>) => cloud.update(s => ({ ...s, chat: { ...s.chat, role: typeof value === 'function' ? value(s.chat.role) : value } })), [cloud.update]);
-  const setChat = useCallback((value: SetStateAction<ChatMessage[]>) => cloud.update(s => ({ ...s, chat: { ...s.chat, messages: typeof value === 'function' ? value(s.chat.messages) : value } })), [cloud.update]);
 
   const [view, setView] = useState<View>(initialView); const [mobile, setMobile] = useState(false);
   const [onboard, setOnboard] = useState(false); const [quiz, setQuiz] = useState(false); const [quizIndex, setQuizIndex] = useState(0); const [quizAnswers, setQuizAnswers] = useState<number[]>([]); const [quizResult, setQuizResult] = useState(false);
   const [profile, setProfile] = useState<Profile>({ name: '', level: 'A1', track: defaultStudyTrack, studyStage: 'both', exam: 'ÖSD C1', date: '2027-09-01' });
-  const [tutorDraft, setTutorDraft] = useState('');
+  const router = useRouter();
   /** The active lesson / review / test lives in memory: a run takes 10–15 minutes. */
   const [run, setRun] = useState<Run | null>(null);
   const [now, setNow] = useState(() => Date.now());
@@ -107,7 +103,7 @@ export default function KlarApp({ initialView = 'home' }: { initialView?: View }
     <aside className={`sidebar ${mobile ? 'mobile-open' : ''}`}>
       <a className="brand" href="#" onClick={e => { e.preventDefault(); go('home'); }}><span className="brand-mark"><Leaf size={22} /></span>Klar<span className="brand-c1">C1</span></a>
       <div className="sidebar-caption">Лексика твоей сферы — к учёбе в Вене</div>
-      <nav aria-label="Основная навигация">{nav.map(n => <button key={n.id} onClick={() => go(n.id)} aria-current={view === n.id ? 'page' : undefined} className={`nav-item ${view === n.id ? 'active' : ''}`}><n.icon size={19} />{n.label}{n.id === 'review' && due.length > 0 && <span className="count">{due.length}</span>}{n.id === 'session' && run && !run.finished && <span className="count">•</span>}</button>)}</nav>
+      <nav aria-label="Основная навигация">{nav.map(n => <button key={n.id} onClick={() => n.id === 'tutor' ? router.push('/tutor') : go(n.id)} aria-current={view === n.id ? 'page' : undefined} className={`nav-item ${view === n.id ? 'active' : ''}`}><n.icon size={19} />{n.label}{n.id === 'review' && due.length > 0 && <span className="count">{due.length}</span>}{n.id === 'session' && run && !run.finished && <span className="count">•</span>}</button>)}</nav>
       <div className="sidebar-bottom"><div className="profile"><span className="avatar">{(data.profile?.name || 'K').slice(0, 1).toUpperCase()}</span><span><strong>{data.profile?.name || 'Начни с профиля'}</strong><small>{data.profile ? `${data.profile.level} · ${sphereLabel}` : 'Укажи уровень и цель'}</small></span><button className="icon-button" aria-label="Изменить учебный план" onClick={() => setOnboard(true)}><Settings2 size={17} /></button></div></div>
     </aside>
     <div className="workspace">
@@ -141,9 +137,8 @@ export default function KlarApp({ initialView = 'home' }: { initialView?: View }
           {!data.profile && <details className="home-more"><summary>Не знаешь свой уровень?</summary><p>Короткая диагностика поможет выбрать начальную точку A1–B2. Она не заменяет полноценную оценку языка.</p><button className="button secondary" onClick={() => { setQuiz(true); setQuizResult(false); setQuizIndex(0); setQuizAnswers([]); }}>Попробовать диагностику <ArrowRight size={18} /></button></details>}
         </>}
         {view === 'roadmap' && <Roadmap progress={data} level={level} onSphere={chooseSphere} onLesson={startLesson} onTest={startTest} />}
-        {view === 'session' && <LessonScreen run={run} onChange={changeRun} onExit={() => { setRun(null); go('home'); }} onHome={() => go('home')} onTutor={text => { setTutorDraft(text); go('tutor'); }} onRestart={r => { const m = r.moduleId && getModule(r.moduleId); if (m) startTest(m); }} />}
+        {view === 'session' && <LessonScreen run={run} onChange={changeRun} onExit={() => { setRun(null); go('home'); }} onHome={() => go('home')} onTutor={text => { try { sessionStorage.setItem(TUTOR_DRAFT_KEY, text); } catch {} router.push('/tutor'); }} onRestart={r => { const m = r.moduleId && getModule(r.moduleId); if (m) startTest(m); }} />}
         {view === 'review' && <Words progress={data} due={due.length} nextDue={nextDue(data)} onReview={startReview} onSphere={chooseSphere} />}
-        {view === 'tutor' && <Tutor role={role} level={data.profile?.level || 'A1'} track={data.profile?.track || defaultStudyTrack} studyStage={data.profile?.studyStage || 'both'} chat={chat} setChat={setChat} setRole={setRole} initialMessage={tutorDraft} onDraftUsed={() => setTutorDraft('')} />}
         {view === 'homework' && <Homework key={cloud.owner + ':' + (data.profile?.level || 'A1')} allWork={cloud.snapshot.homework} onChange={(id, work) => cloud.update(s => ({ ...s, homework: { ...s.homework, [id]: work } }))} level={data.profile?.level || 'A1'} track={data.profile?.track || defaultStudyTrack} studyStage={data.profile?.studyStage || 'both'} />}
         {view === 'progress' && <ProgressScreen progress={data} onSkill={(i, value) => setData(d => ({ ...d, skills: d.skills.map((v, j) => j === i ? value : v) }))} onStart={() => go('home')} />}
         {view === 'profile' && (cloud.user ? <ProfileScreen key={cloud.user.id} user={cloud.user} progress={data}

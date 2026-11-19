@@ -155,3 +155,14 @@
 .recovery-screen h1{margin-bottom:16px}
 .recovery-screen .account-actions{margin-top:18px}
 @media(prefers-color-scheme:dark){.account-danger{--danger:#efa5a5;--danger-line:#855858}}
+.tutor-page{min-height:100dvh;padding:20px clamp(16px,3vw,32px) 30px;background:var(--bg)}
+.tutor-header{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1400px;margin:0 auto 20px}
+.tutor-header .brand{padding:0;font-size:26px}
+.tutor-page .tutor-layout{max-width:1400px;margin:0 auto;grid-template-columns:240px minmax(0,1fr) 260px}
+.chat-list{display:flex;flex-direction:column;gap:8px;max-height:calc(100dvh - 110px);overflow:auto}
+.chat-list .role-card{margin:0}
+.chat-list .role-card strong{font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tutor-page .messages{max-height:calc(100dvh - 300px)}
+@media(max-width:1000px){.tutor-page .tutor-layout{grid-template-columns:200px minmax(0,1fr)}.tutor-page .tutor-info{grid-column:1/-1}}
+@media(max-width:730px){.tutor-page .tutor-layout{grid-template-columns:1fr}.chat-list{max-height:220px}.tutor-header .sync-text{display:none}}
+.chat-item{display:flex;gap:6px;align-items:stretch}.chat-item .role-card{flex:1;min-width:0}.chat-item .icon-button{flex:none;align-self:center}
