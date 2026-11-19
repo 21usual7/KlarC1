@@ -53,6 +53,12 @@ export const commonWords: Record<string, string> = {
   freund: 'друг', freundin: 'подруга', freunde: 'друзья', mutter: 'мама', vater: 'папа', bruder: 'брат', schwester: 'сестра', eltern: 'родители', lehrer: 'учитель', lehrerin: 'учительница', schule: 'школа', klasse: 'класс', student: 'студент', studentin: 'студентка', uni: 'университет',
   tag: 'день', tage: 'дни', woche: 'неделя', monat: 'месяц', jahr: 'год', jahre: 'годы', stunde: 'час', minute: 'минута', minuten: 'минуты', zeit: 'время', abend: 'вечер', morgens: 'утром', abends: 'вечером', montag: 'понедельник', wochenende: 'выходные', ende: 'конец',
   hause: 'дома (zu Hause)', haus: 'дом', zimmer: 'комната', tisch: 'стол', buch: 'книга', heft: 'тетрадь', hausaufgabe: 'домашнее задание', hausaufgaben: 'домашние задания', frau: 'женщина; госпожа', herr: 'господин', mann: 'мужчина', kind: 'ребёнок', name: 'имя', problem: 'проблема', hilfe: 'помощь', idee: 'идея', beispiel: 'пример',
+  einmal: 'один раз; (noch einmal) ещё раз', zweiten: 'второго, втором', letzten: 'последнего, последнем',
+  // more frequent forms
+  sagte: 'сказал(а)', erklärte: 'объяснил(а)', wollte: 'хотел(а)', durften: 'им (нам) разрешалось, могли', darfst: '(ты) можешь, тебе разрешено', brauchst: '(ты) нуждаешься, тебе нужно',
+  allen: 'всем, всех (дат.)', vielen: 'многим, многих (дат.)', eigene: 'собственная, свой', selbst: 'сам; даже', schneller: 'быстрее', einfache: 'простая, простые', welchem: 'каком, какому (дат.)',
+  seiner: 'его (дат./род. ж. р.)', echten: 'настоящего, настоящим', altes: 'старое',
   // numbers
   null: 'ноль', eins: 'один', zwei: 'два', drei: 'три', vier: 'четыре', fünf: 'пять', sechs: 'шесть', sieben: 'семь', acht: 'восемь', neun: 'девять', zehn: 'десять', elf: 'одиннадцать', zwölf: 'двенадцать', zwanzig: 'двадцать', hundert: 'сто', tausend: 'тысяча',
+  dreizehn: 'тринадцать', vierzehn: 'четырнадцать', fünfzehn: 'пятнадцать', sechzehn: 'шестнадцать', siebzehn: 'семнадцать', achtzehn: 'восемнадцать', neunzehn: 'девятнадцать', fünfundzwanzig: 'двадцать пять', vierundzwanzig: 'двадцать четыре', dreißig: 'тридцать', vierzig: 'сорок', fünfzig: 'пятьдесят', sechzig: 'шестьдесят', siebzig: 'семьдесят', achtzig: 'восемьдесят', neunzig: 'девяносто', dritte: 'третья, третий', stunden: 'часы, часов (мн. от Stunde)', wochen: 'недели, недель',
 };

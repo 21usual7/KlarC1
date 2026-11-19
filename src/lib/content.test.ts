@@ -5,7 +5,19 @@ import { missingGlosses, words } from './gloss.ts';
 import { sentenceTiles } from './exercises.ts';
 
 test('every sphere has a module on every content level', () => {
-  for (const s of spheres) for (const l of contentLevels) assert.equal(modulesFor(s.id, l).length, 1, `${s.id} ${l}`);
+  for (const s of spheres) for (const l of contentLevels) assert.ok(modulesFor(s.id, l).length >= 1, `${s.id} ${l}`);
+});
+test('module ids are unique and a word never repeats inside a sphere', () => {
+  const moduleIds = modules.map(m => m.id);
+  assert.equal(new Set(moduleIds).size, moduleIds.length, 'duplicate module id');
+  for (const s of spheres) {
+    const seen = new Map<string, string>();
+    for (const m of modulesFor(s.id)) for (const w of m.words) {
+      const key = `${w.pos}:${w.de.toLowerCase()}`;
+      assert.ok(!seen.has(key), `${w.id}: «${w.de}» is already in ${seen.get(key)}`);
+      seen.set(key, m.id);
+    }
+  }
 });
 test('word ids are unique and every module splits into full lessons', () => {
   const ids = modules.flatMap(m => m.words.map(w => w.id));

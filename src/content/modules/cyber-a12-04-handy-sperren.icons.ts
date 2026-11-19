@@ -1,0 +1,2 @@
+import { Smartphone, Lock, LockOpen, RectangleEllipsis, Fingerprint, TabletSmartphone, Waypoints, ScanFace, SearchX, Package, Keyboard, RotateCcw, HandHelping, Eye, ThumbsUp, Frown } from 'lucide-react';
+export const icons = { Smartphone, Lock, LockOpen, RectangleEllipsis, Fingerprint, TabletSmartphone, Waypoints, ScanFace, SearchX, Package, Keyboard, RotateCcw, HandHelping, Eye, ThumbsUp, Frown };

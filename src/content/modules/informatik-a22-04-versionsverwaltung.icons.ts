@@ -1,0 +1,2 @@
+import { CircleCheck, Copy, FilePen, FolderGit2, GitBranch, GitCommitHorizontal, GitCompare, GitGraph, GitMerge, GitPullRequest, History, RotateCcw, ScrollText, Swords, Tags, Users } from 'lucide-react';
+export const icons = { CircleCheck, Copy, FilePen, FolderGit2, GitBranch, GitCommitHorizontal, GitCompare, GitGraph, GitMerge, GitPullRequest, History, RotateCcw, ScrollText, Swords, Tags, Users };

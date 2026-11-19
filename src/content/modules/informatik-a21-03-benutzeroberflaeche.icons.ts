@@ -1,0 +1,2 @@
+import { ArrowDownUp, LayoutDashboard, AppWindow, Menu, Component, RectangleHorizontal, PanelBottom, MousePointer2, MousePointerClick, Settings, SlidersHorizontal, Eye, ALargeSmall, SquareCheck, Move, Moon, Paintbrush } from 'lucide-react';
+export const icons = { ArrowDownUp, LayoutDashboard, AppWindow, Menu, Component, RectangleHorizontal, PanelBottom, MousePointer2, MousePointerClick, Settings, SlidersHorizontal, Eye, ALargeSmall, SquareCheck, Move, Moon, Paintbrush };

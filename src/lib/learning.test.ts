@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getModule, modules } from '../content/index.ts';
+import { getModule, modules, modulesFor } from '../content/index.ts';
 import { advance, answerStep, buildLessonRun, buildReviewRun, buildTestRun, currentStep, type Run } from './lesson.ts';
 import { applyLesson, applyReview, applyTest, contentLevelFor, dueWords, initialProgress, nextStep, placement, placementLevel, restoreProgress, stageCounts, updateProfile, type Profile } from './learning.ts';
 
@@ -32,7 +32,9 @@ test('next step walks lessons, then the module test, then the next level', () =>
   assert.deepEqual(nextStep(p, 'cyber', 'A2.1'), { kind: 'test', module });
   p = applyTest(p, solve(buildTestRun(module, 3, 0)), 60000);
   assert.equal(p.modules[module.id].test?.passed, true);
-  assert.equal(nextStep(p, 'cyber', 'A2.1')?.module.level, 'A2.2');
+  const level = modulesFor('cyber', 'A2.1');
+  const after = level[level.indexOf(module) + 1];
+  assert.equal(nextStep(p, 'cyber', 'A2.1')?.module, after ?? modulesFor('cyber', 'A2.2')[0]);
 });
 
 test('lesson result: flawless words reach stage 2 and come back in two days; mistakes tomorrow', () => {

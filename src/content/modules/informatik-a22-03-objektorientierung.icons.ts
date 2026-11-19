@@ -1,0 +1,2 @@
+import { GitFork, ArrowDownToLine, ArrowUpFromLine, Blocks, CirclePlus, Container, Dna, Hammer, ListTree, Lock, Package, PenLine, SlidersHorizontal, SquareFunction, Tag, Undo2, Zap } from 'lucide-react';
+export const icons = { GitFork, ArrowDownToLine, ArrowUpFromLine, Blocks, CirclePlus, Container, Dna, Hammer, ListTree, Lock, Package, PenLine, SlidersHorizontal, SquareFunction, Tag, Undo2, Zap };

@@ -1,0 +1,2 @@
+import { PhoneIncoming, PhoneCall, Handshake, VenetianMask, UserX, Drama, Gauge, Users, HandHelping, BadgeCheck, IdCard, DoorOpen, MessageCircleWarning, Search, Usb, TrendingDown, Presentation } from 'lucide-react';
+export const icons = { PhoneIncoming, PhoneCall, Handshake, VenetianMask, UserX, Drama, Gauge, Users, HandHelping, BadgeCheck, IdCard, DoorOpen, MessageCircleWarning, Search, Usb, TrendingDown, Presentation };

@@ -1,0 +1,2 @@
+import { Satellite, TabletSmartphone, Store, ShieldQuestion, MapPinned, Contact, CircleX, CircleCheck, BadgeCheck, SearchX, LocateFixed, RadioTower, Microchip, Grab, PackageSearch, SearchCheck, ToggleRight } from 'lucide-react';
+export const icons = { Satellite, TabletSmartphone, Store, ShieldQuestion, MapPinned, Contact, CircleX, CircleCheck, BadgeCheck, SearchX, LocateFixed, RadioTower, Microchip, Grab, PackageSearch, SearchCheck, ToggleRight };

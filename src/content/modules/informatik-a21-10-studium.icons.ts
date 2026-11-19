@@ -1,0 +1,2 @@
+import { CalendarDays, BookOpen, Presentation, Landmark, PencilLine, ClipboardCheck, LogIn, Award, Star, Send, GraduationCap, UsersRound, NotebookPen, ThumbsDown, MessageCircleQuestion, BookOpenText } from 'lucide-react';
+export const icons = { CalendarDays, BookOpen, Presentation, Landmark, PencilLine, ClipboardCheck, LogIn, Award, Star, Send, GraduationCap, UsersRound, NotebookPen, ThumbsDown, MessageCircleQuestion, BookOpenText };

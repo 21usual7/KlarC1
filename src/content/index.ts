@@ -4,13 +4,21 @@ import { matheA12, matheA2 } from './mathe.ts';
 import { cyberA22 } from './a22-cyber.ts';
 import { informatikA22 } from './a22-informatik.ts';
 import { matheA22 } from './a22-mathe.ts';
-import { LESSON_SIZE, type ContentLevel, type Module, type Sphere, type Word } from './types.ts';
+import { generatedModules } from './modules/index.ts';
+import { contentLevels, LESSON_SIZE, spheres, type ContentLevel, type Module, type Sphere, type Word } from './types.ts';
 export { wordIcons, type WordIcon } from './icons.ts';
 
 export * from './types.ts';
 
-/** Order inside a sphere = learning order. */
-export const modules: Module[] = [informatikA12, informatikA2, informatikA22, cyberA12, cyberA2, cyberA22, matheA12, matheA2, matheA22];
+const firstModules: Module[] = [informatikA12, informatikA2, informatikA22, cyberA12, cyberA2, cyberA22, matheA12, matheA2, matheA22];
+/**
+ * Order inside a sphere = learning order: level by level; on a level the first module,
+ * then the modules from `src/content/modules/` by id (`cyber-a12-02-…`, `cyber-a12-03-…`).
+ */
+export const modules: Module[] = spheres.flatMap(s => contentLevels.flatMap(level => [
+  ...firstModules.filter(m => m.sphere === s.id && m.level === level),
+  ...generatedModules.filter(m => m.sphere === s.id && m.level === level).sort((a, b) => a.id.localeCompare(b.id)),
+]));
 
 const wordIndex = new Map<string, { word: Word; module: Module }>();
 for (const module of modules) for (const word of module.words) wordIndex.set(word.id, { word, module });

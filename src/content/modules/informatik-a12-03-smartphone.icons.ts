@@ -1,0 +1,2 @@
+import { TabletSmartphone, LayoutGrid, Battery, BatteryCharging, PlugZap, BatteryLow, BatteryFull, MonitorSmartphone, Camera, Image, Aperture, Phone, Contact, Pointer, MoveHorizontal, BellOff } from 'lucide-react';
+export const icons = { TabletSmartphone, LayoutGrid, Battery, BatteryCharging, PlugZap, BatteryLow, BatteryFull, MonitorSmartphone, Camera, Image, Aperture, Phone, Contact, Pointer, MoveHorizontal, BellOff };

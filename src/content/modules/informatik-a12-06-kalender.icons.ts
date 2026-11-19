@@ -1,0 +1,2 @@
+import { Calendar, CalendarClock, CalendarDays, Clock, CalendarPlus, BellRing, CalendarRange, CalendarArrowUp, CalendarX, Timer, AlarmClock, Cake, MailOpen, Table, CircleCheck, Sun } from 'lucide-react';
+export const icons = { Calendar, CalendarClock, CalendarDays, Clock, CalendarPlus, BellRing, CalendarRange, CalendarArrowUp, CalendarX, Timer, AlarmClock, Cake, MailOpen, Table, CircleCheck, Sun };

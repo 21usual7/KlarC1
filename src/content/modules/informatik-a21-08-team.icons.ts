@@ -1,0 +1,2 @@
+import { FolderKanban, Users, MessagesSquare, ClipboardList, Shuffle, UserCheck, CalendarRange, AlarmClock, Handshake, Video, MessageSquareReply, TrendingUp, CircleCheckBig, Presentation, BadgeCheck, Target } from 'lucide-react';
+export const icons = { FolderKanban, Users, MessagesSquare, ClipboardList, Shuffle, UserCheck, CalendarRange, AlarmClock, Handshake, Video, MessageSquareReply, TrendingUp, CircleCheckBig, Presentation, BadgeCheck, Target };

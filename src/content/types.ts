@@ -19,6 +19,11 @@ export type Word = {
   ru: string;
   /** Picture of the word card: a Lucide icon registered in `src/content/icons*.ts`. */
   icon?: WordIcon;
+  /**
+   * English search query for a free-licensed photo of the word (`router`, `padlock on laptop`).
+   * Omitted for abstract words without a good photo; the card then shows the icon.
+   */
+  imageQuery?: string;
   /** Compound parts, joined they give `de`: ['Schwach', 'stelle']. */
   parts?: string[];
   /** Verb forms: `er nutzt aus · hat ausgenutzt`. */
