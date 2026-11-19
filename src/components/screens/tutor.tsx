@@ -1,30 +1,52 @@
 'use client';
-import { memo, useEffect, useRef, useState, type RefObject, type SetStateAction } from 'react';
-import { MessageCircle, Send } from 'lucide-react';
-import type { ChatMessage } from '@/lib/cloud-state';
+import { memo, useEffect, useRef, useState, type RefObject } from 'react';
+import Link from 'next/link';
+import { ArrowLeft, Leaf, MessageCircle, Plus, Send, Trash2 } from 'lucide-react';
+import { CHAT_TTL_DAYS, tutorRoles, type ChatMessage } from '@/lib/cloud-state';
+import { useCloudLearning } from '@/hooks/use-cloud-learning';
+import { defaultStudyTrack } from '@/lib/study-focus';
+import { TUTOR_DRAFT_KEY } from '@/lib/views';
 import FeedbackText from '../feedback-text';
 import VoicePractice from '../voice-practice';
-import { PageTitle } from './shared';
 
-type Props = { role: string; level: string; track: string; studyStage: string; chat: ChatMessage[]; setChat: (value: SetStateAction<ChatMessage[]>) => void; setRole: (name: string) => void; initialMessage: string; onDraftUsed: () => void };
+const roleText: Record<string, string> = { Kommilitone: 'Учёба и жизнь в Вене', Professor: 'Консультация и вопросы', Beamter: 'Документы и регистрация', Mitbewohner: 'Быт и общая квартира' };
 
-export default function Tutor({ role, level, track, studyStage, chat, setChat, setRole, initialMessage, onDraftUsed }: Props) {
-  // Draft text lives here, so typing re-renders only the chat, not the whole app shell.
-  const [message, setMessage] = useState(initialMessage); const [busy, setBusy] = useState(false); const [tutorError, setTutorError] = useState('');
+export default function Tutor() {
+  const cloud = useCloudLearning();
+  const profile = cloud.snapshot.progress.profile; const level = profile?.level || 'A1';
+  // Every visit starts a new chat; it is saved only once the first message is sent.
+  const [activeId, setActiveId] = useState<string | null>(null); const [newRole, setNewRole] = useState('Kommilitone');
+  const [message, setMessage] = useState(''); const [busy, setBusy] = useState(false); const [tutorError, setTutorError] = useState('');
   const chatEnd = useRef<HTMLDivElement>(null);
-  useEffect(() => { if (initialMessage) onDraftUsed(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const active = cloud.snapshot.chats.find(c => c.id === activeId); const role = active?.role || newRole; const chat = active?.messages || [];
+  useEffect(() => { try { const draft = sessionStorage.getItem(TUTOR_DRAFT_KEY); if (draft) { setMessage(draft); sessionStorage.removeItem(TUTOR_DRAFT_KEY); } } catch {} }, []);
   useEffect(() => { chatEnd.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, [chat, busy]);
+  const append = (id: string, m: ChatMessage) => cloud.update(s => ({ ...s, chats: s.chats.some(c => c.id === id) ? s.chats.map(c => c.id === id ? { ...c, messages: [...c.messages, m] } : c) : [...s.chats, { id, role, created: Date.now(), messages: [m] }].slice(-30) }));
   const send = async (text = message) => {
     if (!text.trim() || busy) return;
-    setBusy(true); setTutorError(''); setChat(c => [...c, { author: 'Вы', text }]); setMessage('');
+    const id = activeId ?? crypto.randomUUID();
+    setBusy(true); setTutorError(''); append(id, { author: 'Вы', text }); setActiveId(id); setMessage('');
     try {
-      const response = await fetch('/api/tutor', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text, history: chat.slice(-12).map(c => ({ role: c.author === 'Вы' ? 'user' : 'assistant', content: c.text })), role, level, track, studyStage }) });
+      const response = await fetch('/api/tutor', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text, history: chat.slice(-12).map(c => ({ role: c.author === 'Вы' ? 'user' : 'assistant', content: c.text })), role, level, track: profile?.track || defaultStudyTrack, studyStage: profile?.studyStage || 'both' }) });
       const result = await response.json();
-      if (!response.ok) { setTutorError(result.error || 'Не удалось получить ответ.'); setMessage(text); } else setChat(c => [...c, { author: role, text: result.reply }]);
+      if (!response.ok) { setTutorError(result.error || 'Не удалось получить ответ.'); setMessage(text); } else append(id, { author: role, text: result.reply });
     } catch { setTutorError('Нет соединения с сервером. Попробуйте ещё раз.'); setMessage(text); } finally { setBusy(false); }
   };
-  const reset = () => { setChat([]); setTutorError(''); };
-  return <><PageTitle label="РАЗГОВОРНАЯ ПРАКТИКА" title="Поговорим по-настоящему" text="Спроси, объясни, попробуй ещё раз. Здесь можно ошибаться." /><div className="tutor-layout"><section className="chat-panel"><div className="chat-top"><MessageCircle size={20} /><strong>{role}</strong><span className="muted small">Немецкий {level}</span></div><Messages role={role} level={level} chat={chat} busy={busy} tutorError={tutorError} chatEnd={chatEnd} /><form className="chat-form" onSubmit={e => { e.preventDefault(); void send(); }}><label className="sr-only" htmlFor="message">Сообщение тьютору</label><textarea id="message" maxLength={8000} placeholder="Schreib einfach los …" value={message} onChange={e => setMessage(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); void send(); } }} /><button className="button primary" disabled={busy || !message.trim()} type="submit" aria-label="Отправить сообщение"><Send size={18} /></button></form></section><aside className="tutor-info"><h3>Выбери собеседника</h3><button className="text-button" disabled={busy} onClick={reset}>Новый разговор</button>{[{ name: 'Kommilitone', text: 'Учёба и жизнь в Вене' }, { name: 'Professor', text: 'Консультация и вопросы' }, { name: 'Beamter', text: 'Документы и регистрация' }, { name: 'Mitbewohner', text: 'Быт и общая квартира' }].map(r => <button className={`role-card ${role === r.name ? 'selected' : ''}`} disabled={busy} onClick={() => { setRole(r.name); reset(); }} key={r.name}><strong>{r.name}</strong><small>{r.text}</small></button>)}<p className="muted small">При отправке сообщение и последние реплики передаются Gemini или настроенному AI-провайдеру. В аккаунте история сохраняется в Cloudflare D1; без входа — только в этом браузере. При смене роли начинается новый разговор.</p></aside></div></>;
+  const open = (id: string | null) => { setActiveId(id); setTutorError(''); };
+  const remove = (id: string) => { if (!confirm('Удалить этот чат? Его нельзя будет восстановить.')) return; cloud.update(s => ({ ...s, chats: s.chats.filter(c => c.id !== id) })); if (id === activeId) open(null); };
+  if (!cloud.ready) return <div className="loading" style={{ flexDirection: 'column', fontSize: 18 }}><Leaf />{cloud.error || 'Загрузка твоих чатов…'}{cloud.error && <button className="button primary" onClick={() => void cloud.reload()}>Повторить загрузку</button>}</div>;
+  return <div className="tutor-page">
+    <header className="tutor-header"><Link href="/" className="brand" aria-label="Klar C1 — на главную"><span className="brand-mark"><Leaf size={22} /></span>Klar<span className="brand-c1">C1</span></Link><span className="muted small sync-text">{cloud.status}</span><Link href="/" className="small-link"><ArrowLeft size={18} />К обучению</Link></header>
+    {cloud.error && <p className="notice" role="alert">{cloud.error}</p>}
+    <div className="tutor-layout">
+      <aside className="chat-list" aria-label="Чаты">
+        <button className="button primary" disabled={busy} onClick={() => open(null)}><Plus size={17} />Новый чат</button>
+        {cloud.snapshot.chats.length ? [...cloud.snapshot.chats].reverse().map(c => <div className="chat-item" key={c.id}><button disabled={busy} aria-current={c.id === activeId ? 'page' : undefined} className={`role-card ${c.id === activeId ? 'selected' : ''}`} onClick={() => open(c.id)}><strong>{c.messages.find(m => m.author === 'Вы')?.text.slice(0, 60) || 'Разговор'}</strong><small>{c.role}{c.created ? ` · ${new Date(c.created).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}` : ''}</small></button><button className="icon-button" disabled={busy} aria-label="Удалить чат" title="Удалить чат" onClick={() => remove(c.id)}><Trash2 size={16} /></button></div>) : <p className="muted small">Здесь появятся твои разговоры.</p>}
+      </aside>
+      <section className="chat-panel"><div className="chat-top"><MessageCircle size={20} /><strong>{role}</strong><span className="muted small">Немецкий {level}</span></div><Messages role={role} level={level} chat={chat} busy={busy} tutorError={tutorError} chatEnd={chatEnd} /><form className="chat-form" onSubmit={e => { e.preventDefault(); void send(); }}><label className="sr-only" htmlFor="message">Сообщение тьютору</label><textarea id="message" maxLength={8000} placeholder="Schreib einfach los …" value={message} onChange={e => setMessage(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); void send(); } }} /><button className="button primary" disabled={busy || !message.trim()} type="submit" aria-label="Отправить сообщение"><Send size={18} /></button></form></section>
+      <aside className="tutor-info">{active ? <><h3>Собеседник</h3><p className="muted">{role} — {roleText[role]}. Чтобы поговорить с другим собеседником, начни новый чат.</p></> : <><h3>Выбери собеседника</h3>{tutorRoles.map(name => <button className={`role-card ${newRole === name ? 'selected' : ''}`} disabled={busy} onClick={() => setNewRole(name)} key={name}><strong>{name}</strong><small>{roleText[name]}</small></button>)}</>}<p className="muted small">При отправке сообщение и последние реплики передаются Gemini или настроенному AI-провайдеру. {`История чатов сохраняется в аккаунте (Cloudflare D1), хранятся последние 30 разговоров; чаты старше ${CHAT_TTL_DAYS} дней удаляются автоматически.`}</p></aside>
+    </div>
+  </div>;
 }
 
 // Memoised so typing in the composer does not re-render (and re-voice) every message.

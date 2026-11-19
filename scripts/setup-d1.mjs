@@ -8,3 +8,4 @@ console.log('D1 schema applied (non-destructive CREATE IF NOT EXISTS).');
 
 await import('./setup-email-verification.mjs');
 await import('./setup-ai-request-limits.mjs');
+await import('./setup-profiles.mjs');
