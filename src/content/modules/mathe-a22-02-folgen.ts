@@ -21,7 +21,7 @@ export const module: Module = {
     { id: 'mat-a22-02-beliebig', icon: 'Shuffle', de: 'beliebig', pos: 'adj', ru: 'произвольный, любой', note: 'beliebig klein — сколь угодно малый.', example: { de: 'Epsilon kann beliebig klein sein.', ru: 'Эпсилон может быть сколь угодно малым.', cloze: 'beliebig' } },
     { id: 'mat-a22-02-abschaetzen', icon: 'Scale', de: 'abschätzen', pos: 'verb', ru: 'оценивать (неравенством)', forms: 'er schätzt ab · hat abgeschätzt', note: 'Существительное: die Abschätzung — оценка.', example: { de: 'Wir schätzen den Ausdruck nach oben ab.', ru: 'Мы оцениваем выражение сверху.', cloze: 'schätzen' } },
     { id: 'mat-a22-02-ungleichung', icon: 'ChevronsLeftRight', de: 'Ungleichung', pos: 'noun', article: 'die', plural: 'Ungleichungen', ru: 'неравенство', note: 'die Dreiecksungleichung — неравенство треугольника.', example: { de: 'Wir lösen zuerst eine einfache Ungleichung.', ru: 'Сначала мы решаем простое неравенство.', cloze: 'Ungleichung' } },
-    { id: 'mat-a22-02-schranke', icon: 'Fence', de: 'Schranke', pos: 'noun', article: 'die', plural: 'Schranken', ru: 'граница (верхняя, нижняя); шлагбаум', note: 'obere Schranke — верхняя граница.', example: { de: 'Zwei ist eine obere Schranke der Folge.', ru: 'Два — верхняя граница последовательности.', cloze: 'Schranke' } },
+    { id: 'mat-a22-02-schranke', icon: 'Fence', imageQuery: 'barrier gate', de: 'Schranke', pos: 'noun', article: 'die', plural: 'Schranken', ru: 'граница (верхняя, нижняя); шлагбаум', note: 'obere Schranke — верхняя граница.', example: { de: 'Zwei ist eine obere Schranke der Folge.', ru: 'Два — верхняя граница последовательности.', cloze: 'Schranke' } },
   ],
   readings: [
     {

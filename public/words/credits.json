@@ -1,4 +1,25 @@
 {
+  "cyb-a12-03-e-mail": {
+    "title": "Lenovo G500s laptop-2903",
+    "author": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lenovo_G500s_laptop-2903.jpg"
+  },
+  "cyb-a12-03-gewinn": {
+    "title": "Trophy for Prize Giving",
+    "author": "SStammers",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trophy_for_Prize_Giving.jpg"
+  },
+  "cyb-a12-03-postfach": {
+    "title": "Letterboxes Ocotillo Wells 2013 Crop",
+    "author": "Tuxyso",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Letterboxes_Ocotillo_Wells_2013_Crop.jpg"
+  },
   "cyb-a12-04-daumen": {
     "title": "Thumb wet dowel tyre 2021-05-11 15.07.51",
     "author": "Springnuts",
@@ -48,12 +69,33 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Laptop_der_Marke_exone_go_20240203_HOF06886_RAW-Export_000276.png"
   },
+  "cyb-a12-05-speicher": {
+    "title": "SanDisk Memory Stick PRO 256MB",
+    "author": "Mister rf",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:SanDisk_Memory_Stick_PRO_256MB.jpg"
+  },
   "cyb-a12-06-bahnhof": {
     "title": "Jeseník train station 2025.01",
     "author": "Pudelek",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jesen%C3%ADk_train_station_2025.01.jpg"
+  },
+  "cyb-a12-06-bluetooth": {
+    "title": "Bluetooth headset WEP-200-8934",
+    "author": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bluetooth_headset_WEP-200-8934.jpg"
+  },
+  "cyb-a12-06-flugmodus": {
+    "title": "Sukhoi SuperJet 100 (5114478300)",
+    "author": "SuperJet International",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sukhoi_SuperJet_100_(5114478300).jpg"
   },
   "cyb-a12-06-kopfhoerer": {
     "title": "2023 Słuchawki Sony WI-XB400 (1)",
@@ -68,6 +110,20 @@
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Phone_charger_2026.jpg"
+  },
+  "cyb-a12-06-netz": {
+    "title": "Cellular Telephone Tower - Knoxville, Tennessee - May 26, 2014",
+    "author": "David Ratledge",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cellular_Telephone_Tower_-_Knoxville,_Tennessee_-_May_26,_2014.jpg"
+  },
+  "cyb-a12-06-reise": {
+    "title": "Suitcase BW 2025-08-17 14-54-11",
+    "author": "Berthold Werner",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Suitcase_BW_2025-08-17_14-54-11.jpg"
   },
   "cyb-a12-06-zug": {
     "title": "SNCB Desiro ML (Class AM08 08197) at Antwerp Central Station level -2 platform 22 looking towards the main hall (DSCF4782)",
@@ -111,6 +167,20 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Street_sign_Streichergasse,_Vienna,_2018.jpg"
   },
+  "cyb-a12-07-telefonnummer": {
+    "title": "Intelbras phone keypad",
+    "author": "André Koehne",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Intelbras_phone_keypad.jpg"
+  },
+  "cyb-a12-08-bestellen": {
+    "title": "Shopping online with bank card",
+    "author": "Bogdan Hoyaux / European Commission",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shopping_online_with_bank_card.jpg"
+  },
   "cyb-a12-08-geld": {
     "title": "One stands out 002 2025 01 01",
     "author": "Friedrich Haag",
@@ -132,12 +202,40 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
     "sourceUrl": "https://www.flickr.com/photos/40838054@N00/8689212"
   },
+  "cyb-a12-09-notruf": {
+    "title": "Emergency call Volgograd Metrotram",
+    "author": "Redboston",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emergency_call_Volgograd_Metrotram.jpg"
+  },
   "cyb-a12-09-polizei": {
     "title": "Swedish police car with lights on",
     "author": "ThibautRe",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Swedish_police_car_with_lights_on.jpg"
+  },
+  "cyb-a12-10-bildschirmzeit": {
+    "title": "Child uses smartphone to play games at home closeup",
+    "author": "Shixart1985",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Child_uses_smartphone_to_play_games_at_home_closeup.jpg"
+  },
+  "cyb-a12-10-gefahr": {
+    "title": "Safety Signs",
+    "author": "TeWeBs",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Safety_Signs.JPG"
+  },
+  "cyb-a12-10-pause": {
+    "title": "SAKURAKO - Break. (4629348045)",
+    "author": "MIKI Yoshihito from Sapporo City,Hokkaido., JAPAN",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:SAKURAKO_-_Break._(4629348045).jpg"
   },
   "cyb-a12-10-webcam": {
     "title": "Tape over laptop webcam",
@@ -160,6 +258,13 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
     "sourceUrl": "https://www.flickr.com/photos/144167480@N03/49768788913"
   },
+  "cyb-a12-virus": {
+    "title": "Computer virus scam",
+    "author": "Packer1028",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Computer_virus_scam.jpg"
+  },
   "cyb-a2-2fa": {
     "title": "YubiKey 5C NFC",
     "author": "Daniel Aleksandersen",
@@ -167,12 +272,26 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:YubiKey_5C_NFC.jpg"
   },
+  "cyb-a2-angreifer": {
+    "title": "Cliche Hacker and Binary Code (26946304530)",
+    "author": "David Whelan",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cliche_Hacker_and_Binary_Code_(26946304530).jpg"
+  },
   "cyb-a2-firewall": {
     "title": "Netgear ProSafe Dual WAN VPN Gigabit Firewall FVS336G inside",
     "author": "Zuzu",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Netgear_ProSafe_Dual_WAN_VPN_Gigabit_Firewall_FVS336G_inside.jpeg"
+  },
+  "cyb-a2-phishingmail": {
+    "title": "Email account phishing fr",
+    "author": "Phishing killer",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Email_account_phishing_fr.jpg"
   },
   "cyb-a2-verschluesseln": {
     "title": "Love padlocks on the Butchers' Bridge (Ljubljana)",
@@ -188,12 +307,33 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/fr/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Enigma-IMG_0487-black.jpg"
   },
+  "cyb-a21-02-grossbuchstabe": {
+    "title": "Capital letters symmetries",
+    "author": "Wiki LIC",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Capital_letters_symmetries.png"
+  },
   "cyb-a21-02-ziffer": {
     "title": "Numpad",
     "author": "Wassily",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Numpad.JPG"
+  },
+  "cyb-a21-03-faelschung": {
+    "title": "Anti counterfeit money sign, Kunming, Yunnan, China, 2016",
+    "author": "Pratyeka",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Anti_counterfeit_money_sign,_Kunming,_Yunnan,_China,_2016.jpg"
+  },
+  "cyb-a21-03-kennwort": {
+    "title": "Facial login as password using laptop camera",
+    "author": "Intel Free Press",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Facial_login_as_password_using_laptop_camera.jpg"
   },
   "cyb-a21-04-anruf": {
     "title": "Dispatcher on the Phone (51956579388)",
@@ -202,12 +342,26 @@
     "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dispatcher_on_the_Phone_(51956579388).jpg"
   },
+  "cyb-a21-04-neugier": {
+    "title": "A Bumblebee A Curious Child",
+    "author": "Pavel Soro London",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_Bumblebee_A_Curious_Child_(214083229).jpeg"
+  },
   "cyb-a21-04-usb-stick": {
     "title": "2023 Pendrive'y Verbatim Store ‘n’ Click 16 GB (1)",
     "author": "Jacek Halicki",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:2023_Pendrive%27y_Verbatim_Store_%E2%80%98n%E2%80%99_Click_16_GB_(1).jpg"
+  },
+  "cyb-a21-05-hersteller": {
+    "title": "Continental AG tire factory Mittellandkanal Stoecken Hannover Germany 02",
+    "author": "Christian A. Schröder ( ChristianSchd )",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Continental_AG_tire_factory_Mittellandkanal_Stoecken_Hannover_Germany_02.jpg"
   },
   "cyb-a21-05-wartung": {
     "title": "Server maintenance - IMG 1062",
@@ -223,6 +377,20 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Love_padlocks_on_the_Butchers%27_Bridge_(Ljubljana).jpg"
   },
+  "cyb-a21-06-verbindung": {
+    "title": "CAT8 Ethernet Cable-5839",
+    "author": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:CAT8_Ethernet_Cable-5839.jpg"
+  },
+  "cyb-a21-07-einwilligung": {
+    "title": "Clinical Trial Volunteer Signs Informed Consent Form (45116548901)",
+    "author": "NIAID",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Clinical_Trial_Volunteer_Signs_Informed_Consent_Form_(45116548901).jpg"
+  },
   "cyb-a21-08-geraet": {
     "title": "A comparison between a smartphone and a tablet-PC",
     "author": "Cookie Nguyen",
@@ -230,12 +398,33 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_comparison_between_a_smartphone_and_a_tablet-PC.jpg"
   },
+  "cyb-a21-08-gps": {
+    "title": "GPS Receivers",
+    "author": "User:Stefan Kühn",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:GPS_Receivers.jpg"
+  },
+  "cyb-a21-08-seriennummer": {
+    "title": "Skylight serial number label 2008",
+    "author": "TheRealSteelskin",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Skylight_serial_number_label_2008.jpg"
+  },
   "cyb-a21-08-sim-karte": {
     "title": "Formats de cartes SIM",
     "author": "Bidouille82",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Formats_de_cartes_SIM.jpg"
+  },
+  "cyb-a21-09-cloud-speicher": {
+    "title": "BalticServers data center",
+    "author": "BalticServers.com",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg"
   },
   "cyb-a21-09-defekt": {
     "title": "RANDY BROKEN LAPTOP 01",
@@ -251,12 +440,33 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Seagate_ST33232A_hard_disk_inner_view.jpg"
   },
+  "cyb-a21-09-kopie": {
+    "title": "Sharp MX-7500 photocopier",
+    "author": "Baron Maddock",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharp_MX-7500_photocopier.jpg"
+  },
   "cyb-a21-09-ordner": {
     "title": "File folders 3 2014-12-14",
     "author": "F ASTILY",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:File_folders_3_2014-12-14.JPG"
+  },
+  "cyb-a21-09-speichermedium": {
+    "title": "Magnetic-tape data storage",
+    "author": "Mister rf",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Magnetic-tape_data_storage.jpg"
+  },
+  "cyb-a21-10-sicherheitsfrage": {
+    "title": "Question mark trio",
+    "author": "Per A.J. Andersson",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Question_mark_trio.png"
   },
   "cyb-a21-10-videoanruf": {
     "title": "Sony Vaio Laptop showing video with man lying in bed watching TV",
@@ -265,12 +475,138 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sony_Vaio_Laptop_showing_video_with_man_lying_in_bed_watching_TV.jpeg"
   },
+  "cyb-a22-02-geheimtext": {
+    "title": "US Navy Cryptanalytic Bombe",
+    "author": "J Brew",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:US_Navy_Cryptanalytic_Bombe.jpg"
+  },
+  "cyb-a22-02-schluesselpaar": {
+    "title": "Two keys and key ring",
+    "author": "unknown",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Two_keys_and_key_ring_MET_208729.jpg"
+  },
+  "cyb-a22-02-signatur": {
+    "title": "Presidential Pen from President George H. Bush and the Paul F. Kisak Presidential Collection",
+    "author": "Paul F. Kisak",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Presidential_Pen_from_President_George_H._Bush_and_the_Paul_F._Kisak_Presidential_Collection.jpg"
+  },
+  "cyb-a22-02-signieren": {
+    "title": "Reagan and Gorbachev signing",
+    "author": "White House Photographic Office",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Reagan_and_Gorbachev_signing.jpg"
+  },
+  "cyb-a22-03-loesegeld": {
+    "title": "BOH&MOR-10-Protectorate of Bohemia and Moravia-50 Korun (1944)",
+    "author": "National Museum of American History",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:BOH%26MOR-10-Protectorate_of_Bohemia_and_Moravia-50_Korun_(1944).jpg"
+  },
+  "cyb-a22-03-quarantaene": {
+    "title": "Quarantine sign in window, Dubuque, Iowa",
+    "author": "John Vachon",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Quarantine_sign_in_window,_Dubuque,_Iowa_(fsa.8a05525).tif"
+  },
+  "cyb-a22-03-ransomware": {
+    "title": "Variation of Trojan Agent ARVP on Acer TravelMate 8100 20120417",
+    "author": "MZaplotnik",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Variation_of_Trojan_Agent_ARVP_on_Acer_TravelMate_8100_20120417.jpg"
+  },
+  "cyb-a22-03-sandbox": {
+    "title": "Bleecker Playground td (2019-01-08) 05",
+    "author": "Tdorante10",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bleecker_Playground_td_(2019-01-08)_05.jpg"
+  },
+  "cyb-a22-03-trojaner": {
+    "title": "TROY-TROJAN-HORSE-LATCHED-KNOWLEDGE",
+    "author": "Dasaptaerwin",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:TROY-TROJAN-HORSE-LATCHED-KNOWLEDGE.jpg"
+  },
+  "cyb-a22-04-anfuehrungszeichen": {
+    "title": "Quotation Marks",
+    "author": "Aleman902543",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Quotation_Marks.jpg"
+  },
+  "cyb-a22-04-eingabefeld": {
+    "title": "Login & signup form example",
+    "author": "Rikulpatel1",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Login_%26_signup_form_example.png"
+  },
   "cyb-a22-04-formular": {
     "title": "Covid-19 contact tracing form at Publika Kuala Lumpur",
     "author": "Renek78",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Covid-19_contact_tracing_form_at_Publika_Kuala_Lumpur.png"
+  },
+  "cyb-a22-04-skript": {
+    "title": "Visual studio code updated",
+    "author": "Gátomo Dev",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Visual_studio_code_updated.png"
+  },
+  "cyb-a22-05-biometrisch": {
+    "title": "Fingerprint scanner identification",
+    "author": "Rachmaninoff",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fingerprint_scanner_identification.jpg"
+  },
+  "cyb-a22-05-identitaet": {
+    "title": "French Identity card 1988 - 1994",
+    "author": "French government",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:French_Identity_card_1988_-_1994.jpg"
+  },
+  "cyb-a22-05-sicherheitsschluessel": {
+    "title": "Yubikey4",
+    "author": "Aldolat",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Yubikey4.jpg"
+  },
+  "cyb-a22-05-token": {
+    "title": "Token Verisign",
+    "author": "Rollopack",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Token_Verisign.JPG"
+  },
+  "cyb-a22-06-auftrag": {
+    "title": "Comet Interceptor contract signing ESA24643784",
+    "author": "European Space Agency",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/igo/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Comet_Interceptor_contract_signing_ESA24643784.jpg"
+  },
+  "cyb-a22-06-schwachstellenscan": {
+    "title": "Nmap screenshot(1)",
+    "author": "Mrshaxas",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nmap_screenshot(1).png"
   },
   "cyb-a22-06-unterschrift": {
     "title": "Autograph & signature Henry Morton Stanley Gallica BNF",
@@ -285,6 +621,27 @@
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_contract_signing_1936_(JOKAKAL3B-2991).tif"
+  },
+  "cyb-a22-07-forensik": {
+    "title": "San Diego County Sheriff's Department Regional Crime Laboratory 20",
+    "author": "Issac I Navarro",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:San_Diego_County_Sheriff%27s_Department_Regional_Crime_Laboratory_20.jpg"
+  },
+  "cyb-a22-07-spur": {
+    "title": "Hexenbuche mit Kreuzberg",
+    "author": "Jörg Braukmann",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hexenbuche_mit_Kreuzberg.jpg"
+  },
+  "cyb-a22-09-binaerdatei": {
+    "title": "Binary-inscription in memory-stone",
+    "author": "ThSt71",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Binary-inscription_in_memory-stone.jpg"
   },
   "cyb-a22-09-debugger": {
     "title": "Gdb-7.3-debugging-session",
@@ -342,12 +699,26 @@
     "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Magnifying_glass2.jpg"
   },
+  "inf-a12-02-browser": {
+    "title": "Hb486 dillo big",
+    "author": "User:Samboy",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hb486_dillo_big.jpg"
+  },
   "inf-a12-02-chatten": {
     "title": "Japanese teenager with her mobile phone",
     "author": "scion_cho from Quezon City, Philippines",
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Japanese_teenager_with_her_mobile_phone.jpg"
+  },
+  "inf-a12-02-suchen": {
+    "title": "Magnifying glass2",
+    "author": "Heptagon",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Magnifying_glass2.jpg"
   },
   "inf-a12-02-wlan": {
     "title": "ELECOM WRC-300FEBK WPS WiFi router 2",
@@ -419,6 +790,13 @@
     "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:EFTA00001176_-_Sleek_Apple_iMac_sits_on_a_glass_desk_accompanied_by_a_vintage_telephone_and_a_pen_holder_in_a_tidy_workspace.jpg"
   },
+  "inf-a12-04-ausschalten": {
+    "title": "Macbook Pro Power Button - Macro (5477920228)",
+    "author": "vincentq from Melbourne, Australia",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Macbook_Pro_Power_Button_-_Macro_(5477920228).jpg"
+  },
   "inf-a12-04-computerraum": {
     "title": "Dalby State School, Computer lab, 2023",
     "author": "Unidentified",
@@ -447,6 +825,13 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:MTR_CRH380A_AC_power_plugs_and_sockets_201710.jpg"
   },
+  "inf-a12-04-strom": {
+    "title": "Power plugs with a socket splitter at the Wikimedia Hackathon 2018",
+    "author": "Matma Rex",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Power_plugs_with_a_socket_splitter_at_the_Wikimedia_Hackathon_2018.jpg"
+  },
   "inf-a12-04-usb-stick": {
     "title": "2023 Pendrive'y Verbatim Store ‘n’ Click 16 GB (1)",
     "author": "Jacek Halicki",
@@ -460,6 +845,13 @@
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wooden_srcabble_tiles.jpg"
+  },
+  "inf-a12-05-kopieren": {
+    "title": "Sharp MX-7500 photocopier",
+    "author": "Baron Maddock",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharp_MX-7500_photocopier.jpg"
   },
   "inf-a12-05-leerzeichen": {
     "title": "Leertaste",
@@ -488,6 +880,20 @@
     "license": "Public domain",
     "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Book_of_Hours_(Use_of_Metz)_Fol._27r,_Decorated_Initials.tif"
+  },
+  "inf-a12-05-wort": {
+    "title": "The word \"Sharpie\" written in Sharpie on a piece of pink paper",
+    "author": "Ser Amantio di Nicolao",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_word_%22Sharpie%22_written_in_Sharpie_on_a_piece_of_pink_paper.jpg"
+  },
+  "inf-a12-06-datum": {
+    "title": "Manual scrollable wooden wall calendar",
+    "author": "Amitbalani",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Manual_scrollable_wooden_wall_calendar.jpg"
   },
   "inf-a12-06-einladung": {
     "title": "Centurion Card Invitation Set",
@@ -531,6 +937,13 @@
     "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stundenplan.PNG"
   },
+  "inf-a12-06-termin": {
+    "title": "Pen, Diary and Glasses",
+    "author": "Generationbass.com",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/46959536@N04/4827013488"
+  },
   "inf-a12-06-uhrzeit": {
     "title": "London Big Ben Inner Clock Face 1070925-PSD",
     "author": "Ermell",
@@ -566,6 +979,13 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Computer_technician_02.jpg"
   },
+  "inf-a12-08-aufgabe": {
+    "title": "Chinese language homework",
+    "author": "Simon Shek from Los Angeles, USA",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chinese_language_homework.jpg"
+  },
   "inf-a12-08-kopfhoerer": {
     "title": "Bose QuietComfort 25 Acoustic Noise Cancelling Headphones with Carry Case",
     "author": "Florian Fuchs",
@@ -573,12 +993,33 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bose_QuietComfort_25_Acoustic_Noise_Cancelling_Headphones_with_Carry_Case.jpg"
   },
+  "inf-a12-08-kurs": {
+    "title": "Officer Training Course Classroom (8638235)",
+    "author": "U.S. Space Force photo by Isaac Blancas",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Officer_Training_Course_Classroom_(8638235).jpg"
+  },
+  "inf-a12-08-lektion": {
+    "title": "La Tache noire ou La leçon de géographie .",
+    "author": "Albert Bettannier",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Geography_Lesson_or_%22The_Black_Spot%22.jpg"
+  },
   "inf-a12-08-mikrofon": {
     "title": "Boya Wireless Microphone",
     "author": "ROCKY",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Boya_Wireless_Microphone.jpg"
+  },
+  "inf-a12-08-test": {
+    "title": "Hand-writing-exam-classroom",
+    "author": "Alison wood",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hand-writing-exam-classroom.jpg"
   },
   "inf-a12-08-webcam": {
     "title": "Fancy webcam on computer screen",
@@ -593,6 +1034,20 @@
     "license": "Public domain",
     "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nintendo-Switch-Pro-Controller-FL.jpg"
+  },
+  "inf-a12-09-rekord": {
+    "title": "Professional MotorSport World Expo Awards 2024, Cologne (P1031282)",
+    "author": "Matti Blume",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Professional_MotorSport_World_Expo_Awards_2024,_Cologne_(P1031282).jpg"
+  },
+  "inf-a12-09-spielen": {
+    "title": "Children playing in the rice mill (edited)",
+    "author": "Original: Azimronnie Derivative work: Radomianin",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Children_playing_in_the_rice_mill_(edited).jpg"
   },
   "inf-a12-09-spieler": {
     "title": "RTX 2015 - Gaming (19824807853)",
@@ -629,6 +1084,20 @@
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ur_Photografiskt_Album_f%C3%B6r_%C3%A5r_1861_%C3%B6fver_f%C3%A5ngar_f%C3%B6rvarade_%C3%A5_Landskrona_f%C3%A4stning_-_NMA.0056768_(2).jpg"
   },
+  "inf-a12-10-filter": {
+    "title": "Neutral density filter demonstration",
+    "author": "Robert Emperley from Strasbourg, Alsace, France",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Neutral_density_filter_demonstration.jpg"
+  },
+  "inf-a12-10-hoeren": {
+    "title": "Headphones 1",
+    "author": "No machine-readable author provided. PJ assumed (based on copyright claims).",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Headphones_1.jpg"
+  },
   "inf-a12-10-knipsen": {
     "title": "SZ 深圳 Shenzhen 龍華 Longhua 深圳美術館 Shenzhen Art Museum lady taking photo with smartphone May 2024 R12S 02",
     "author": "TANNMY NAISZE Wanguo",
@@ -642,6 +1111,27 @@
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:JBL_Flip_3_bluetooth_speaker_(DSCF2653).jpg"
+  },
+  "inf-a12-10-lied": {
+    "title": "Pop singer Rachid Ben Jaafar during a microphone performance",
+    "author": "Rachid ben yedder",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pop_singer_Rachid_Ben_Jaafar_during_a_microphone_performance.png"
+  },
+  "inf-a12-10-musik": {
+    "title": "James Hetfield with Metallica -- 7 October 2004",
+    "author": "DallasFletcher",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:James_Hetfield_with_Metallica_--_7_October_2004.jpg"
+  },
+  "inf-a12-10-playlist": {
+    "title": "Woman enjoying music while sitting on floor with vinyl record player in cozy room",
+    "author": "Shixart1985",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Woman_enjoying_music_while_sitting_on_floor_with_vinyl_record_player_in_cozy_room.jpg"
   },
   "inf-a12-10-selfie": {
     "title": "TWC Hokitika Gorge • Stewart Nimmo • MRD 1",
@@ -671,6 +1161,13 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Canon_imageRUNNER_ADVANCE_DX_C5860_Color_Laser_Multifunction_Printer_%26_Canon_imageRUNNER_ADVANCE_DX_C7770_Color_Laser_Multifunction_Printer.jpg"
   },
+  "inf-a12-email": {
+    "title": "Man checking his email on a laptop",
+    "author": "Rawpixel Ltd",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://www.flickr.com/photos/147875007@N03/45739294712"
+  },
   "inf-a12-handy": {
     "title": "Smartphone display screen",
     "author": "Skitterphoto",
@@ -692,12 +1189,33 @@
     "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apple_Desktop_Bus_keyboard_SMK_-_close_up_of_locking_SMK_key_switch_on_left.JPG"
   },
+  "inf-a2-betriebssystem": {
+    "title": "Horizon desktop",
+    "author": "Jsphalgr",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Horizon_desktop.png"
+  },
+  "inf-a2-daten": {
+    "title": "Virginia Tech - data center",
+    "author": "Christopher Bowns",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Virginia_Tech_-_data_center.jpg"
+  },
   "inf-a2-fehler": {
     "title": "Blue screen of death xp ati",
     "author": "Sedum",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Blue_screen_of_death_xp_ati.JPG"
+  },
+  "inf-a2-fehlermeldung": {
+    "title": "Windows 10 Version 1703 Blue Screen of Death",
+    "author": "Oops4321",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Windows_10_Version_1703_Blue_Screen_of_Death.jpg"
   },
   "inf-a2-festplatte": {
     "title": "Laptop-hard-drive-exposed",
@@ -720,6 +1238,13 @@
     "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
     "sourceUrl": "https://www.rawpixel.com/image/6113542/photo-image-public-domain-logo-laptop"
   },
+  "inf-a2-programmiersprache": {
+    "title": "CSS code on a screen (Unsplash)",
+    "author": "Sai Kiran Anagani _imkiran",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:CSS_code_on_a_screen_(Unsplash).jpg"
+  },
   "inf-a2-server": {
     "title": "EFTA00002518 - Server rack with multiple hard drives and network cables connected in a data center environment",
     "author": "Federal Bureau of Investigation",
@@ -740,6 +1265,13 @@
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:I-cubed_EtherLAan200_10Base2_MAU.jpg"
+  },
+  "inf-a21-02-geschwindigkeit": {
+    "title": "Zündapp Bella R 154 (2008-05-21 Sp) Armaturenbrett r",
+    "author": "Spurzem - Lothar Spurzem",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Z%C3%BCndapp_Bella_R_154_(2008-05-21_Sp)_Armaturenbrett_r.JPG"
   },
   "inf-a21-02-glasfaser": {
     "title": "Optical fiber connectors-optical patch cable-01ASD",
@@ -769,12 +1301,40 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wireless_router,_internal_components_(LevelOne_WBR-6002).jpg"
   },
+  "inf-a21-02-signal": {
+    "title": "Katrin Radio Tower",
+    "author": "AVDLCZ",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Katrin_Radio_Tower.jpg"
+  },
   "inf-a21-02-verstaerker": {
     "title": "MAGINON WLR-510 Dual-Band WLAN-Repeater (22208697723)",
     "author": "I G",
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:MAGINON_WLR-510_Dual-Band_WLAN-Repeater_(22208697723).jpg"
+  },
+  "inf-a21-03-fenster": {
+    "title": "Santorin (GR), Fira -- 2017 -- 2624",
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Santorin_(GR),_Fira_--_2017_--_2624.jpg"
+  },
+  "inf-a21-04-akkulaufzeit": {
+    "title": "Battery indicator on a Nissan Leaf",
+    "author": "Kiwiev",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Battery_indicator_on_a_Nissan_Leaf.JPG"
+  },
+  "inf-a21-04-anschliessen": {
+    "title": "USB A Cable Plug",
+    "author": "Tobiasfalk42",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:USB_A_Cable_Plug.tif"
   },
   "inf-a21-04-anschluss": {
     "title": "USB port solder points on laptop motherboard",
@@ -825,6 +1385,55 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:ATX_Computer_power_supply_unit.jpg"
   },
+  "inf-a21-05-ausfuellen": {
+    "title": "Filling out forms (48537478622)",
+    "author": "Oregon Department of Transportation",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Filling_out_forms_(48537478622).jpg"
+  },
+  "inf-a21-05-pflichtfeld": {
+    "title": "Covid-19 contact tracing form at Publika Kuala Lumpur",
+    "author": "Renek78",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Covid-19_contact_tracing_form_at_Publika_Kuala_Lumpur.png"
+  },
+  "inf-a21-05-scrollen": {
+    "title": "Scrolling on phone",
+    "author": "Japanexperterna.se",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Scrolling_on_phone.jpg"
+  },
+  "inf-a21-05-werbung": {
+    "title": "Billboard in Menands, New York",
+    "author": "Tyler A. McNeil",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Billboard_in_Menands,_New_York.jpg"
+  },
+  "inf-a21-06-absturz": {
+    "title": "Blue screen of death xp ati",
+    "author": "Sedum",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Blue_screen_of_death_xp_ati.JPG"
+  },
+  "inf-a21-06-benachrichtigung": {
+    "title": "Blackview A60 Smartphone Android mobile phone and folio case",
+    "author": "Acabashi",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Blackview_A60_Smartphone_Android_mobile_phone_and_folio_case.jpg"
+  },
+  "inf-a21-06-bewertung": {
+    "title": "Five star rating-Virginia State Parsk-lgfile (18747420400)",
+    "author": "vastateparksstaff",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Five_star_rating-Virginia_State_Parsk-lgfile_(18747420400).jpg"
+  },
   "inf-a21-06-entwickler": {
     "title": "Programmer writing code with Unit Tests",
     "author": "Joonspoon",
@@ -838,6 +1447,27 @@
     "license": "CC BY 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hitane_Elementary_School_library_2.jpg"
+  },
+  "inf-a21-07-tabelle": {
+    "title": "Lab-notebook-spreadsheet-simulation",
+    "author": "MikeRun",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lab-notebook-spreadsheet-simulation.jpg"
+  },
+  "inf-a21-08-frist": {
+    "title": "Deadline",
+    "author": "Daniele Zanni",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Deadline_(82014365).jpeg"
+  },
+  "inf-a21-08-meilenstein": {
+    "title": "Milestone Zero Stone Ooty Nilgiris Jun22 A7C 02051",
+    "author": "This Photo was taken by Timothy A. Gonsalves . Feel free to use my photos, but please m…",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Milestone_Zero_Stone_Ooty_Nilgiris_Jun22_A7C_02051.jpg"
   },
   "inf-a21-08-praesentieren": {
     "title": "Student during presentation",
@@ -853,12 +1483,47 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
     "sourceUrl": "https://www.flickr.com/photos/40299872@N00/3622635035"
   },
+  "inf-a21-08-zeitplan": {
+    "title": "Bigimage",
+    "author": "http://www.kmkey.com",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bigimage.jpeg"
+  },
   "inf-a21-08-zusammenarbeiten": {
     "title": "Business people shaking hands in agreement",
     "author": "Rawpixel Ltd",
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
     "sourceUrl": "https://www.flickr.com/photos/147875007@N03/43972154720"
+  },
+  "inf-a21-09-internetverbindung": {
+    "title": "Ethernet connector",
+    "author": "Wikideas1",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ethernet_connector.webp"
+  },
+  "inf-a21-09-konto": {
+    "title": "Debit Card",
+    "author": "Elph",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Debit_Card.JPG"
+  },
+  "inf-a21-09-sicherungskopie": {
+    "title": "Seagate ST33232A hard disk inner view",
+    "author": "Eric Gaba ( Sting - fr:Sting ) This image was created with CombineZP by 11 ( It was cre…",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Seagate_ST33232A_hard_disk_inner_view.jpg"
+  },
+  "inf-a21-09-speicherplatz": {
+    "title": "Seagate ST33232A hard disk inner view",
+    "author": "Eric Gaba ( Sting - fr:Sting ) This image was created with CombineZP by 11 ( It was cre…",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Seagate_ST33232A_hard_disk_inner_view.jpg"
   },
   "inf-a21-10-hoersaal": {
     "title": "University of Edinburgh Lecture Theatre (28779436435)",
@@ -881,6 +1546,13 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=129964467"
   },
+  "inf-a21-10-semester": {
+    "title": "Ohio University Lecture Hall",
+    "author": "Garden Sprite",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ohio_University_Lecture_Hall.jpg"
+  },
   "inf-a22-02-baum": {
     "title": "Binary tree sort(2)",
     "author": "Mathgorges",
@@ -888,12 +1560,61 @@
     "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Binary_tree_sort(2).png"
   },
+  "inf-a22-02-knoten": {
+    "title": "Rope Knot sculpture, Cardiff Bay - geograph.org.uk - 3939261",
+    "author": "Jaggery",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rope_Knot_sculpture,_Cardiff_Bay_-_geograph.org.uk_-_3939261.jpg"
+  },
+  "inf-a22-02-laenge": {
+    "title": "B&Q Tape Measure",
+    "author": "多多123",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:B%26Q_Tape_Measure.jpg"
+  },
+  "inf-a22-02-liste": {
+    "title": "Post-it with handwritten shopping list with household items",
+    "author": "Pittigrilli",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Post-it_with_handwritten_shopping_list_with_household_items.jpeg"
+  },
   "inf-a22-02-stapel": {
     "title": "Stack of dinner plates",
     "author": "Santeri Viinamäki",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stack_of_dinner_plates.jpg"
+  },
+  "inf-a22-02-wurzel": {
+    "title": "Tree Roots",
+    "author": "Vincent van Gogh",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Tree_Roots_and_Trunks_(F816).jpg"
+  },
+  "inf-a22-02-zeiger": {
+    "title": "Dülmen, Kirchspiel, ehem. Sondermunitionslager Visbeck, \"What if\" -- 2023 -- 6686 (kreativ 2)",
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Kirchspiel,_ehem._Sondermunitionslager_Visbeck,_%22What_if%22_--_2023_--_6686_(kreativ_2).jpg"
+  },
+  "inf-a22-04-zweig": {
+    "title": "Branches of a Ficus kurzii reflecting in the water at Singapore Botanic Gardens",
+    "author": "Basile Morin",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Branches_of_a_Ficus_kurzii_reflecting_in_the_water_at_Singapore_Botanic_Gardens.jpg"
+  },
+  "inf-a22-05-backend": {
+    "title": "139 Server Room 01",
+    "author": "Indrajit Das",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:139_Server_Room_01.jpg"
   },
   "inf-a22-05-client": {
     "title": "Laptop der Marke exone go 20240203 HOF06886 RAW-Export 000276",
@@ -908,6 +1629,48 @@
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Void_linux_terminal_window.png"
+  },
+  "inf-a22-07-thread": {
+    "title": "Wooden spools of sewing thread in different colors 6",
+    "author": "W.carter",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wooden_spools_of_sewing_thread_in_different_colors_6.jpg"
+  },
+  "inf-a22-07-treiber": {
+    "title": "USB driver Mini CD 20060911",
+    "author": "O mores at English Wikipedia",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:USB_driver_Mini_CD_20060911.jpg"
+  },
+  "inf-a22-07-verzeichnis": {
+    "title": "File folders 3 2014-12-14",
+    "author": "F ASTILY",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:File_folders_3_2014-12-14.JPG"
+  },
+  "inf-a22-08-empfaenger": {
+    "title": "Letterboxes Ocotillo Wells 2013 Crop",
+    "author": "Tuxyso",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Letterboxes_Ocotillo_Wells_2013_Crop.jpg"
+  },
+  "inf-a22-08-paket": {
+    "title": "Parcel package boxes in Ozolnieki",
+    "author": "Андрей Романенко",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Parcel_package_boxes_in_Ozolnieki.jpg"
+  },
+  "inf-a22-08-port": {
+    "title": "Ethernet switch Atlantis A02-F5P 5 ports backend",
+    "author": "Sub",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ethernet_switch_Atlantis_A02-F5P_5_ports_backend.jpg"
   },
   "inf-a22-08-schicht": {
     "title": "Osi model trad",
@@ -930,12 +1693,26 @@
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:DHS_Network_Topology.jpg"
   },
+  "inf-a22-08-weiterleitung": {
+    "title": "Detour sign State Street downtown Montpelier VT May 2018",
+    "author": "Artaxerxes",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Detour_sign_State_Street_downtown_Montpelier_VT_May_2018.jpg"
+  },
   "inf-a22-09-anwendungsfall": {
     "title": "Use case diagram(sq)",
     "author": "Liridon",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Use_case_diagram(sq).JPG"
+  },
+  "inf-a22-09-dokumentation": {
+    "title": "AMD x86-64 Architecture Programmers Manuals",
+    "author": "Jeh at English Wikipedia",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:AMD_x86-64_Architecture_Programmers_Manuals.jpg"
   },
   "inf-a22-09-entwurf": {
     "title": "UML kooste aggregaatio",
@@ -951,12 +1728,40 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Attorney_meets_with_client_for_estate_planning.jpg"
   },
+  "inf-a22-09-sprint": {
+    "title": "200metres Helsinki2005",
+    "author": "Zen",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:200metres_Helsinki2005.jpg"
+  },
   "inf-a22-09-wartung": {
     "title": "Computer repair in progress",
     "author": "Vintechcomputerservices",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Computer_repair_in_progress.jpg"
+  },
+  "inf-a22-10-genauigkeit": {
+    "title": "PL7 Bullseye Target",
+    "author": "Neil Francis",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:PL7_Bullseye_Target.jpg"
+  },
+  "inf-a22-10-kuenstliche-intelligenz": {
+    "title": "Halodi Robotics' Perception Engineer With a Humanoid Collaborative Robot",
+    "author": "Nicholas-halodi",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Halodi_Robotics%27_Perception_Engineer_With_a_Humanoid_Collaborative_Robot.jpg"
+  },
+  "inf-a22-10-muster": {
+    "title": "Texture pattern 2",
+    "author": "Tornado Elliott",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Texture_pattern_2.jpg"
   },
   "inf-a22-10-neuronales-netz": {
     "title": "Bidirectional recurrent neural network",
@@ -965,12 +1770,40 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bidirectional_recurrent_neural_network.png"
   },
+  "inf-a22-befehl": {
+    "title": "Evernote-cli-geeknote",
+    "author": "Vitaly Zdanevich",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Evernote-cli-geeknote.png"
+  },
   "inf-a22-beheben": {
     "title": "USB port solder points on laptop motherboard",
     "author": "Disk Depot Ltd.",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:USB_port_solder_points_on_laptop_motherboard.JPG"
+  },
+  "inf-a22-eingabe": {
+    "title": "Backlit keyboard",
+    "author": "Colin",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Backlit_keyboard.jpg"
+  },
+  "inf-a22-entwicklungsumgebung": {
+    "title": "Screenshot of Architect (integrated development environment for data science)",
+    "author": "Msteijaert",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Screenshot_of_Architect_(integrated_development_environment_for_data_science).png"
+  },
+  "inf-a22-kommentar": {
+    "title": "Codes sources",
+    "author": "Rringot",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Codes_sources.png"
   },
   "inf-a22-quellcode": {
     "title": "Code on computer monitor (Unsplash)",
@@ -986,12 +1819,40 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vienna_City_Marathon_2026_(55217677593).jpg"
   },
+  "mat-a12-02-komma": {
+    "title": "Nombre 11-5",
+    "author": "Sammyday",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nombre_11-5.JPG"
+  },
+  "mat-a12-02-milliarde": {
+    "title": "World Population Growth 1700-2100",
+    "author": "Max Roser",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:World_Population_Growth_1700-2100.png"
+  },
   "mat-a12-02-million": {
     "title": "Crowd of people and wheeled chairs on boardwalk; Hotel Traymore in background, Atlantic City, New Jersey LCCN98505463",
     "author": "Miscellaneous Items in High Demand, PPOC, Library of Congress",
     "license": "Public domain",
     "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Crowd_of_people_and_wheeled_chairs_on_boardwalk;_Hotel_Traymore_in_background,_Atlantic_City,_New_Jersey_LCCN98505463.jpg"
+  },
+  "mat-a12-02-zaehlen": {
+    "title": "Finger-counting to 15",
+    "author": "Justinkunimune",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Finger-counting_to_15.png"
+  },
+  "mat-a12-03-dauer": {
+    "title": "Sand clock Enschede",
+    "author": "Gianluca Miscione",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sand_clock_Enschede.jpg"
   },
   "mat-a12-03-fahrplan": {
     "title": "Northbound Capitol Corridor train passing Santa Clara station, December 2007",
@@ -1000,12 +1861,47 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Northbound_Capitol_Corridor_train_passing_Santa_Clara_station,_December_2007.jpg"
   },
+  "mat-a12-03-mitternacht": {
+    "title": "Doomsday Clock 23-58",
+    "author": "Macro.biolog",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Doomsday_Clock_23-58.jpg"
+  },
+  "mat-a12-03-sekunde": {
+    "title": "Stopwatch, 1810201155, ako",
+    "author": "Ansgar Koreng",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stopwatch,_1810201155,_ako.jpg"
+  },
   "mat-a12-03-stoppuhr": {
     "title": "Stopwatch, 1810201155, ako",
     "author": "Ansgar Koreng",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stopwatch,_1810201155,_ako.jpg"
+  },
+  "mat-a12-03-viertel": {
+    "title": "Brass Funghi (quarter) - Yeastie Boys Pizza Club 2024-05-17",
+    "author": "Andy Li",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brass_Funghi_(quarter)_-_Yeastie_Boys_Pizza_Club_2024-05-17.jpg"
+  },
+  "mat-a12-03-zeiger": {
+    "title": "Dülmen, Kirchspiel, ehem. Sondermunitionslager Visbeck, \"What if\" -- 2023 -- 6686 (kreativ 2)",
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Kirchspiel,_ehem._Sondermunitionslager_Visbeck,_%22What_if%22_--_2023_--_6686_(kreativ_2).jpg"
+  },
+  "mat-a12-03-zeitunterschied": {
+    "title": "Urania-Weltzeituhr auf dem Alexanderplatz in Berlin 2015",
+    "author": "Christian Wolf ( www.c-w-design.de )",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Urania-Weltzeituhr_auf_dem_Alexanderplatz_in_Berlin_2015.jpg"
   },
   "mat-a12-04-geldschein": {
     "title": "One stands out 002 2025 01 01",
@@ -1021,12 +1917,40 @@
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:ReceiptSwiss.jpg"
   },
+  "mat-a12-04-rabatt": {
+    "title": "Discount red sign board in the store",
+    "author": "Artem Beliaikin",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Discount_red_sign_board_in_the_store.jpg"
+  },
   "mat-a12-04-taschengeld": {
     "title": "Piggy Bank",
     "author": "Images_of_Money",
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
     "sourceUrl": "https://www.flickr.com/photos/59937401@N07/5929478505"
+  },
+  "mat-a12-04-wechselgeld": {
+    "title": "ML - Geldbeutel",
+    "author": "Wolfgang Sauber",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:ML_-_Geldbeutel.jpg"
+  },
+  "mat-a12-05-kilogramm": {
+    "title": "Standard kilogram, 2",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Standard_kilogram,_2.jpg"
+  },
+  "mat-a12-05-kilometer": {
+    "title": "Papar Sabah Road-Kilometer-Sign-at-Federal-Route-1-01",
+    "author": "CEphoto, Uwe Aranas",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Papar_Sabah_Road-Kilometer-Sign-at-Federal-Route-1-01.jpg"
   },
   "mat-a12-05-lineal": {
     "title": "School Rulers",
@@ -1035,12 +1959,47 @@
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:School_Rulers.jpg"
   },
+  "mat-a12-05-liter": {
+    "title": "Dornbirn-bottle 3,05 Liter-Orangejuice-01ASD",
+    "author": "Asurnipal",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dornbirn-bottle_3,05_Liter-Orangejuice-01ASD.jpg"
+  },
   "mat-a12-05-massband": {
     "title": "B&Q Tape Measure",
     "author": "多多123",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:B%26Q_Tape_Measure.jpg"
+  },
+  "mat-a12-05-messen": {
+    "title": "B&Q Tape Measure",
+    "author": "多多123",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:B%26Q_Tape_Measure.jpg"
+  },
+  "mat-a12-05-meter": {
+    "title": "Standardgraph 2522 2.5–7 mm lettering guides",
+    "author": "Lucasbosch",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Standardgraph_2522_2.5%E2%80%937_mm_lettering_guides.jpg"
+  },
+  "mat-a12-05-wiegen": {
+    "title": "Balance scale IMGP9755",
+    "author": "Nikodem Nijaki",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Balance_scale_IMGP9755.jpg"
+  },
+  "mat-a12-05-zentimeter": {
+    "title": "Dried sorana bean on a ruler showing inches and centimeters",
+    "author": "Valereee",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dried_sorana_bean_on_a_ruler_showing_inches_and_centimeters.jpg"
   },
   "mat-a12-06-kugel": {
     "title": "Glass sphere with bubbles",
@@ -1056,6 +2015,27 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wooden_cube_puzzle_man.jpg"
   },
+  "mat-a12-07-hausuebung": {
+    "title": "Homework 01",
+    "author": "Kwameghana(Bright Kwame Ayisi)",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Homework_01.jpg"
+  },
+  "mat-a12-07-schularbeit": {
+    "title": "Test (student assessment)",
+    "author": "KF",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Test_(student_assessment).jpeg"
+  },
+  "mat-a12-07-sich-melden": {
+    "title": "1964 Hammond Slides Student Raising Hand",
+    "author": "Thomas Taylor Hammond (1920-1993)",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:1964_Hammond_Slides_Student_Raising_Hand.jpg"
+  },
   "mat-a12-07-tafel": {
     "title": "Classroom, blackboard, education, tableau, math, girls, man, braid Fortepan 2493",
     "author": "FOTO:Fortepan — ID 2493 : Adományozó/Donor: Unknown. archive copy at the Wayback Machine",
@@ -1070,12 +2050,54 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Citizen_SLD-100NR_calculator.jpg"
   },
+  "mat-a12-08-achtel": {
+    "title": "White slice and supreme slice",
+    "author": "Afshin Darian",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:White_slice_and_supreme_slice.jpg"
+  },
+  "mat-a12-08-mehrheit": {
+    "title": "Show of hands",
+    "author": "European People's Party",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Show_of_hands.jpg"
+  },
   "mat-a12-08-stueck": {
     "title": "White slice and supreme slice",
     "author": "Afshin Darian",
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:White_slice_and_supreme_slice.jpg"
+  },
+  "mat-a12-09-balken": {
+    "title": "Ipcc 2014 bar graph",
+    "author": "Tetizeraz",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ipcc_2014_bar_graph.png"
+  },
+  "mat-a12-09-diagramm": {
+    "title": "Ipcc 2014 bar graph",
+    "author": "Tetizeraz",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ipcc_2014_bar_graph.png"
+  },
+  "mat-a12-09-grad": {
+    "title": "Medical mercury thermometer with velvet-lined cardboard box - focus stack (2020-05-25)",
+    "author": "Franz van Duns",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Medical_mercury_thermometer_with_velvet-lined_cardboard_box_-_focus_stack_(2020-05-25).jpg"
+  },
+  "mat-a12-09-strichliste": {
+    "title": "Strike symbol (49778996432)",
+    "author": "David Stewart",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Strike_symbol_(49778996432).jpg"
   },
   "mat-a12-09-temperatur": {
     "title": "Eingefrorenes Außenthermometer",
@@ -1084,6 +2106,20 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Eingefrorenes_Au%C3%9Fenthermometer.jpg"
   },
+  "mat-a12-10-kaestchen": {
+    "title": "Graph-paper-10sqsm-5sqin-4sqin",
+    "author": "Mikus",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Graph-paper-10sqsm-5sqin-4sqin.jpg"
+  },
+  "mat-a12-10-muster": {
+    "title": "Roof tiles packed in crate 1",
+    "author": "W.carter",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Roof_tiles_packed_in_crate_1.jpg"
+  },
   "mat-a12-10-raetsel": {
     "title": "Red jigsaw puzzle pieces 2",
     "author": "Profpcde",
@@ -1091,7 +2127,21 @@
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Red_jigsaw_puzzle_pieces_2.jpg"
   },
+  "mat-a12-10-reihe": {
+    "title": "Olympic Stadium Munich - Rows of Seats, April 2019 -04",
+    "author": "Martin Falbisoner",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Olympic_Stadium_Munich_-_Rows_of_Seats,_April_2019_-04.jpg"
+  },
   "mat-a12-10-schach": {
+    "title": "Chess game Staunton No. 6 perfil view 8",
+    "author": "Wilfredor",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chess_game_Staunton_No._6_perfil_view_8.jpg"
+  },
+  "mat-a12-10-strategie": {
     "title": "Chess game Staunton No. 6 perfil view 8",
     "author": "Wilfredor",
     "license": "CC0",
@@ -1154,12 +2204,110 @@
     "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:%D0%9A%D0%BD%D0%B8%D0%B6%D0%BA%D0%B0_%D0%B2%D0%BA%D0%BB%D0%B0%D0%B4%D0%BD%D0%B0%D1%8F_%D0%92%D0%B8%D1%88%D0%BD%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B9_%D0%B2%D0%BE%D0%BB%D0%BE%D1%81%D1%82%D0%BD%D0%BE%D0%B9_%D1%81%D1%81%D1%83%D0%B4%D0%BE-%D1%81%D0%B1%D0%B5%D1%80%D0%B5%D0%B3%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9_%D0%BA%D0%B0%D1%81%D1%81%D1%8B_%E2%84%96_47_4.jpg"
   },
+  "mat-a21-02-zuwachs": {
+    "title": "Plant growing from wood",
+    "author": "www.Pixel.la Free Stock Photos",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plant_growing_from_wood.jpg"
+  },
+  "mat-a21-03-graph": {
+    "title": "Grasp of a Quadratic function",
+    "author": "Alrogeek16",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Grasp_of_a_Quadratic_function.jpg"
+  },
+  "mat-a21-03-schnittpunkt": {
+    "title": "Caton Farm Road and Essington Road Intersection 06",
+    "author": "Illinois_Roadbuff (Rogue Jr)",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Caton_Farm_Road_and_Essington_Road_Intersection_06.jpg"
+  },
+  "mat-a21-03-steigung": {
+    "title": "Steep Hill sign on Henside Road - geograph.org.uk - 680341",
+    "author": "Roger Nunn",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Steep_Hill_sign_on_Henside_Road_-_geograph.org.uk_-_680341.jpg"
+  },
   "mat-a21-04-bakterie": {
     "title": "Microscope view of bacteria colonies",
     "author": "Korinna",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Microscope_view_of_bacteria_colonies.jpg"
+  },
+  "mat-a21-05-augenzahl": {
+    "title": "Würfel, gemischt -- 2021 -- 5577",
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:W%C3%BCrfel,_gemischt_--_2021_--_5577.jpg"
+  },
+  "mat-a21-05-gewinnchance": {
+    "title": "Bingo balls in bingo drum",
+    "author": "elizaIO",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bingo_balls_in_bingo_drum.jpg"
+  },
+  "mat-a21-05-niete": {
+    "title": "Filling lottery ticket 20180215",
+    "author": "Santeri Viinamäki",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Filling_lottery_ticket_20180215.jpg"
+  },
+  "mat-a21-05-wuerfeln": {
+    "title": "Roll of the Dice (3571807903)",
+    "author": "alexkerhead",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Roll_of_the_Dice_(3571807903).jpg"
+  },
+  "mat-a21-05-zufall": {
+    "title": "Würfel, gemischt -- 2021 -- 5577",
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:W%C3%BCrfel,_gemischt_--_2021_--_5577.jpg"
+  },
+  "mat-a21-06-fragebogen": {
+    "title": "Questionnaire-checklist-completed",
+    "author": "https://pixabay.com/users/472301-472301/",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Questionnaire-checklist-completed.png"
+  },
+  "mat-a21-06-kreisdiagramm": {
+    "title": "Pie-chart",
+    "author": "Sylvanmoon",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pie-chart.jpg"
+  },
+  "mat-a21-07-durchmesser": {
+    "title": "Messschieber",
+    "author": "ArtMechanic",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Messschieber.jpg"
+  },
+  "mat-a21-07-formel": {
+    "title": "Einstein formula on blackboard 20190401",
+    "author": "Santeri Viinamäki",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Einstein_formula_on_blackboard_20190401.jpg"
+  },
+  "mat-a21-07-fuellen": {
+    "title": "Filling a glass with water in a kitchen sink closeup",
+    "author": "Shixart1985",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Filling_a_glass_with_water_in_a_kitchen_sink_closeup.jpg"
   },
   "mat-a21-07-kegel": {
     "title": "Ice cream cone with spoon",
@@ -1168,12 +2316,26 @@
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ice_cream_cone_with_spoon.jpg"
   },
+  "mat-a21-07-pi": {
+    "title": "Pi symbol on background",
+    "author": "Ilovepiday",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pi_symbol_on_background.png"
+  },
   "mat-a21-07-pyramide": {
     "title": "All Gizah Pyramids",
     "author": "Ricardo Liberato",
     "license": "CC BY-SA 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:All_Gizah_Pyramids.jpg"
+  },
+  "mat-a21-07-volumen": {
+    "title": "Simple Measuring Cup",
+    "author": "No machine-readable author provided. Batty~commonswiki assumed (based on copyright clai…",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Simple_Measuring_Cup.jpg"
   },
   "mat-a21-07-zylinder": {
     "title": "Heap of cans South Korea Pavilion Expo 2015",
@@ -1182,12 +2344,152 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Heap_of_cans_South_Korea_Pavilion_Expo_2015.JPG"
   },
+  "mat-a21-08-formelsammlung": {
+    "title": "Basic area formulas",
+    "author": "LibreTexts",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Basic_area_formulas.png"
+  },
+  "mat-a21-08-stoff": {
+    "title": "Karachi - Pakistan-market",
+    "author": "Steve Evans from Bangalore, India",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karachi_-_Pakistan-market.jpg"
+  },
+  "mat-a21-09-geschwindigkeit": {
+    "title": "Car speedometer",
+    "author": "Chenspec",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Car_speedometer.jpg"
+  },
+  "mat-a21-09-strecke": {
+    "title": "Distance road sign, Moonie Highway, Queensland, 2024",
+    "author": "Chris Olszewski",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Distance_road_sign,_Moonie_Highway,_Queensland,_2024.jpg"
+  },
+  "mat-a21-09-stundenkilometer": {
+    "title": "Speed Limit 20 sign on Commercial Drive, Southbridge, Massachusetts",
+    "author": "Peter Cooper Jr.",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Speed_Limit_20_sign_on_Commercial_Drive,_Southbridge,_Massachusetts.jpg"
+  },
+  "mat-a21-10-bachelor": {
+    "title": "AnnapolisGraduation",
+    "author": "U.S. Navy Photographer's Mate 2nd Class Daniel J. McLain",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:AnnapolisGraduation.jpg"
+  },
   "mat-a21-10-hoersaal": {
     "title": "Ohio University Lecture Hall",
     "author": "Garden Sprite",
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ohio_University_Lecture_Hall.jpg"
+  },
+  "mat-a21-10-lehramt": {
+    "title": "A public high school teacher in a classroom in the United States 08",
+    "author": "Harrison Keely",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_public_high_school_teacher_in_a_classroom_in_the_United_States_08.jpg"
+  },
+  "mat-a21-10-semester": {
+    "title": "University of Edinburgh Lecture Theatre (28779436435)",
+    "author": "Open Ed",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:University_of_Edinburgh_Lecture_Theatre_(28779436435).jpg"
+  },
+  "mat-a21-10-skriptum": {
+    "title": "Mathematics, Math, Lecture notes, Rostov-on-Don, Russia",
+    "author": "Vyacheslav Argenberg",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mathematics,_Math,_Lecture_notes,_Rostov-on-Don,_Russia.jpg"
+  },
+  "mat-a21-10-studienanfaenger": {
+    "title": "Case Western Reserve University, Dental Freshmen White Coat Ceremony 2018 - 29918041028",
+    "author": "Daniel Milner Photography",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Case_Western_Reserve_University,_Dental_Freshmen_White_Coat_Ceremony_2018_-_29918041028.jpg"
+  },
+  "mat-a21-10-tutor": {
+    "title": "A tutor and student",
+    "author": "morrillmemoriallibrary",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_tutor_and_student.jpg"
+  },
+  "mat-a21-10-uebungsgruppe": {
+    "title": "Leiden University Library, Group Study Room",
+    "author": "Libr",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leiden_University_Library,_Group_Study_Room.jpg"
+  },
+  "mat-a22-03-hochpunkt": {
+    "title": "Mountain Peak, Alaska (1999)",
+    "author": "Godot13",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mountain_Peak,_Alaska_(1999).jpg"
+  },
+  "mat-a22-03-tangente": {
+    "title": "Tangent line of a point",
+    "author": "CogitoErgoCogitoSum",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tangent_line_of_a_point.png"
+  },
+  "mat-a22-03-tiefpunkt": {
+    "title": "Mountains in snow, Mountain lake, Chola Valley, Nepal, Himalayas",
+    "author": "Vyacheslav Argenberg",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mountains_in_snow,_Mountain_lake,_Chola_Valley,_Nepal,_Himalayas.jpg"
+  },
+  "mat-a22-05-richtung": {
+    "title": "Direction sign, Fanoe",
+    "author": "Kent Madsen",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Direction_sign,_Fanoe.jpg"
+  },
+  "mat-a22-08-normalverteilung": {
+    "title": "Normal distribution function",
+    "author": "Shishirdasika",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Normal_distribution_function.png"
+  },
+  "mat-a22-08-verteilung": {
+    "title": "Histogram of relative frequencies",
+    "author": "Alexey000035",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Histogram_of_relative_frequencies.jpg"
+  },
+  "mat-a22-10-lerngruppe": {
+    "title": "Students Studying Together During an Araling Panlipunan Class",
+    "author": "Sibay Venus",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Students_Studying_Together_During_an_Araling_Panlipunan_Class.jpg"
+  },
+  "mat-a22-10-sprechstunde": {
+    "title": "Professor George Saliba at his Office Desk photo",
+    "author": "Sabaaslman43",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Professor_George_Saliba_at_his_Office_Desk_photo.jpg"
   },
   "mat-a22-berechnen": {
     "title": "Citizen SLD-100NR calculator",
@@ -1196,12 +2498,26 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Citizen_SLD-100NR_calculator.jpg"
   },
+  "mat-a22-flaeche": {
+    "title": "Field Hamois Belgium Luc Viatour",
+    "author": "Luc Viatour",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Field_Hamois_Belgium_Luc_Viatour.jpg"
+  },
   "mat-a22-laenge": {
     "title": "B&Q Tape Measure",
     "author": "多多123",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:B%26Q_Tape_Measure.jpg"
+  },
+  "mat-a22-umfang": {
+    "title": "Fence around field, Halsdon - geograph.org.uk - 3426083",
+    "author": "Derek Harper",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fence_around_field,_Halsdon_-_geograph.org.uk_-_3426083.jpg"
   },
   "mat-a22-winkel": {
     "title": "Goniometer IMG 4841",
