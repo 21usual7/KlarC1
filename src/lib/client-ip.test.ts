@@ -21,3 +21,18 @@ test('forged internal IP headers cannot bypass a quota', () => {
   headers.set('x-klar-client-ip', '192.0.2.10');
   assert.equal(verifiedClientIp(headers, 'secret'), null);
 });
+
+test('x-real-ip is trusted only on Vercel', () => {
+  const previous = process.env.VERCEL;
+  const headers = new Headers({ 'x-real-ip': '203.0.113.7' });
+  try {
+    delete process.env.VERCEL;
+    assert.equal(verifiedClientIp(headers, 'secret'), null);
+    process.env.VERCEL = '1';
+    assert.equal(verifiedClientIp(headers, 'secret'), '203.0.113.7');
+    assert.equal(verifiedClientIp(new Headers({ 'x-real-ip': 'invalid' }), 'secret'), null);
+  } finally {
+    if (previous === undefined) delete process.env.VERCEL;
+    else process.env.VERCEL = previous;
+  }
+});

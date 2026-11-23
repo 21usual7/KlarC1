@@ -24,6 +24,9 @@ export function signClientIp(ip: string, secret: string) {
 }
 
 export function verifiedClientIp(headers: Headers, secret = process.env.KLAR_INTERNAL_IP_SECRET) {
+  // On Vercel scripts/server.mjs does not run; the platform overwrites x-real-ip with the client address,
+  // and VERCEL=1 is set by the platform itself, so a client cannot opt into this branch.
+  if (process.env.VERCEL === '1') return normalizeIp(headers.get('x-real-ip') || undefined);
   const ip = normalizeIp(headers.get('x-klar-client-ip') || undefined);
   const signature = headers.get('x-klar-client-ip-signature') || '';
   if (!secret || !ip || !/^[a-f0-9]{64}$/.test(signature)) return null;

@@ -15,6 +15,14 @@ npm run dev
 
 Для тьютора скопировать `.env.example` в `.env.local`, заполнить `GEMINI_API_KEY` (бесплатный ключ: https://aistudio.google.com/apikey) или `OPENAI_API_KEY`, при необходимости `GEMINI_MODEL` / `OPENAI_MODEL`. Если задан `GEMINI_API_KEY`, используется Gemini, перезапустить сервер. Ключ используется только серверным маршрутом. Не коммитить `.env.local`.
 
+## Деплой на Vercel
+
+1. vercel.com → Add New Project → импортировать репозиторий. Сборка — стандартная `next build`.
+2. Environment Variables: всё из `.env.local`, кроме `AI_TRUSTED_PROXY_IPS` (не нужен). `APP_ORIGIN=https://<проект>.vercel.app` (или свой домен) — после смены переменных нажать Redeploy.
+3. Каждый `git push` в main деплоится автоматически.
+
+На Vercel `scripts/server.mjs` не запускается: IP клиента для лимита тьютора берётся из `x-real-ip`, который перезаписывает платформа (только при `VERCEL=1`, переменную выставляет сама платформа). In-memory лимит сброса пароля (`limit` в `auth-local`) на serverless действует в пределах одного инстанса; квота тьютора хранится в D1 и не страдает.
+
 ## Установка на телефон
 
 Klar C1 — устанавливаемое веб-приложение (PWA): манифест `src/app/manifest.ts`, иконки генерируются Next (`src/app/icon.tsx`, `apple-icon.tsx`, `icon-maskable/route.tsx`), service worker `public/sw.js` регистрируется только в production-сборке (`npm run build` + `npm start`), в `npm run dev` его нет.
