@@ -244,3 +244,8 @@ body{padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(saf
 .word-card.compact .word-photo{width:52px;height:52px;aspect-ratio:1}
 .photo-credit{font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:6px;overflow-wrap:anywhere}
 .photo-credit a{color:inherit}
+
+/* Interface language picker: sidebar, guest header, auth pages. */
+.language-switcher { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 14px; }
+.language-switcher select { min-height: 36px; padding: 4px 8px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.sidebar-language { margin-top: 12px; }

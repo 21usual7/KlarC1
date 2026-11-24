@@ -5,6 +5,9 @@ import { hashPassword, limit, passwordValue } from '@/lib/auth-local';
 import { authFailure, authInput, authResponse, clearSessionCookie } from '@/lib/auth-http';
 import { d1Batch, d1Query } from '@/lib/d1';
 
+/** Typed to confirm deletion; one per interface language (src/i18n/dict/*: profile.confirmWord). */
+const DELETE_WORDS = ['УДАЛИТЬ', 'DELETE'];
+
 export const runtime = 'nodejs';
 
 async function account() {
@@ -52,7 +55,7 @@ export async function DELETE(request: Request) {
   try {
     const input = await authInput(request);
     const { user, token } = await account();
-    if (input.acknowledged !== true || input.confirmation !== 'УДАЛИТЬ') {
+    if (input.acknowledged !== true || !DELETE_WORDS.includes(String(input.confirmation))) {
       throw new AuthError(400, 'Подтверди последствия и введи слово УДАЛИТЬ.');
     }
     const password = passwordValue(input.password, false);

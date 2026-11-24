@@ -1,6 +1,7 @@
 import { BLOCK_SIZE, getWord, lessonWords, modules, readingFor, type Module, type Word } from '../content/index.ts';
 import { exerciseForTier, isWordExercise, readingExercises, rng, shuffle, type ExerciseType, type Step, type Tier } from './exercises.ts';
 import type { Stage } from './srs.ts';
+import { dict } from '../i18n/runtime.ts';
 
 export type RunMode = 'lesson' | 'review' | 'test';
 export type WordResult = { right: number; wrong: number; firstCorrect?: boolean };
@@ -60,7 +61,7 @@ export function buildLessonRun(module: Module, lesson: number, seed = Date.now()
     rounds.push(exercises.filter(e => e.type === 'comprehension' || e.type === 'listen-text'));
     rounds.push(exercises.filter(e => e.type.startsWith('translate-')));
   }
-  return emptyRun('lesson', `${module.title} · урок ${lesson + 1}`, seed, now, rounds, { moduleId: module.id, lesson });
+  return emptyRun('lesson', dict().run.lessonTitle(module.title, lesson + 1), seed, now, rounds, { moduleId: module.id, lesson });
 }
 
 /** Review: one exercise per due word, one tier above its stage. */
@@ -69,14 +70,14 @@ export function buildReviewRun(items: { wordId: string; stage: Stage }[], seed =
   const words = items.map(i => getWord(i.wordId)).filter((w): w is Word => !!w);
   const pool = poolFor(words); const random = rng(seed);
   const steps = shuffle(items.filter(i => getWord(i.wordId)), random).map(i => exerciseForTier(getWord(i.wordId)!, tierForStage(i.stage), pool, random));
-  return emptyRun('review', 'Повторение', seed, now, [steps]);
+  return emptyRun('review', dict().run.review, seed, now, [steps]);
 }
 
 /** Module test: every word once, alternating recall / use; no second chances. */
 export function buildTestRun(module: Module, seed = Date.now(), now = Date.now()): Run {
   const pool = poolFor(module.words); const random = rng(seed);
   const steps = shuffle(module.words, random).map((w, i) => exerciseForTier(w, i % 2 ? 'use' : 'recall', pool, random));
-  return emptyRun('test', `${module.title} · тест`, seed, now, [steps], { moduleId: module.id });
+  return emptyRun('test', dict().run.testTitle(module.title), seed, now, [steps], { moduleId: module.id });
 }
 
 export const currentStep = (run: Run): Step | undefined => run.finished ? undefined : run.rounds[run.round]?.[run.index];

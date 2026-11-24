@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Square, Volume2 } from 'lucide-react';
+import { useI18n } from '@/i18n/client';
 
 export type VoicePracticeProps = { text: string; lang?: string };
 
@@ -9,6 +10,7 @@ export type VoicePracticeProps = { text: string; lang?: string };
 let stopActivePlayback: (() => void) | null = null;
 
 export default function VoicePractice({ text, lang = 'de-DE' }: VoicePracticeProps) {
+  const v = useI18n().t.voice;
   const id = useId();
   const [supported, setSupported] = useState<boolean | null>(null);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -30,7 +32,7 @@ export default function VoicePractice({ text, lang = 'de-DE' }: VoicePracticePro
       window.speechSynthesis.cancel();
     }
     setPlaying(false);
-    setStatus('Чтение остановлено. Можно повторить фразу вслух.');
+    setStatus(v.stopped);
   }, []);
 
   useEffect(() => {
@@ -81,34 +83,34 @@ export default function VoicePractice({ text, lang = 'de-DE' }: VoicePracticePro
       setPlaying(false);
       setStatus(message);
     };
-    utterance.onstart = () => setStatus('Слушай, затем повтори фразу вслух.');
-    utterance.onend = () => finish('Готово. Попробуй повторить без образца.');
+    utterance.onstart = () => setStatus(v.listen);
+    utterance.onend = () => finish(v.done);
     utterance.onerror = event => finish(
       event.error === 'not-allowed'
-        ? 'Браузер заблокировал звук. Разреши воспроизведение для этой страницы и нажми ещё раз.'
-        : 'Не удалось прочитать текст этим голосом. Выбери другой локальный голос или проверь настройки речи системы.',
+        ? v.blocked
+        : v.voiceFailed,
     );
     setPlaying(true);
-    setStatus('Подготовка чтения…');
+    setStatus(v.preparing);
     try {
       synth.speak(utterance);
     } catch {
-      finish('Озвучивание недоступно. Проверь настройки речи браузера и системы.');
+      finish(v.unavailable);
     }
   };
 
   const fallback = supported === null
-    ? 'Проверяем доступность голоса…'
+    ? v.checking
     : !supported
-      ? 'Чтение текста недоступно в этом браузере. Можно использовать системную озвучку.'
+      ? v.unsupported
       : voices.length === 0
-        ? `Локальный голос ${lang} недоступен. Проверь настройки речи системы и обнови страницу.`
+        ? v.noVoice(lang)
         : !text.trim()
-          ? 'Сначала выбери или напиши слово или фразу.'
+          ? v.noText
           : '';
 
   return (
-    <section aria-label="Послушать и повторить" className="voice-practice" style={{ marginBlock: 16 }}>
+    <section aria-label={v.section} className="voice-practice" style={{ marginBlock: 16 }}>
       <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
         <button
           type="button"
@@ -119,7 +121,7 @@ export default function VoicePractice({ text, lang = 'de-DE' }: VoicePracticePro
           aria-describedby={`${id}-status`}
         >
           <Volume2 size={18} aria-hidden="true" />
-          Произнести
+          {v.say}
         </button>
         {playing && (
           <button
@@ -129,11 +131,11 @@ export default function VoicePractice({ text, lang = 'de-DE' }: VoicePracticePro
             onClick={stop}
           >
             <Square size={16} aria-hidden="true" />
-            Остановить
+            {v.stop}
           </button>
         )}
         <details style={{ fontSize: 14, maxWidth: '100%' }}>
-          <summary style={{ cursor: 'pointer', paddingBlock: 12 }}>Настройки голоса</summary>
+          <summary style={{ cursor: 'pointer', paddingBlock: 12 }}>{v.settings}</summary>
           <div style={{ display: 'grid', gap: 10, paddingBlock: 8 }}>
             <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 44 }}>
               <input
@@ -143,11 +145,11 @@ export default function VoicePractice({ text, lang = 'de-DE' }: VoicePracticePro
                 onChange={event => setSlow(event.target.checked)}
                 style={{ width: 18, height: 18, accentColor: 'var(--green, #28533e)' }}
               />
-              Медленно
+              {v.slow}
             </label>
             {voices.length > 1 && (
               <label htmlFor={`${id}-voice`} style={{ display: 'block' }}>
-                Голос
+                {v.voice}
                 <select
                   id={`${id}-voice`}
                   value={voices.some(voice => voice.voiceURI === selectedVoice) ? selectedVoice : voices[0].voiceURI}
@@ -160,7 +162,7 @@ export default function VoicePractice({ text, lang = 'de-DE' }: VoicePracticePro
               </label>
             )}
             <p style={{ fontSize: 14, lineHeight: 1.65 }}>
-              Только локальные голоса браузера. Микрофон не включается; произношение не оценивается.
+              {v.localOnly}
             </p>
           </div>
         </details>

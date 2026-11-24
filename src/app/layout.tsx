@@ -1,13 +1,19 @@
 import type { Metadata, Viewport } from 'next';
 import ServiceWorkerRegister from '@/components/service-worker-register';
+import { I18nProvider } from '@/i18n/client';
+import { rtlLocales } from '@/i18n/locales';
+import { getDict, getLocale } from '@/i18n/server';
 import './globals.css';
-export const metadata: Metadata = {
-  title: 'Klar C1 — Dein Weg nach Wien',
-  description: 'Глубокое изучение немецкого: от A1 до академического C1. Готовься к жизни и учёбе в Вене.',
-  applicationName: 'Klar C1',
-  appleWebApp: { capable: true, title: 'Klar C1', statusBarStyle: 'default' },
-  formatDetection: { telephone: false },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getDict();
+  return {
+    title: t.meta.title,
+    description: t.meta.description,
+    applicationName: 'Klar C1',
+    appleWebApp: { capable: true, title: 'Klar C1', statusBarStyle: 'default' },
+    formatDetection: { telephone: false },
+  };
+}
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -17,4 +23,4 @@ export const viewport: Viewport = {
     { media: '(prefers-color-scheme: dark)', color: '#121410' },
   ],
 };
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="ru"><head><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" /></head><body>{children}<ServiceWorkerRegister /></body></html>; }
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { const locale = await getLocale(); return <html lang={locale} dir={rtlLocales.includes(locale) ? 'rtl' : 'ltr'}><head><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" /></head><body><I18nProvider locale={locale}>{children}</I18nProvider><ServiceWorkerRegister /></body></html>; }

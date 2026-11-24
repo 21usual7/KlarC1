@@ -3,10 +3,12 @@ import { digest, requireD1, validToken } from './auth.ts';
 import { AuthError, passwordValue, hashPassword } from './auth-local.ts';
 import { d1Query } from './d1.ts';
 import { deliverEmail, emailLink } from './email-delivery.ts';
+import { emails } from '../i18n/emails.ts';
+import type { Locale } from '../i18n/locales.ts';
 
 const invalidLink = () => new AuthError(400, 'Ссылка недействительна или устарела. Запроси новое письмо.');
 
-export async function sendPasswordReset(email: string) {
+export async function sendPasswordReset(email: string, locale: Locale = 'ru') {
   const token = randomBytes(32).toString('hex');
   const hash = digest(token);
   const link = emailLink(`/reset-password#token=${token}`);
@@ -20,8 +22,7 @@ export async function sendPasswordReset(email: string) {
     [hash, now + 30 * 60_000, now + 5 * 60_000, email, now],
   );
   if (!rows.length) return;
-  const delivery = await deliverEmail(email, 'Сброс пароля Klar C1',
-    `Задай новый пароль для Klar C1.\n\n${link}\n\nСсылка действует 30 минут и используется один раз. Если ты не запрашивал сброс, проигнорируй письмо.`,
+  const delivery = await deliverEmail(email, emails[locale].reset.subject, emails[locale].reset.text(link),
     `klar-reset-${hash}`);
   if (delivery !== 'sent') console.error('Klar C1: password reset email delivery failed.');
 }

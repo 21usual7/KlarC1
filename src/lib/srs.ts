@@ -8,7 +8,6 @@ import { createEmptyCard, fsrs, generatorParameters, Rating, type Card, type Gra
 const scheduler = fsrs(generatorParameters({ enable_fuzz: false, learning_steps: ['1d'], relearning_steps: ['10m'] }));
 
 /** Word stages: what the learner can already do with the word. */
-export const STAGES = ['Новое', 'Узнаю', 'Вспоминаю', 'Использую', 'Выучено'] as const;
 export type Stage = 1 | 2 | 3 | 4;
 
 /** JSON-safe FSRS card: dates as epoch milliseconds. */

@@ -1,4 +1,6 @@
 import { displayWord, type Reading, type Word } from '../content/index.ts';
+import { trCollocation, trExample, trReading, trWord } from '../content/translate.ts';
+import { dict } from '../i18n/runtime.ts';
 
 /** recognize → recall → use: from seeing the word to producing it. */
 export type Tier = 'recognize' | 'recall' | 'use';
@@ -29,8 +31,8 @@ type Base = {
   gloss?: Record<string, string>;
   /** Hover translations would give the answer away until the exercise is answered. */
   glossAfterAnswer?: boolean;
-  /** Language of choice options / tiles. */
-  optionsLang?: 'de' | 'ru';
+  /** Language of choice options / tiles: German or the interface language (`tr`). */
+  optionsLang?: 'de' | 'tr';
   /** Options stay locked until `audio` was played at least once (listening exercises). */
   listenFirst?: boolean;
 };
@@ -50,12 +52,8 @@ export const tierTypes: Record<Tier, WordExerciseType[]> = {
   recall: ['reverse', 'article', 'compound', 'cloze-bank', 'plural'],
   use: ['cloze-typed', 'collocation', 'dictation', 'build-sentence'],
 };
-export const typeLabels: Record<ExerciseType, string> = {
-  listen: 'Аудирование', 'listen-sentence': 'Аудирование: предложение', meaning: 'Значение', reverse: 'Найди слово', article: 'Артикль', compound: 'Собери слово',
-  'cloze-bank': 'Вставь слово', plural: 'Множественное число', 'cloze-typed': 'Впиши слово', collocation: 'Переведи',
-  dictation: 'Диктант', 'build-sentence': 'Собери предложение',
-  comprehension: 'Понимание текста', 'listen-text': 'Аудирование: текст', 'translate-to-de': 'Переведи на немецкий', 'translate-to-ru': 'Переведи на русский',
-};
+/** Name of the exercise type in the interface language. */
+export const typeLabel = (type: ExerciseType): string => dict().exercise.types[type];
 
 export type Rng = () => number;
 /** Small deterministic PRNG so lessons are reproducible in tests. */
@@ -152,34 +150,35 @@ export function makeExercise(word: Word, type: WordExerciseType, pool: Word[], r
   const tier = (Object.keys(tierTypes) as Tier[]).find(t => tierTypes[t].includes(type));
   if (!tier) throw new Error(`${type} is not a word exercise`);
   const base = { id, wordId: word.id, tier, type };
+  const t = dict().exercise;
   switch (type) {
     case 'listen':
-      return choice({ ...base, prompt: 'Послушай и выбери перевод', audio: word.de, answer: word.ru }, distractors(pool, word, w => w.ru, 3, random), random);
+      return choice({ ...base, prompt: t.listen, audio: word.de, answer: trWord(word) }, distractors(pool, word, trWord, 3, random), random);
     case 'listen-sentence':
-      return choice({ ...base, prompt: 'Послушай и выбери предложение, которое прозвучало', audio: word.example.de, answer: word.example.de, optionsLang: 'de', listenFirst: true }, sentenceLookalikes(word, pool, random), random);
+      return choice({ ...base, prompt: t.listenSentence, audio: word.example.de, answer: word.example.de, optionsLang: 'de', listenFirst: true }, sentenceLookalikes(word, pool, random), random);
     case 'meaning':
-      return choice({ ...base, prompt: displayWord(word), audio: word.de, hint: 'Что это значит?', answer: word.ru }, distractors(pool, word, w => w.ru, 3, random), random);
+      return choice({ ...base, prompt: displayWord(word), audio: word.de, hint: t.meaningHint, answer: trWord(word) }, distractors(pool, word, trWord, 3, random), random);
     case 'reverse':
-      return choice({ ...base, prompt: word.ru, hint: 'Выбери немецкое слово', answer: displayWord(word) }, distractors(pool, word, displayWord, 3, random), random);
+      return choice({ ...base, prompt: trWord(word), hint: t.reverseHint, answer: displayWord(word) }, distractors(pool, word, displayWord, 3, random), random);
     case 'article':
-      return choice({ ...base, prompt: `___ ${word.de}`, hint: word.ru, audio: undefined, answer: word.article! }, (['der', 'die', 'das'] as const).filter(a => a !== word.article), random);
+      return choice({ ...base, prompt: `___ ${word.de}`, hint: trWord(word), audio: undefined, answer: word.article! }, (['der', 'die', 'das'] as const).filter(a => a !== word.article), random);
     case 'cloze-bank':
-      return choice({ ...base, prompt: 'Вставь пропущенное слово', sentence: gapped(word), hint: word.example.ru, answer: word.example.cloze }, distractors(pool, word, w => w.example.cloze, 3, random), random);
+      return choice({ ...base, prompt: t.clozeBank, sentence: gapped(word), hint: trExample(word), answer: word.example.cloze }, distractors(pool, word, w => w.example.cloze, 3, random), random);
     case 'plural':
-      return { ...base, kind: 'type', prompt: `Множественное число: ${displayWord(word)} → die …`, hint: word.ru, answer: word.plural!, accept: [`die ${word.plural}`] };
+      return { ...base, kind: 'type', prompt: t.plural(displayWord(word)), hint: trWord(word), answer: word.plural!, accept: [`die ${word.plural}`] };
     case 'cloze-typed':
-      return { ...base, kind: 'type', prompt: 'Впиши пропущенное слово', sentence: gapped(word), hint: `${word.example.ru}${word.example.cloze.toLowerCase() !== word.de.toLowerCase() ? ` · исходная форма: ${word.de}` : ''}`, answer: word.example.cloze, accept: [] };
+      return { ...base, kind: 'type', prompt: t.clozeTyped, sentence: gapped(word), hint: `${trExample(word)}${word.example.cloze.toLowerCase() !== word.de.toLowerCase() ? t.baseForm(word.de) : ''}`, answer: word.example.cloze, accept: [] };
     case 'collocation':
-      return { ...base, kind: 'type', prompt: `Переведи: «${word.collocation!.ru}»`, hint: `Слово: ${displayWord(word)}`, answer: word.collocation!.de, accept: word.collocation!.accept || [] };
+      return { ...base, kind: 'type', prompt: t.collocation(trCollocation(word)!), hint: t.wordLabel(displayWord(word)), answer: word.collocation!.de, accept: word.collocation!.accept || [] };
     case 'dictation':
-      return { ...base, kind: 'type', prompt: 'Послушай и запиши предложение', audio: word.example.de, hint: word.example.ru, answer: word.example.de, accept: [], loose: true };
+      return { ...base, kind: 'type', prompt: t.dictation, audio: word.example.de, hint: trExample(word), answer: word.example.de, accept: [], loose: true };
     case 'compound': {
       const parts = word.parts!;
       const extra = distractors(pool.filter(w => w.parts), word, w => pick(w.parts!.slice(1), random), 2, random).filter(p => !parts.includes(p));
-      return { ...base, kind: 'tiles', prompt: `Собери слово: ${word.ru}`, tiles: shuffle([...parts, ...extra], random), answer: parts, joiner: '' };
+      return { ...base, kind: 'tiles', prompt: t.compound(trWord(word)), tiles: shuffle([...parts, ...extra], random), answer: parts, joiner: '' };
     }
     case 'build-sentence':
-      return { ...base, kind: 'tiles', prompt: 'Собери предложение', hint: word.example.ru, audio: word.example.de, tiles: shuffle(sentenceTokens(word), random), answer: sentenceTokens(word), joiner: ' ' };
+      return { ...base, kind: 'tiles', prompt: t.buildSentence, hint: trExample(word), audio: word.example.de, tiles: shuffle(sentenceTokens(word), random), answer: sentenceTokens(word), joiner: ' ' };
   }
 }
 
@@ -204,21 +203,25 @@ const bare = (tile: string) => tile.replace(/[.,!?;:„“"»«]/g, '').toLowerC
  */
 export function readingExercises(reading: Reading, others: Reading[], random: Rng, key: string): Exercise[] {
   const id = (type: TextExerciseType, i: number) => `${key}:${type}:${i}`;
-  const base = { tier: 'text' as const, gloss: reading.gloss };
+  const t = dict().exercise; const tr = trReading(reading);
+  const base = { tier: 'text' as const, gloss: tr.gloss };
   const questions: Exercise[] = reading.questions.map((q, i) => choice({
-    ...base, id: id('comprehension', i), type: 'comprehension', prompt: 'Ответь на вопрос по тексту', de: q.q, deRu: q.ru, answer: q.answer, optionsLang: 'de',
+    ...base, id: id('comprehension', i), type: 'comprehension', prompt: t.comprehension, de: q.q, deRu: tr.questions[i], answer: q.answer, optionsLang: 'de',
   }, q.options.filter(o => o !== q.answer), random));
-  const items = [...reading.translate, ...others.flatMap(r => r.translate)];
-  const translations: Exercise[] = reading.translate.map((t, i) => {
+  // Sentences with their translations in the interface language; the other readings give extra tiles and options.
+  const pairs = (r: Reading) => { const rt = r === reading ? tr : trReading(r); return r.translate.map((item, i) => ({ de: item.de, ...rt.translate[i] })); };
+  const own = pairs(reading);
+  const items = [...own, ...others.flatMap(pairs)];
+  const translations: Exercise[] = own.map((item, i) => {
     if (i % 2 === 0) {
-      const answer = sentenceTiles(t.de); const own = new Set(answer.map(bare));
-      const extra = shuffle(items.filter(o => o !== t).flatMap(o => sentenceTiles(o.de)), random)
-        .filter(tile => { const b = bare(tile); if (!b || own.has(b)) return false; own.add(b); return true; }).slice(0, 2);
-      return { ...base, id: id('translate-to-de', i), type: 'translate-to-de', kind: 'tiles', prompt: t.ru, hint: 'Собери предложение по-немецки; лишние слова не нужны', audio: t.de, tiles: shuffle([...answer, ...extra], random), answer, joiner: ' ', optionsLang: 'de' } satisfies TilesExercise;
+      const answer = sentenceTiles(item.de); const used = new Set(answer.map(bare));
+      const extra = shuffle(items.filter(o => o !== item).flatMap(o => sentenceTiles(o.de)), random)
+        .filter(tile => { const b = bare(tile); if (!b || used.has(b)) return false; used.add(b); return true; }).slice(0, 2);
+      return { ...base, id: id('translate-to-de', i), type: 'translate-to-de', kind: 'tiles', prompt: item.tr, hint: t.translateToDeHint, audio: item.de, tiles: shuffle([...answer, ...extra], random), answer, joiner: ' ', optionsLang: 'de' } satisfies TilesExercise;
     }
-    const near = t.wrongRu.filter(w => w !== t.ru);
-    const filler = shuffle(items.filter(o => o !== t && !near.includes(o.ru) && o.ru !== t.ru).map(o => o.ru), random);
-    return choice({ ...base, id: id('translate-to-ru', i), type: 'translate-to-ru', prompt: 'Выбери точный перевод', de: t.de, audio: t.de, answer: t.ru, glossAfterAnswer: true, optionsLang: 'ru' }, [...near, ...filler].slice(0, 3), random);
+    const near = item.wrong.filter(w => w !== item.tr);
+    const filler = shuffle(items.filter(o => o !== item && !near.includes(o.tr) && o.tr !== item.tr).map(o => o.tr), random);
+    return choice({ ...base, id: id('translate-to-ru', i), type: 'translate-to-ru', prompt: t.translateChoose, de: item.de, audio: item.de, answer: item.tr, glossAfterAnswer: true, optionsLang: 'tr' }, [...near, ...filler].slice(0, 3), random);
   });
   return [...questions, ...textListening(reading, others, random, key), ...translations];
 }
@@ -237,7 +240,7 @@ export function textListening(reading: Reading, others: Reading[], random: Rng, 
     const seen = new Set([sentence.toLowerCase()]);
     const wrong = collect(seen, 3, near(own), near(extra));
     return choice({
-      id: `${key}:listen-text:${i}`, tier: 'text' as const, type: 'listen-text' as const, prompt: 'Послушай предложение из текста и выбери, какое прозвучало',
+      id: `${key}:listen-text:${i}`, tier: 'text' as const, type: 'listen-text' as const, prompt: dict().exercise.listenText,
       audio: sentence, answer: sentence, optionsLang: 'de' as const, listenFirst: true,
     }, wrong, random);
   });
@@ -261,9 +264,9 @@ export function checkTyped(exercise: TypeExercise, input: string): Check {
   if (!given) return { correct: false };
   if (all.map(t => normalize(t, loose)).includes(given)) {
     const sameCase = all.map(t => normalize(t, loose, true)).includes(normalize(input, loose, true));
-    return { correct: true, note: sameCase ? undefined : 'Засчитано, но проверь заглавные буквы: существительные пишутся с большой.' };
+    return { correct: true, note: sameCase ? undefined : dict().exercise.caseNote };
   }
-  if (all.map(t => transliterate(normalize(t, loose))).includes(transliterate(given))) return { correct: true, note: 'Засчитано, но лучше писать умлауты: ä, ö, ü, ß.' };
+  if (all.map(t => transliterate(normalize(t, loose))).includes(transliterate(given))) return { correct: true, note: dict().exercise.umlautNote };
   return { correct: false };
 }
 export const checkChoice = (exercise: ChoiceExercise, option: string): Check => ({ correct: option === exercise.answer });

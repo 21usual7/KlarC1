@@ -2,7 +2,9 @@ import {createHash,randomBytes} from 'node:crypto';
 import {d1Configured,d1Query} from './d1.ts';
 import {AuthError} from './auth-local.ts';
 import {deliverEmail,emailConfigured,emailLink,type EmailDelivery} from './email-delivery.ts';
-export async function sendVerification(userId:string,email:string):Promise<EmailDelivery>{
+import {emails} from '../i18n/emails.ts';
+import type {Locale} from '../i18n/locales.ts';
+export async function sendVerification(userId:string,email:string,locale:Locale='ru'):Promise<EmailDelivery>{
  if(!d1Configured())throw new AuthError(503,'Облачное хранилище не настроено.');
  if(!emailConfigured())return 'not_configured';
  const token=randomBytes(32).toString('hex');const hash=createHash('sha256').update(token).digest('hex');
@@ -12,7 +14,7 @@ export async function sendVerification(userId:string,email:string):Promise<Email
  if(!claimed.length)throw new AuthError(429,'Подожди минуту перед повторной отправкой. Допускается не больше пяти писем в час.');
  await d1Query('DELETE FROM email_verifications WHERE expires_at<=?',[now]);
  await d1Query('INSERT INTO email_verifications (token_hash,user_id,expires_at) VALUES (?,?,?)',[hash,userId,now+86400000]);
- return deliverEmail(email,'Подтверди email для Klar C1',`Подтверди свой email, чтобы войти в Klar C1.\n\n${link}\n\nСсылка действует 24 часа и используется один раз. После открытия нажми «Подтвердить email». Если ты не создавал аккаунт, проигнорируй письмо.`,`klar-verify-${hash}`);
+ return deliverEmail(email,emails[locale].verify.subject,emails[locale].verify.text(link),`klar-verify-${hash}`);
 }
 export async function confirmEmail(token:unknown){
  if(!d1Configured())throw new AuthError(503,'Облачное хранилище не настроено.');
@@ -22,11 +24,11 @@ export async function confirmEmail(token:unknown){
  if(!rows.length)throw new AuthError(400,'Ссылка недействительна, устарела или уже использована. Запроси новое письмо или войди, если email подтверждён.');
  try{await d1Query('DELETE FROM email_verifications WHERE user_id=?',[rows[0].id]);}catch{/* Already verified; leftover hashes cannot be reused. */}
 }
-export async function resendVerification(email:unknown){
+export async function resendVerification(email:unknown,locale:Locale='ru'){
  if(!d1Configured())throw new AuthError(503,'Облачное хранилище не настроено.');
  if(typeof email!=='string'||email.length>254||! /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))throw new AuthError(400,'Проверь адрес email.');
  const [user]=await d1Query<{id:string;email:string;email_verified_at:string|null}>('SELECT id,email,email_verified_at FROM users WHERE email=?',[email.trim().toLowerCase()]);
  if(!user||user.email_verified_at)return {message:'Если аккаунт существует и ожидает подтверждения, письмо будет отправлено.'};
- const emailDelivery=await sendVerification(user.id,user.email);
+ const emailDelivery=await sendVerification(user.id,user.email,locale);
  return {message:emailDelivery==='sent'?'Письмо отправлено. Проверь входящие и спам.':emailDelivery==='not_configured'?'Отправка писем ещё не настроена. Аккаунт сохранён и ждёт подтверждения.':'Письмо не удалось отправить. Попробуй повторить позже.',emailDelivery};
 }

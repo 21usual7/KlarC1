@@ -2,6 +2,7 @@ import { contentLevels, getModule, getWord, lessonCount, lessonWords, modules, m
 import { defaultStudyTrack, normalizeStudyStage, type StudyStage } from './study-focus.ts';
 import { firstTryScore, PASS_SCORE, type Run } from './lesson.ts';
 import { clampStage, lessonGrade, newCard, Rating, rate, readCard, type Stage, type WordProgress } from './srs.ts';
+import { dict } from '../i18n/runtime.ts';
 
 export type Level = 'A1' | 'A2' | 'B1' | 'B2' | 'C1';
 export const levels: Level[] = ['A1', 'A2', 'B1', 'B2', 'C1'];
@@ -152,7 +153,7 @@ export function restoreProgress(value: unknown): Progress {
   const sessions: SessionResult[] = Array.isArray(source.sessions) ? source.sessions.flatMap(v => {
     const s = record(v); if (typeof s.date !== 'string' || Number.isNaN(Date.parse(s.date))) return [];
     const kind: SessionResult['kind'] = s.kind === 'review' || s.kind === 'test' ? s.kind : 'lesson';
-    return [{ date: s.date, minutes: Math.max(0, number(s.minutes)), title: text(s.title, 'Занятие'), kind, ...(typeof s.score === 'number' && Number.isFinite(s.score) ? { score: Math.max(0, Math.min(1, s.score)) } : {}) }];
+    return [{ date: s.date, minutes: Math.max(0, number(s.minutes)), title: text(s.title, dict().run.sessionFallback), kind, ...(typeof s.score === 'number' && Number.isFinite(s.score) ? { score: Math.max(0, Math.min(1, s.score)) } : {}) }];
   }).slice(-200) : [];
   const skills = initialProgress.skills.map((_, i) => Math.max(0, Math.min(100, number(Array.isArray(source.skills) ? source.skills[i] : 0))));
   return { profile, sphere, words, modules: moduleState, sessions, skills };

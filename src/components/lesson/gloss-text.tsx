@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { glossFor, segments } from '@/lib/gloss';
+import { useI18n } from '@/i18n/client';
 
 const EDGE = 8;
 /**
@@ -34,6 +35,7 @@ type Props = {
  */
 export default function GlossText({ text, gloss, disabled = false, className }: Props) {
   const [pinned, setPinned] = useState<number | null>(null);
+  const { locale } = useI18n();
   const root = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -51,7 +53,7 @@ export default function GlossText({ text, gloss, disabled = false, className }: 
       const showLemma = g.lemma && g.lemma.toLowerCase() !== seg.text.toLowerCase();
       return <span key={i} className={`gloss-word ${pinned === i ? 'pinned' : ''}`}>
         <button type="button" aria-expanded={pinned === i} onPointerEnter={e => placeTip(e.currentTarget)} onFocus={e => placeTip(e.currentTarget)} onClick={e => { placeTip(e.currentTarget); setPinned(pinned === i ? null : i); }}>{seg.text}</button>
-        <span className="gloss-tip" role="tooltip" lang="ru">{showLemma && <b lang="de">{g.lemma}</b>}{g.ru}</span>
+        <span className="gloss-tip" role="tooltip" lang={locale}>{showLemma && <b lang="de">{g.lemma}</b>}{g.tr}</span>
       </span>;
     })}
   </span>;

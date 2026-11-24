@@ -2,6 +2,8 @@
 import { useSyncExternalStore } from 'react';
 import { Turtle, Volume2 } from 'lucide-react';
 import { audioKey } from '@/lib/audio-key';
+import { dict } from '@/i18n/runtime';
+import { useI18n } from '@/i18n/client';
 
 /*
  * German voice of the course. Every phrase listed in /audio/manifest.json has a pre-generated recording
@@ -142,14 +144,13 @@ const snapshot = (): SpeechStatus => {
 };
 export const useSpeechStatus = () => useSyncExternalStore(subscribe, snapshot, () => 'unknown' as const);
 
-export const speechMessage: Record<Exclude<SpeechStatus, 'ok' | 'unknown'>, string> = {
-  none: 'Этот браузер не умеет воспроизводить звук. Попробуй Chrome, Edge или Safari.',
-  'no-german': 'В системе нет немецкого голоса — текст прочитает голос по умолчанию, произношение может быть неверным. Немецкий голос можно добавить в настройках речи системы.',
-};
+/** Warnings about the browser voice, in the interface language. */
+export const speechMessage = (): Record<Exclude<SpeechStatus, 'ok' | 'unknown'>, string> => ({ none: dict().speech.none, 'no-german': dict().speech.noGerman });
 
-export function SpeakButton({ text, label = 'Послушать', withSlow = false }: { text: string; label?: string; withSlow?: boolean }) {
+export function SpeakButton({ text, label, withSlow = false }: { text: string; label?: string; withSlow?: boolean }) {
+  const s = useI18n().t.speech; label ??= s.listen;
   return <span className="speak-buttons">
     <button type="button" className="icon-button" aria-label={`${label}: ${text}`} title={label} onClick={() => speak(text)}><Volume2 size={18} /></button>
-    {withSlow && <button type="button" className="icon-button" aria-label={`Медленно: ${text}`} title="Медленно" onClick={() => speak(text, true)}><Turtle size={18} /></button>}
+    {withSlow && <button type="button" className="icon-button" aria-label={s.slowAria(text)} title={s.slow} onClick={() => speak(text, true)}><Turtle size={18} /></button>}
   </span>;
 }

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { readHistory, tutorPrompt } from '@/lib/tutor';
+import { localeFromRequest } from '@/i18n/server';
 import { assignments } from '@/lib/homework';
 import { cookies } from 'next/headers';
 import { SESSION_COOKIE } from '@/lib/auth';
@@ -17,7 +18,7 @@ export async function POST(request: Request) {
   if (!await allowTutorRequest((await cookies()).get(SESSION_COOKIE)?.value, request.headers)) return unavailable();
  } catch { return unavailable(); }
  const models=(gemini ? process.env.GEMINI_MODEL || 'gemini-flash-lite-latest,gemini-flash-latest' : process.env.OPENAI_MODEL || 'gpt-4.1-mini').split(',').map(m=>m.trim()).filter(Boolean).slice(0,3);
- const messages=[{role:'system',content:tutorPrompt(input)},...readHistory(input.history),{role:'user',content:input.message.trim()}];
+ const messages=[{role:'system',content:tutorPrompt(input,localeFromRequest(request))},...readHistory(input.history),{role:'user',content:input.message.trim()}];
  let lastStatus=502;
  for(const model of models) {
   try {

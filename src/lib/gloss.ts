@@ -1,7 +1,8 @@
 import { commonWords } from '../content/common-words.ts';
 import { displayWord, modules, type Word } from '../content/index.ts';
+import { contentVersion, trCommon, trWord } from '../content/translate.ts';
 
-export type Gloss = { ru: string; /** Dictionary form when the token is an inflected module word: `melde` → `sich anmelden`. */ lemma?: string };
+export type Gloss = { /** Translation in the interface language. */ tr: string; /** Dictionary form when the token is an inflected module word: `melde` → `sich anmelden`. */ lemma?: string };
 export type Segment = { text: string; word: boolean };
 
 /** A word: letters, optionally joined by hyphens (`E-Mail`, `Zwei-Faktor-Authentifizierung`). */
@@ -28,7 +29,7 @@ function buildWordIndex() {
   const add = (form: string, word: Word) => {
     const key = form.toLowerCase();
     if (!key || FORM_NOISE.has(key) || index.has(key)) return;
-    index.set(key, { ru: word.ru, lemma: displayWord(word) });
+    index.set(key, { tr: trWord(word), lemma: displayWord(word) });
   };
   for (const module of modules) for (const word of module.words) {
     const lemma = words(word.de);
@@ -42,7 +43,8 @@ function buildWordIndex() {
   }
   return index;
 }
-let wordIndex: Map<string, Gloss> | undefined;
+/** Built lazily and rebuilt when the interface language of the course changes. */
+let wordIndex: { version: number; index: Map<string, Gloss> } | undefined;
 
 /**
  * Translation of one word form. Order: the text's own glossary (it knows the context),
@@ -50,9 +52,10 @@ let wordIndex: Map<string, Gloss> | undefined;
  */
 export function glossFor(token: string, local: Record<string, string> = {}): Gloss | undefined {
   const key = token.toLowerCase();
-  if (local[key]) return { ru: local[key] };
-  wordIndex ??= buildWordIndex();
-  return wordIndex.get(key) || (commonWords[key] ? { ru: commonWords[key] } : undefined);
+  if (local[key]) return { tr: local[key] };
+  if (wordIndex?.version !== contentVersion()) wordIndex = { version: contentVersion(), index: buildWordIndex() };
+  const common = trCommon(key);
+  return wordIndex.index.get(key) || (common ? { tr: common } : undefined);
 }
 
 /** Word forms of `text` that have no translation; tests keep this empty for readings. */

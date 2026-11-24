@@ -5,7 +5,7 @@ import { cyberA22 } from './a22-cyber.ts';
 import { informatikA22 } from './a22-informatik.ts';
 import { matheA22 } from './a22-mathe.ts';
 import { generatedModules } from './modules/index.ts';
-import { contentLevels, LESSON_SIZE, spheres, type ContentLevel, type Module, type Sphere, type Word } from './types.ts';
+import { contentLevels, LESSON_SIZE, spheres, type ContentLevel, type Module, type Reading, type Sphere, type Word } from './types.ts';
 export { wordIcons, type WordIcon } from './icons.ts';
 
 export * from './types.ts';
@@ -22,6 +22,10 @@ export const modules: Module[] = spheres.flatMap(s => contentLevels.flatMap(leve
 
 const wordIndex = new Map<string, { word: Word; module: Module }>();
 for (const module of modules) for (const word of module.words) wordIndex.set(word.id, { word, module });
+/** Reading → `moduleId:lesson`, the key of its translations (`src/content/translate.ts`). */
+const readingKeys = new Map<Reading, string>();
+for (const module of modules) for (const reading of module.readings || []) readingKeys.set(reading, `${module.id}:${reading.lesson}`);
+export const readingKey = (reading: Reading) => readingKeys.get(reading);
 
 export const getModule = (id: string) => modules.find(m => m.id === id);
 export const getWord = (id: string) => wordIndex.get(id)?.word;
