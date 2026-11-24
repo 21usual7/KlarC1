@@ -5,7 +5,7 @@ export const BRAND_GREEN = '#315b45';
 export const BRAND_CREAM = '#f2f2dc';
 
 /**
- * Klar C1 app icon as a PNG: the Lucide «Leaf» from `.brand-mark` on the brand green.
+ * Jargeo app icon as a PNG: the Lucide «Leaf» from `.brand-mark` on the brand green.
  * - `rounded`: the leaf-cornered mark on a transparent background (manifest `purpose: any`, favicons).
  * - `full`: full-bleed square, leaf inside the central 60 % safe zone (`maskable`, Apple touch icon:
  *   iOS and Android apply their own mask).

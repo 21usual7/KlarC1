@@ -11,7 +11,7 @@ export default async function GuestHome() {
   return <div className="guest-page">
     <a href="#guest-main" className="guest-skip">{g.skip}</a>
     <header className="guest-header">
-      <Link href="/" className="brand" aria-label={t.common.toHome}><span className="brand-mark"><Leaf size={22} /></span>Klar<span className="brand-c1">C1</span></Link>
+      <Link href="/" className="brand" aria-label={t.common.toHome}><span className="brand-mark"><Leaf size={22} /></span>Jargeo</Link>
       <nav aria-label={t.common.mainNav} className="guest-nav">
         <LanguageSwitcher />
         <a href="#how-it-works" className="guest-about-link">{g.howItWorks}</a>

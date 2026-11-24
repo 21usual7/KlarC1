@@ -41,7 +41,7 @@ export default function Tutor() {
   const remove = (id: string) => { if (!confirm(tu.deleteConfirm)) return; cloud.update(s => ({ ...s, chats: s.chats.filter(c => c.id !== id) })); if (id === activeId) open(null); };
   if (!cloud.ready) return <div className="loading" style={{ flexDirection: 'column', fontSize: 18 }}><Leaf />{cloud.error || tu.loading}{cloud.error && <button className="button primary" onClick={() => void cloud.reload()}>{t.common.retryLoad}</button>}</div>;
   return <div className="tutor-page">
-    <header className="tutor-header"><Link href="/" className="brand" aria-label={t.common.toHome}><span className="brand-mark"><Leaf size={22} /></span>Klar<span className="brand-c1">C1</span></Link><span className="muted small sync-text">{cloud.status}</span><Link href="/" className="small-link"><ArrowLeft size={18} />{tu.back}</Link></header>
+    <header className="tutor-header"><Link href="/" className="brand" aria-label={t.common.toHome}><span className="brand-mark"><Leaf size={22} /></span>Jargeo</Link><span className="muted small sync-text">{cloud.status}</span><Link href="/" className="small-link"><ArrowLeft size={18} />{tu.back}</Link></header>
     {cloud.error && <p className="notice" role="alert">{cloud.error}</p>}
     <div className="tutor-layout">
       <aside className="chat-list" aria-label={tu.chats}>

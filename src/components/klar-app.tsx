@@ -105,7 +105,7 @@ export default function KlarApp({ initialView = 'home' }: { initialView?: View }
   return <div className="app">
     {mobile && <button className="mobile-scrim" aria-label={a.closeMenu} onClick={() => setMobile(false)} />}
     <aside className={`sidebar ${mobile ? 'mobile-open' : ''}`}>
-      <a className="brand" href="#" onClick={e => { e.preventDefault(); go('home'); }}><span className="brand-mark"><Leaf size={22} /></span>Klar<span className="brand-c1">C1</span></a>
+      <a className="brand" href="#" onClick={e => { e.preventDefault(); go('home'); }}><span className="brand-mark"><Leaf size={22} /></span>Jargeo</a>
       <div className="sidebar-caption">{a.caption}</div>
       <nav aria-label={t.common.mainNav}>{nav.map(n => <button key={n.id} onClick={() => n.id === 'tutor' ? router.push('/tutor') : go(n.id)} aria-current={view === n.id ? 'page' : undefined} className={`nav-item ${view === n.id ? 'active' : ''}`}><n.icon size={19} />{t.nav[n.id]}{n.id === 'review' && due.length > 0 && <span className="count">{due.length}</span>}{n.id === 'session' && run && !run.finished && <span className="count">•</span>}</button>)}</nav>
       <div className="sidebar-bottom"><div className="profile"><span className="avatar">{(data.profile?.name || 'K').slice(0, 1).toUpperCase()}</span><span><strong>{data.profile?.name || a.startProfile}</strong><small>{data.profile ? `${data.profile.level} · ${sphereLabel}` : a.setLevelGoal}</small></span><button className="icon-button" aria-label={a.editPlan} onClick={() => setOnboard(true)}><Settings2 size={17} /></button></div><LanguageSwitcher className="sidebar-language" /></div>

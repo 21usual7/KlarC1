@@ -20,8 +20,8 @@ export async function POST(request: Request) {
 
     after(async () => {
       try { await sendPasswordReset(email, localeFromRequest(request)); }
-      catch { console.error('Klar C1: password reset request failed.'); }
+      catch { console.error('Jargeo: password reset request failed.'); }
     });
-    return authResponse({ message: 'Если этот адрес подтверждён в Klar C1, мы отправим письмо со ссылкой. Проверь входящие и спам.' }, 202);
+    return authResponse({ message: 'Если этот адрес подтверждён в Jargeo, мы отправим письмо со ссылкой. Проверь входящие и спам.' }, 202);
   } catch (error) { return authFailure(error); }
 }

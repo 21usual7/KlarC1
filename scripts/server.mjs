@@ -27,4 +27,4 @@ const server = createServer((req, res) => {
   handle(req, res);
 });
 server.on('upgrade', app.getUpgradeHandler());
-server.listen(port, values.hostname, () => console.log(`Klar C1 ready at http://localhost:${port}`));
+server.listen(port, values.hostname, () => console.log(`Jargeo ready at http://localhost:${port}`));

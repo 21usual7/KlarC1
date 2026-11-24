@@ -3,8 +3,8 @@ import type { MetadataRoute } from 'next';
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: '/',
-    name: 'Klar C1',
-    short_name: 'Klar',
+    name: 'Jargeo',
+    short_name: 'Jargeo',
     description: 'Тренажёр немецкой лексики для учёбы в Вене: информатика, кибербезопасность, математика.',
     start_url: '/',
     scope: '/',

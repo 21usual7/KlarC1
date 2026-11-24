@@ -9,8 +9,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t.meta.title,
     description: t.meta.description,
-    applicationName: 'Klar C1',
-    appleWebApp: { capable: true, title: 'Klar C1', statusBarStyle: 'default' },
+    applicationName: 'Jargeo',
+    appleWebApp: { capable: true, title: 'Jargeo', statusBarStyle: 'default' },
     formatDetection: { telephone: false },
   };
 }

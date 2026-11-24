@@ -24,7 +24,7 @@ export async function sendPasswordReset(email: string, locale: Locale = 'ru') {
   if (!rows.length) return;
   const delivery = await deliverEmail(email, emails[locale].reset.subject, emails[locale].reset.text(link),
     `klar-reset-${hash}`);
-  if (delivery !== 'sent') console.error('Klar C1: password reset email delivery failed.');
+  if (delivery !== 'sent') console.error('Jargeo: password reset email delivery failed.');
 }
 
 export async function resetPassword(input: Record<string, unknown>) {
