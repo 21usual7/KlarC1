@@ -81,5 +81,14 @@ import { icons as i78 } from './mathe-a22-08-stochastik.icons.ts';
 import { icons as i79 } from './mathe-a22-09-diskrete-mathematik.icons.ts';
 import { icons as i80 } from './mathe-a22-10-pruefungen.icons.ts';
 import { icons as i81 } from './pflege-a11-01-erster-tag.icons.ts';
+import { icons as i82 } from './pflege-a11-02-koerper.icons.ts';
+import { icons as i83 } from './pflege-a11-03-uhrzeit.icons.ts';
+import { icons as i84 } from './pflege-a11-04-dienstplan.icons.ts';
+import { icons as i85 } from './pflege-a11-05-befinden.icons.ts';
+import { icons as i86 } from './pflege-a11-06-essen.icons.ts';
+import { icons as i87 } from './pflege-a11-07-pflegewagen.icons.ts';
+import { icons as i88 } from './pflege-a11-08-koerperpflege.icons.ts';
+import { icons as i89 } from './pflege-a11-09-familie.icons.ts';
+import { icons as i90 } from './pflege-a11-10-im-zimmer.icons.ts';
 
-export const generatedIcons = { ...i0, ...i1, ...i2, ...i3, ...i4, ...i5, ...i6, ...i7, ...i8, ...i9, ...i10, ...i11, ...i12, ...i13, ...i14, ...i15, ...i16, ...i17, ...i18, ...i19, ...i20, ...i21, ...i22, ...i23, ...i24, ...i25, ...i26, ...i27, ...i28, ...i29, ...i30, ...i31, ...i32, ...i33, ...i34, ...i35, ...i36, ...i37, ...i38, ...i39, ...i40, ...i41, ...i42, ...i43, ...i44, ...i45, ...i46, ...i47, ...i48, ...i49, ...i50, ...i51, ...i52, ...i53, ...i54, ...i55, ...i56, ...i57, ...i58, ...i59, ...i60, ...i61, ...i62, ...i63, ...i64, ...i65, ...i66, ...i67, ...i68, ...i69, ...i70, ...i71, ...i72, ...i73, ...i74, ...i75, ...i76, ...i77, ...i78, ...i79, ...i80, ...i81 };
+export const generatedIcons = { ...i0, ...i1, ...i2, ...i3, ...i4, ...i5, ...i6, ...i7, ...i8, ...i9, ...i10, ...i11, ...i12, ...i13, ...i14, ...i15, ...i16, ...i17, ...i18, ...i19, ...i20, ...i21, ...i22, ...i23, ...i24, ...i25, ...i26, ...i27, ...i28, ...i29, ...i30, ...i31, ...i32, ...i33, ...i34, ...i35, ...i36, ...i37, ...i38, ...i39, ...i40, ...i41, ...i42, ...i43, ...i44, ...i45, ...i46, ...i47, ...i48, ...i49, ...i50, ...i51, ...i52, ...i53, ...i54, ...i55, ...i56, ...i57, ...i58, ...i59, ...i60, ...i61, ...i62, ...i63, ...i64, ...i65, ...i66, ...i67, ...i68, ...i69, ...i70, ...i71, ...i72, ...i73, ...i74, ...i75, ...i76, ...i77, ...i78, ...i79, ...i80, ...i81, ...i82, ...i83, ...i84, ...i85, ...i86, ...i87, ...i88, ...i89, ...i90 };
