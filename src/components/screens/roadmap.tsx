@@ -15,7 +15,7 @@ export default function Roadmap({ progress, level, onSphere, onLesson, onTest }:
   const r = useI18n().t.roadmap; const ad = r.admission;
   return <><PageTitle label={r.label} title={r.title} text={r.text} />
     <SphereTabs value={progress.sphere} onChange={onSphere} />
-    {contentLevels.map(l => <section className="roadmap-section" key={l}>
+    {contentLevels.filter(l => modulesFor(progress.sphere, l).length).map(l => <section className="roadmap-section" key={l}>
       <div className="roadmap-number">{l}</div>
       <div className="roadmap-content">
         <span className="eyebrow">{l === level ? r.yourLevel : contentLevels.indexOf(l) < contentLevels.indexOf(level) ? r.easier : r.harder}</span>

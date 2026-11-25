@@ -22,8 +22,8 @@ export type { WordProgress };
 export const initialProgress: Progress = { profile: null, sphere: 'cyber', words: {}, modules: {}, sessions: [], skills: [0, 0, 0, 0, 0, 0] };
 export const skillNames = ['Lesen', 'Hören', 'Schreiben', 'Sprechen', 'Grammatik', 'Wortschatz'];
 
-/** Content exists up to A2.2 so far: A1 → A1.2, A2 → A2.1, B1 and above start with A2.2 until new modules arrive. */
-export const contentLevelFor = (level: Level | undefined): ContentLevel => !level || level === 'A1' ? 'A1.2' : level === 'A2' ? 'A2.1' : 'A2.2';
+/** Content exists up to A2.2 so far: A1 → A1.1, A2 → A2.1, B1 and above start with A2.2 until new modules arrive. */
+export const contentLevelFor = (level: Level | undefined): ContentLevel => !level || level === 'A1' ? 'A1.1' : level === 'A2' ? 'A2.1' : 'A2.2';
 
 // ---------- placement (unchanged short screening) ----------
 export const placement = [

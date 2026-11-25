@@ -49,7 +49,7 @@ test('every lesson has a text with questions and translations', () => {
     for (const r of m.readings || []) {
       const where = `${m.id} «${r.title}»`;
       const length = words(r.de).length;
-      assert.ok(length >= (m.level === 'A1.2' ? 50 : 70) && length <= 160, `${where}: ${length} words`);
+      assert.ok(length >= ({ 'A1.1': 35, 'A1.2': 50 }[m.level as string] ?? 70) && length <= 160, `${where}: ${length} words`);
       assert.ok(r.ru.length > 0, `${where}: translation`);
       assert.ok(r.questions.length >= 3, `${where}: questions`);
       for (const q of r.questions) {

@@ -15,9 +15,9 @@ test('screening distinguishes a beginner and never certifies C1', () => {
   assert.equal(placementLevel(placement.map((q, i) => i < 4 ? q.correct : -1)), 'A2');
 });
 
-test('A1 learners start with A1.2, A2 with A2.1, B1 and above with A2.2', () => {
-  assert.equal(contentLevelFor('A1'), 'A1.2');
-  assert.equal(contentLevelFor(undefined), 'A1.2');
+test('A1 learners start with A1.1, A2 with A2.1, B1 and above with A2.2', () => {
+  assert.equal(contentLevelFor('A1'), 'A1.1');
+  assert.equal(contentLevelFor(undefined), 'A1.1');
   assert.equal(contentLevelFor('A2'), 'A2.1');
   assert.equal(contentLevelFor('B1'), 'A2.2');
   assert.equal(contentLevelFor('C1'), 'A2.2');

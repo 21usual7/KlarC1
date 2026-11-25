@@ -1,0 +1,2 @@
+import { Hospital, HeartHandshake, Stethoscope, UserRound, Building2, DoorOpen, MessageCircle, Sunrise, Users, Sparkles, Briefcase, HandHelping, IdCard, AlarmClock, BedSingle, Smile } from 'lucide-react';
+export const icons = { Hospital, HeartHandshake, Stethoscope, UserRound, Building2, DoorOpen, MessageCircle, Sunrise, Users, Sparkles, Briefcase, HandHelping, IdCard, AlarmClock, BedSingle, Smile };

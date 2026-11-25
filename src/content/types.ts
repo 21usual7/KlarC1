@@ -1,7 +1,7 @@
 import type { WordIcon } from './icons.ts';
 
-export type Sphere = 'informatik' | 'cyber' | 'mathe';
-export type ContentLevel = 'A1.2' | 'A2.1' | 'A2.2';
+export type Sphere = 'informatik' | 'cyber' | 'mathe' | 'pflege' | 'alltag' | 'gastro';
+export type ContentLevel = 'A1.1' | 'A1.2' | 'A2.1' | 'A2.2';
 export type Article = 'der' | 'die' | 'das';
 export type PartOfSpeech = 'noun' | 'verb' | 'adj' | 'adv' | 'phrase';
 
@@ -77,8 +77,11 @@ export const spheres: { id: Sphere; label: string; de: string }[] = [
   { id: 'informatik', label: 'Информатика', de: 'Informatik' },
   { id: 'cyber', label: 'Кибербезопасность', de: 'Cybersecurity' },
   { id: 'mathe', label: 'Математика', de: 'Mathematik' },
+  { id: 'pflege', label: 'Медицина и уход', de: 'Pflege & Medizin' },
+  { id: 'alltag', label: 'Повседневная жизнь', de: 'Alltag & Behörden' },
+  { id: 'gastro', label: 'Гастрономия и отель', de: 'Gastronomie & Hotel' },
 ];
-export const contentLevels: ContentLevel[] = ['A1.2', 'A2.1', 'A2.2'];
+export const contentLevels: ContentLevel[] = ['A1.1', 'A1.2', 'A2.1', 'A2.2'];
 /** Words per lesson; a lesson is split into blocks of BLOCK_SIZE. */
 export const LESSON_SIZE = 8;
 export const BLOCK_SIZE = 4;
