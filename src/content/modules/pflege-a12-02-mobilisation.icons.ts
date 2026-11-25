@@ -1,0 +1,2 @@
+import { ArrowUp, Armchair, BedSingle, Snail, TriangleAlert, ShoppingCart, HandHelping, ArrowDown, MoveHorizontal, Footprints, Grip, ChartNoAxesColumnIncreasing, ArrowUpDown, Scale, User } from 'lucide-react';
+export const icons = { ArrowUp, Armchair, BedSingle, Snail, TriangleAlert, ShoppingCart, HandHelping, ArrowDown, MoveHorizontal, Footprints, Grip, ChartNoAxesColumnIncreasing, ArrowUpDown, Scale, User };

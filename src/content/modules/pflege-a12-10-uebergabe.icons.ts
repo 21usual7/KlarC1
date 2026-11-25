@@ -1,0 +1,2 @@
+import { ArrowLeftRight, Megaphone, StickyNote, Waves, ShieldCheck, Star, LogOut, CircleAlert, Stethoscope, ListChecks, CheckCheck, CircleCheck, UserRound, FileText, BellRing, Clock } from 'lucide-react';
+export const icons = { ArrowLeftRight, Megaphone, StickyNote, Waves, ShieldCheck, Star, LogOut, CircleAlert, Stethoscope, ListChecks, CheckCheck, CircleCheck, UserRound, FileText, BellRing, Clock };
