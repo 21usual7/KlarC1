@@ -101,5 +101,15 @@ import { module as m97 } from './pflege-a12-07-notfall.ts';
 import { module as m98 } from './pflege-a12-08-aufnahme.ts';
 import { module as m99 } from './pflege-a12-09-ausscheidung.ts';
 import { module as m100 } from './pflege-a12-10-uebergabe.ts';
+import { module as m101 } from './pflege-a21-01-anamnese.ts';
+import { module as m102 } from './pflege-a21-02-krankheiten.ts';
+import { module as m103 } from './pflege-a21-03-wundversorgung.ts';
+import { module as m104 } from './pflege-a21-04-medikamentengabe.ts';
+import { module as m105 } from './pflege-a21-05-sturzprophylaxe.ts';
+import { module as m106 } from './pflege-a21-06-dekubitus.ts';
+import { module as m107 } from './pflege-a21-07-ernaehrung.ts';
+import { module as m108 } from './pflege-a21-08-demenz.ts';
+import { module as m109 } from './pflege-a21-09-hygiene.ts';
+import { module as m110 } from './pflege-a21-10-visite.ts';
 
-export const generatedModules: Module[] = [m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20, m21, m22, m23, m24, m25, m26, m27, m28, m29, m30, m31, m32, m33, m34, m35, m36, m37, m38, m39, m40, m41, m42, m43, m44, m45, m46, m47, m48, m49, m50, m51, m52, m53, m54, m55, m56, m57, m58, m59, m60, m61, m62, m63, m64, m65, m66, m67, m68, m69, m70, m71, m72, m73, m74, m75, m76, m77, m78, m79, m80, m81, m82, m83, m84, m85, m86, m87, m88, m89, m90, m91, m92, m93, m94, m95, m96, m97, m98, m99, m100];
+export const generatedModules: Module[] = [m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20, m21, m22, m23, m24, m25, m26, m27, m28, m29, m30, m31, m32, m33, m34, m35, m36, m37, m38, m39, m40, m41, m42, m43, m44, m45, m46, m47, m48, m49, m50, m51, m52, m53, m54, m55, m56, m57, m58, m59, m60, m61, m62, m63, m64, m65, m66, m67, m68, m69, m70, m71, m72, m73, m74, m75, m76, m77, m78, m79, m80, m81, m82, m83, m84, m85, m86, m87, m88, m89, m90, m91, m92, m93, m94, m95, m96, m97, m98, m99, m100, m101, m102, m103, m104, m105, m106, m107, m108, m109, m110];

@@ -1,0 +1,2 @@
+import { Stethoscope, FileSearch, ClipboardCheck, ScanSearch, Scan, Radio, FlaskConical, Droplet, Megaphone, ListChecks, MessageCircleQuestion, MessagesSquare, ChartLine, LogOut, FolderOpen, ThumbsUp } from 'lucide-react';
+export const icons = { Stethoscope, FileSearch, ClipboardCheck, ScanSearch, Scan, Radio, FlaskConical, Droplet, Megaphone, ListChecks, MessageCircleQuestion, MessagesSquare, ChartLine, LogOut, FolderOpen, ThumbsUp };

@@ -1,0 +1,2 @@
+import { TriangleAlert, Gauge, Waves, Cable, Footprints, Fence, Lamp, Grip, BicepsFlexed, Dumbbell, Activity, PersonStanding, ShieldCheck, ShieldAlert, RectangleHorizontal, CircleOff } from 'lucide-react';
+export const icons = { TriangleAlert, Gauge, Waves, Cable, Footprints, Fence, Lamp, Grip, BicepsFlexed, Dumbbell, Activity, PersonStanding, ShieldCheck, ShieldAlert, RectangleHorizontal, CircleOff };

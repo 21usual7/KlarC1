@@ -100,5 +100,15 @@ import { icons as i97 } from './pflege-a12-07-notfall.icons.ts';
 import { icons as i98 } from './pflege-a12-08-aufnahme.icons.ts';
 import { icons as i99 } from './pflege-a12-09-ausscheidung.icons.ts';
 import { icons as i100 } from './pflege-a12-10-uebergabe.icons.ts';
+import { icons as i101 } from './pflege-a21-01-anamnese.icons.ts';
+import { icons as i102 } from './pflege-a21-02-krankheiten.icons.ts';
+import { icons as i103 } from './pflege-a21-03-wundversorgung.icons.ts';
+import { icons as i104 } from './pflege-a21-04-medikamentengabe.icons.ts';
+import { icons as i105 } from './pflege-a21-05-sturzprophylaxe.icons.ts';
+import { icons as i106 } from './pflege-a21-06-dekubitus.icons.ts';
+import { icons as i107 } from './pflege-a21-07-ernaehrung.icons.ts';
+import { icons as i108 } from './pflege-a21-08-demenz.icons.ts';
+import { icons as i109 } from './pflege-a21-09-hygiene.icons.ts';
+import { icons as i110 } from './pflege-a21-10-visite.icons.ts';
 
-export const generatedIcons = { ...i0, ...i1, ...i2, ...i3, ...i4, ...i5, ...i6, ...i7, ...i8, ...i9, ...i10, ...i11, ...i12, ...i13, ...i14, ...i15, ...i16, ...i17, ...i18, ...i19, ...i20, ...i21, ...i22, ...i23, ...i24, ...i25, ...i26, ...i27, ...i28, ...i29, ...i30, ...i31, ...i32, ...i33, ...i34, ...i35, ...i36, ...i37, ...i38, ...i39, ...i40, ...i41, ...i42, ...i43, ...i44, ...i45, ...i46, ...i47, ...i48, ...i49, ...i50, ...i51, ...i52, ...i53, ...i54, ...i55, ...i56, ...i57, ...i58, ...i59, ...i60, ...i61, ...i62, ...i63, ...i64, ...i65, ...i66, ...i67, ...i68, ...i69, ...i70, ...i71, ...i72, ...i73, ...i74, ...i75, ...i76, ...i77, ...i78, ...i79, ...i80, ...i81, ...i82, ...i83, ...i84, ...i85, ...i86, ...i87, ...i88, ...i89, ...i90, ...i91, ...i92, ...i93, ...i94, ...i95, ...i96, ...i97, ...i98, ...i99, ...i100 };
+export const generatedIcons = { ...i0, ...i1, ...i2, ...i3, ...i4, ...i5, ...i6, ...i7, ...i8, ...i9, ...i10, ...i11, ...i12, ...i13, ...i14, ...i15, ...i16, ...i17, ...i18, ...i19, ...i20, ...i21, ...i22, ...i23, ...i24, ...i25, ...i26, ...i27, ...i28, ...i29, ...i30, ...i31, ...i32, ...i33, ...i34, ...i35, ...i36, ...i37, ...i38, ...i39, ...i40, ...i41, ...i42, ...i43, ...i44, ...i45, ...i46, ...i47, ...i48, ...i49, ...i50, ...i51, ...i52, ...i53, ...i54, ...i55, ...i56, ...i57, ...i58, ...i59, ...i60, ...i61, ...i62, ...i63, ...i64, ...i65, ...i66, ...i67, ...i68, ...i69, ...i70, ...i71, ...i72, ...i73, ...i74, ...i75, ...i76, ...i77, ...i78, ...i79, ...i80, ...i81, ...i82, ...i83, ...i84, ...i85, ...i86, ...i87, ...i88, ...i89, ...i90, ...i91, ...i92, ...i93, ...i94, ...i95, ...i96, ...i97, ...i98, ...i99, ...i100, ...i101, ...i102, ...i103, ...i104, ...i105, ...i106, ...i107, ...i108, ...i109, ...i110 };

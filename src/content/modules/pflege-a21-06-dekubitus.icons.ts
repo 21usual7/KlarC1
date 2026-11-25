@@ -1,0 +1,2 @@
+import { CircleAlert, CircleDot, Footprints, Bone, BedSingle, RotateCcw, RectangleHorizontal, BedDouble, TriangleAlert, Circle, Fingerprint, ScanSearch, Feather, CalendarClock, HeartPulse, ArrowDownToLine } from 'lucide-react';
+export const icons = { CircleAlert, CircleDot, Footprints, Bone, BedSingle, RotateCcw, RectangleHorizontal, BedDouble, TriangleAlert, Circle, Fingerprint, ScanSearch, Feather, CalendarClock, HeartPulse, ArrowDownToLine };
