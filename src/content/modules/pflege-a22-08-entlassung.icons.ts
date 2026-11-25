@@ -1,0 +1,2 @@
+import { Dumbbell, ArrowRightLeft, Mail, Forward, FileText, CalendarHeart, Ambulance, CalendarCog, Users, Home, ArrowUpRight, BedDouble, Clock, DoorOpen, ShieldCheck, AlarmClockCheck } from 'lucide-react';
+export const icons = { Dumbbell, ArrowRightLeft, Mail, Forward, FileText, CalendarHeart, Ambulance, CalendarCog, Users, Home, ArrowUpRight, BedDouble, Clock, DoorOpen, ShieldCheck, AlarmClockCheck };

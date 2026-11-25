@@ -1,0 +1,2 @@
+import { MessagesSquare, CloudRain, Lock, Info, FileSignature, UserCheck, BadgeCheck, ShieldCheck, MessageSquareWarning, Pointer, CircleHelp, CheckCheck, HeartHandshake, CalendarCheck, Scale } from 'lucide-react';
+export const icons = { MessagesSquare, CloudRain, Lock, Info, FileSignature, UserCheck, BadgeCheck, ShieldCheck, MessageSquareWarning, Pointer, CircleHelp, CheckCheck, HeartHandshake, CalendarCheck, Scale };
